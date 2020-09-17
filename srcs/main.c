@@ -10,7 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(void)
+#include "lem_in.h"
+
+int main(int argc, char **argv)
 {
+	if (!isatty(STDIN_FILENO))
+	{
+		ft_putendl_fd("Terminal input is closed", STDOUT_FILENO);
+        return (1);
+	}
+	argc = 0;
+	argv = NULL;
 	return (0);
 }
