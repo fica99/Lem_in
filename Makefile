@@ -12,6 +12,7 @@
 
 
 # ------------  PROJECT  ----------------------------------------------------- #
+
 NAME :=	lem-in
 
 # ------------  FLAGS  ------------------------------------------------------- #
@@ -32,11 +33,13 @@ SOURCES :=	main.c \
 			$(ALGORITHM)
 
 # ------------  DIRECTORIES  ------------------------------------------------- #
+
 DIR_O := objs
 DIR_S := srcs
 INCLUDE_DIR = includes
 
 # ------------  LIBFT  ------------------------------------------------------- #
+
 LIB_INCLUDE_DIR := libft/includes
 LIB_PRINTF_INCLUDE_DIR := libft/ft_printf/includes
 LIB_HEADERS := \
@@ -48,20 +51,25 @@ LIB_HEADERS := \
 INCLUDES := -I $(INCLUDE_DIR) -I $(LIB_INCLUDE_DIR) -I $(LIB_PRINTF_INCLUDE_DIR)
 
 # ------------  FILEPATHS  --------------------------------------------------- #
+
 SRCS := $(addprefix $(DIR_S)/,$(SOURCES))
 OBJS := $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
+LIBFT = $(addsuffix .libft , libft/)
 
 # ------------  RULES  ------------------------------------------------------- #
+
 .PHONY: all clean fclean re
 
 %.libft:  $(LIB_HEADERS)
 	@make -C $*
 
-all: $(NAME)
+LIBS_INCLUDED = -Llibft -lft
+
+all: $(LIBFT) $(NAME)
 
 $(NAME): $(OBJS)
 	@echo "\033[32;01mCompiling lem_in...\033[0m"
-	@gcc $(FLAGS) $(OBJS) -o $(NAME)
+	@gcc $(FLAGS) $(OBJS) -o $(NAME) $(LIBS_INCLUDED)
 	@echo "\033[32;01mlem_in is ready\033[0m"
 
 $(OBJS): $(DIR_O)/%.o: $(DIR_S)/%.c $(wildcard $(INCLUDE_DIR)/*.h)

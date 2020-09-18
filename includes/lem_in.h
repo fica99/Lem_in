@@ -10,4 +10,6 @@
 # include "validator.h"
 # include "algorithm.h"
 
+# define VAL_ERROR -1
+
 #endif
