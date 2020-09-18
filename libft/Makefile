@@ -14,13 +14,13 @@ SRCS =	$(ARROW_FUNCTIONS) \
 	$(STACK_STRUCTURE) \
 	$(STRING_FUNCTIONS) \
 	$(OTHER_FUNCTIONS)
-	
+
 ARROW_FUNCTIONS = ./arrow_functions/ft_arrdel.c \
 	./arrow_functions/ft_realloc_array.c \
 	./arrow_functions/ft_delelem_array.c \
 	./arrow_functions/ft_arrshift.c \
 	./arrow_functions/ft_memrealloc_array.c
-	
+
 LIST_STRUCTURE = ./list_structure/ft_lstadd.c \
 	./list_structure/ft_lstclear.c \
 	./list_structure/ft_lstdel.c \
@@ -92,7 +92,7 @@ OTHER_FUNCTIONS = ./other_functions/ft_atoi.c \
 	./other_functions/ft_toupper.c \
 	./other_functions/swap_chars.c \
 	./other_functions/swap_ints.c
-	
+
 OUTPUT_FUNCTIONS = ./output_functions/ft_putnstr.c \
 	./output_functions/ft_printmap.c \
 	./output_functions/ft_putchar_fd.c \
@@ -151,41 +151,37 @@ INCLUDE = includes/libft.h
 all:	$(NAME)
 
 $(NAME):	$(OBJS)
-	@echo "\033[32;01mCompiling libft...\033[0m"
-	@make -C ./ft_printf
-	@cp ft_printf/libftprintf.a $(NAME)
-	@ar rc $(NAME) $(OBJS)
-	@ranlib $(NAME)
-	@echo "\033[32;01mLibft.a is ready.\033[0m"
+	make -C ./ft_printf
+	cp ft_printf/libftprintf.a $(NAME)
+	ar rc $(NAME) $(OBJS)
+	ranlib $(NAME)
 
 $(OBJS):	$(DIR_O)/%.o: %.c $(INCLUDE)
 #_____________________________________________________
-	@mkdir -p $(DIR_O)
-	@mkdir -p $(DIR_O)/arrow_functions
-	@mkdir -p $(DIR_O)/list_structure
+	mkdir -p $(DIR_O)
+	mkdir -p $(DIR_O)/arrow_functions
+	mkdir -p $(DIR_O)/list_structure
 #_____________________________________________________
-	@mkdir -p $(DIR_O)/tree_functions
-	@mkdir -p $(DIR_O)/tree_functions/binary_tree
+	mkdir -p $(DIR_O)/tree_functions
+	mkdir -p $(DIR_O)/tree_functions/binary_tree
 #_____________________________________________________
-	@mkdir -p $(DIR_O)/malloc_functions
-	@mkdir -p $(DIR_O)/memory_functions
-	@mkdir -p $(DIR_O)/other_functions
-	@mkdir -p $(DIR_O)/output_functions
-	@mkdir -p $(DIR_O)/sort_functions
-	@mkdir -p $(DIR_O)/stack_structure
-	@mkdir -p $(DIR_O)/string_functions
-#_____________________________________________________
-	@gcc $(FLAGS) -c -I includes -o $@ $<
+	mkdir -p $(DIR_O)/malloc_functions
+	mkdir -p $(DIR_O)/memory_functions
+	mkdir -p $(DIR_O)/other_functions
+	mkdir -p $(DIR_O)/output_functions
+	mkdir -p $(DIR_O)/sort_functions
+	mkdir -p $(DIR_O)/stack_structure
+	mkdir -p $(DIR_O)/string_functions
+#____________________________________________________
+	gcc $(FLAGS) -c -I includes -o $@ $<
 
 clean:
-	@echo "\033[34mDeleting libft o-files\033[0m"
-	@make clean --directory ./ft_printf
-	@/bin/rm -rf $(DIR_O)
+	make clean --directory ./ft_printf
+	/bin/rm -rf $(DIR_O)
 
 fclean:	clean
-	@echo "\033[34mDeleting libft.a\033[0m"
-	@make fclean --directory ./ft_printf
-	@/bin/rm -f $(NAME)
+	make fclean --directory ./ft_printf
+	/bin/rm -f $(NAME)
 
 re: 	fclean all
 

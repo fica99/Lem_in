@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+         #
+#    By: aashara <aashara@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/15 12:55:39 by aashara-          #+#    #+#              #
-#    Updated: 2020/09/15 12:58:40 by aashara-         ###   ########.fr        #
+#    Updated: 2020/09/18 11:32:14 by aashara          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,33 +61,28 @@ LIBFT = $(addsuffix .libft , libft/)
 .PHONY: all clean fclean re
 
 %.libft:  $(LIB_HEADERS)
-	@make -C $*
+	make -C $*
 
 LIBS_INCLUDED = -Llibft -lft
 
 all: $(LIBFT) $(NAME)
 
 $(NAME): $(OBJS)
-	@echo "\033[32;01mCompiling lem_in...\033[0m"
-	@gcc $(FLAGS) $(OBJS) -o $(NAME) $(LIBS_INCLUDED)
-	@echo "\033[32;01mlem_in is ready\033[0m"
+	gcc $(FLAGS) $(OBJS) -o $(NAME) $(LIBS_INCLUDED)
 
 $(OBJS): $(DIR_O)/%.o: $(DIR_S)/%.c $(wildcard $(INCLUDE_DIR)/*.h)
-
-	@mkdir -p $(DIR_O)
-	@mkdir -p $(DIR_O)/$(VALIDATOR_DIR)
-	@mkdir -p $(DIR_O)/$(ALGORITHM_DIR)
+	mkdir -p $(DIR_O)
+	mkdir -p $(DIR_O)/$(VALIDATOR_DIR)
+	mkdir -p $(DIR_O)/$(ALGORITHM_DIR)
 
 	gcc $(FLAGS) -c $(INCLUDES) -o $@ $<
 
 clean:
-	@echo "\033[34mDeleting lem_in o-files\033[0m"
-	@/bin/rm -rf $(DIR_O)
-	@make clean --directory ./libft
+	/bin/rm -rf $(DIR_O)
+	make clean --directory ./libft
 
 fclean: clean
-	@echo "\033[34mDeleting lem_in binary\033[0m"
-	@/bin/rm -f $(NAME)
-	@make fclean --directory ./libft
+	/bin/rm -f $(NAME)
+	make fclean --directory ./libft
 
 re: fclean all

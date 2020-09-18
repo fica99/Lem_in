@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rbednar <rbednar@student.21-school.ru>     +#+  +:+       +#+         #
+#    By: aashara <aashara@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/23 17:15:13 by sschmele          #+#    #+#              #
-#    Updated: 2020/08/09 17:56:14 by rbednar          ###   ########.fr        #
+#    Updated: 2020/09/18 11:34:17 by aashara          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,20 +41,16 @@ OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 all:	$(NAME)
 
 $(NAME):	$(OBJS)
-	@echo "\033[32;01mCompiling ft_printf...\033[0m"
-	@ar rc $(NAME) $(OBJS)
-	@echo "\033[32;01mLibftprintf.a is ready.\033[0m"
+	ar rc $(NAME) $(OBJS)
 
 $(OBJS):	$(DIR_O)/%.o: $(DIR_S)/%.c ../includes/ft_printf.h ../includes/libft.h
-	@mkdir -p $(DIR_O)
-	@gcc $(FLAGS) -c -I ../includes -o $@ $<
+	mkdir -p $(DIR_O)
+	gcc $(FLAGS) -c -I ../includes -o $@ $<
 clean:
-	@echo "\033[34mDeleting ft_print o-files\033[0m"
-	@/bin/rm -rf $(DIR_O)
+	/bin/rm -rf $(DIR_O)
 
 fclean: clean
-	@echo "\033[34mDeleting libftprint.a\033[0m"
-	@/bin/rm -f $(NAME)
+	/bin/rm -f $(NAME)
 
 re:		fclean all
 
