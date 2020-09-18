@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.h                                        :+:      :+:    :+:   */
+/*   ft_min.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/18 21:24:50 by aashara           #+#    #+#             */
-/*   Updated: 2020/09/18 22:16:01 by aashara          ###   ########.fr       */
+/*   Created: 2020/09/18 21:44:19 by aashara           #+#    #+#             */
+/*   Updated: 2020/09/18 21:44:53 by aashara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALGORITHM_H
-# define ALGORITHM_H
+#include "libft.h"
 
-# include <limits.h>
-# include "graph.h"
-
-/*
-**		al_bellman_ford.c
-*/
-void	al_bellman_ford(t_graph *graph, int *dist, int *prev);
-#endif
+int	ft_min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
