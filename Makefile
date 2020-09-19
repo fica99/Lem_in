@@ -1,13 +1,12 @@
 
 # ------------  PROJECT  ----------------------------------------------------- #
 
-NAME :=	lem_in
+NAME :=	lem-in
 
 # ------------  FLAGS  ------------------------------------------------------- #
 
 FLAGS := -Wall -Wextra #-Werror
 FLAGS += -g
-FLAGS += -MMD -MP
 
 # ------------  SOURCE FILES  ------------------------------------------------ #
 
@@ -31,8 +30,9 @@ INCLUDE_DIR = includes
 
 # ------------  LIBFT  ------------------------------------------------------- #
 
-LIB_INCLUDE_DIR := libft/includes
-LIB_PRINTF_INCLUDE_DIR := libft/ft_printf/includes
+LIBFT_DIR := lib/libft
+LIB_INCLUDE_DIR := $(LIBFT_DIR)/includes
+LIB_PRINTF_INCLUDE_DIR := $(LIBFT_DIR)/ft_printf/includes
 LIB_HEADERS := \
 			$(wildcard $(LIB_INCLUDE_DIR)/*.h) \
 			$(wildcard $(LIB_PRINTF_INCLUDE_DIR)/*.h)
@@ -48,7 +48,7 @@ INCLUDES := \
 
 SRCS := $(addprefix $(DIR_S)/,$(SOURCES))
 OBJS := $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
-LIBFT = $(addsuffix .libft , libft/)
+LIBFT = $(addsuffix .libft , $(LIBFT_DIR)/)
 
 # ------------  RULES  ------------------------------------------------------- #
 
@@ -57,11 +57,11 @@ LIBFT = $(addsuffix .libft , libft/)
 %.libft:  $(LIB_HEADERS)
 	make -C $*
 
-LIBS_INCLUDED = -Llibft -lft
+LIBS_INCLUDED = -L $(LIBFT_DIR) -lft
 
 all: $(LIBFT) $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(LIBFT_DIR)/libft.a $(OBJS)
 	@echo "\033[32;01mCompiling lem_in...\033[0m"
 	gcc $(FLAGS) $(OBJS) -o $(NAME) $(LIBS_INCLUDED)
 	@echo "\033[32;01mlem_in is ready\033[0m"
@@ -78,11 +78,11 @@ $(DIR_O):
 clean:
 	@echo "\033[34mDeleting lem_in o-files\033[0m"
 	/bin/rm -rf $(DIR_O)
-	make clean --directory ./libft
+	make clean --directory $(LIBFT_DIR)
 
 fclean: clean
 	@echo "\033[34mDeleting lem_in binary\033[0m"
 	/bin/rm -f $(NAME)
-	make fclean --directory ./libft
+	make fclean --directory $(LIBFT_DIR)
 
 re: fclean all

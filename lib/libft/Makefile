@@ -3,7 +3,6 @@ NAME := libft.a
 
 FLAGS := -Wall -Wextra -Werror
 #FLAGS += -g
-FLAGS += -MMD -MP
 FLAGS += -O3
 
 ARROW_FUNCTIONS := arrow_functions/ft_arrdel.c \
