@@ -3,77 +3,77 @@
 /*                                                        :::      ::::::::   */
 /*   al_bellman_ford.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 21:25:15 by aashara           #+#    #+#             */
-/*   Updated: 2020/09/18 22:21:03 by aashara          ###   ########.fr       */
+/*   Updated: 2020/09/19 21:00:38 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "algorithm.h"
 
-static void		al_init_dist(int *dist, size_t src, size_t nb_nodes)
+static void		al_init_dist(int *dist, size_t nb_nodes, size_t graph_start)
 {
 	size_t	i;
 
 	i = 0;
 	while (i < nb_nodes)
 	{
-		dist[i] = (i == src ? 0 : INT_MAX);
+		dist[i] = (i == graph_start ? 0 : INT_MAX);
 		++i;
 	}
 }
 
-static void 	al_init_prev(int *prev, size_t nb_nodes)
+static void 	al_init_path(int *path, size_t nb_nodes)
 {
 	size_t	i;
 
 	i = 0;
 	while (i < nb_nodes)
-		prev[i++] = -1;
+		path[i++] = -1;
 }
 
-static t_bool	al_update_dist(char **matrix, size_t nb_nodes, int *dist,
-																	int *prev)
+static t_bool	al_update_dist(t_node **nodes, size_t nb_nodes, int *dist,
+																int *path)
 {
-	size_t	i;
-	size_t	j;
 	t_bool	is_changed;
+	t_edge	*tmp;
+	size_t	i;
 
 	is_changed = False;
 	i = 0;
 	while (i < nb_nodes)
 	{
-		j = 0;
-		while (j < nb_nodes)
+		tmp = nodes[i]->edges;
+		while (tmp)
 		{
-			if (dist[j] < INT_MAX)
+			if (dist[tmp->from] < INT_MAX)
 			{
-				if (dist[i] < dist[j] + matrix[i][j])
+				if (dist[tmp->to] < dist[tmp->from] + tmp->weight)
 				{
-					dist[i] = dist[j] + matrix[i][j];
-					prev[i] = j;
+					dist[tmp->from] < dist[tmp->from] + tmp->weight;
+					path[tmp->to] = tmp->from;
 					is_changed = True;
 				}
 			}
-			++j;
+			tmp = tmp->next;
 		}
 		++i;
 	}
 	return (is_changed);
 }
 
-void			al_bellman_ford(t_graph *graph, int *dist, int *prev)
+void			al_bellman_ford(t_graph *graph, int *dist, int *path)
 {
 	size_t	i;
 	t_bool	is_changed;
 
-	al_init_prev(prev, graph->nb_nodes);
-	al_init_dist(dist, graph->graph_start, graph->nb_nodes);
+	al_init_path(path, graph->nb_nodes);
+	al_init_dist(dist, graph->nb_nodes, graph->graph_start);
 	i = 0;
 	while (i < graph->nb_nodes)
 	{
-		if (!al_update_dist(graph->matrix, graph->nb_nodes, dist, prev))
+		if (!al_update_dist(graph->nodes, graph->nb_nodes, dist, path))
 			break ;
 		++i;
 	}

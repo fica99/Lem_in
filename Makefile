@@ -19,7 +19,7 @@ ALGORITHM_DIR := algorithm
 ALGORITHM := \
 			$(ALGORITHM_DIR)/al_start.c
 			$(ALGORITHM_DIR)/al_bellman_ford.c
-			$(ALGORITHM_DIR)/al_update_paths.c
+			$(ALGORITHM_DIR)/al_suurbale.c
 
 SOURCES := main.c \
 			$(VALIDATOR) \
