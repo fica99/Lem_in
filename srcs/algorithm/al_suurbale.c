@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:23:59 by aashara-          #+#    #+#             */
-/*   Updated: 2020/09/20 19:36:22 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/20 19:43:24 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void		al_del_edge(t_graph *graph, size_t from, size_t to)
 	if (finded->from == from && finded->to == to)
 	{
 		graph->nodes[from]->edges = finded->next;
-		ft_memdel(&finded);
+		ft_memdel((void**)&finded);
 		return ;
 	}
 	while (finded->next != NULL)
@@ -63,7 +63,7 @@ static void		al_del_edge(t_graph *graph, size_t from, size_t to)
 		if (tmp->from == from && tmp->to == to)
 		{
 			finded->next = tmp->next;
-			ft_memdel(&tmp);
+			ft_memdel((void**)&tmp);
 			return ;
 		}
 		finded = finded->next;
@@ -75,9 +75,10 @@ static void		al_replace_edges(t_graph *graph, int *dist, int *path)
 	size_t	i;
 
 	i = graph->graph_end;
+	(void)dist;
 	while (i != graph->graph_start)
 	{
-		al_update_edge(graph->nb_nodes, i, path[i], -1);
+		al_update_edge(graph->nodes, i, path[i], -1);
 		al_del_edge(graph, path[i], i);
 		// al_duplicate_node(graph, path[i]);
 		i = path[i];

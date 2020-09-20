@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 21:25:15 by aashara           #+#    #+#             */
-/*   Updated: 2020/09/20 18:12:31 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/20 19:42:20 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static t_bool	al_update_dist(t_node **nodes, size_t nb_nodes, int *dist,
 void			al_bellman_ford(t_graph *graph, int *dist, int *path)
 {
 	size_t	i;
-	t_bool	is_changed;
 
 	al_init_path(path, graph->nb_nodes);
 	al_init_dist(dist, graph->nb_nodes, graph->graph_start);
