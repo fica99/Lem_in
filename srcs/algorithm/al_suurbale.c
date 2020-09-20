@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:23:59 by aashara-          #+#    #+#             */
-/*   Updated: 2020/09/19 21:05:00 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/20 18:32:39 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,56 @@
 // 	}
 // }
 
-static void		al_update_edges(t_graph *graph, int *dist, int *path)
+static t_edge	*al_find_edge(t_node **nodes, size_t from, size_t to)
+{
+	t_edge	*finded;
+
+	finded = nodes[from]->edges;
+	while (finded != NULL)
+	{
+		if (finded->from == from && finded->to == to)
+			break ;
+		finded = finded->next;
+	}
+	return (finded);
+}
+
+static void		al_del_edge(t_graph *graph, size_t from, size_t to)
+{
+	t_edge	*finded;
+	t_edge	*tmp;
+
+	finded = graph->nodes[from]->edges;
+	if (finded->from == from && finded->to == to)
+	{
+		graph->nodes[from]->edges = finded->next;
+		ft_memdel(&finded);
+		return ;
+	}
+	while (finded->next != NULL)
+	{
+		tmp = finded->next;
+		if (tmp->from == from && tmp->to == to)
+		{
+			finded->next = tmp->next;
+			ft_memdel(&tmp);
+			return ;
+		}
+		finded = finded->next;
+	}
+}
+
+static void		al_replace_edges(t_graph *graph, int *dist, int *path)
 {
 	size_t	i;
+	t_edge	*finded;
 
 	i = graph->graph_end;
 	while (i != graph->graph_start)
 	{
-
+		finded = al_find_edge(graph->nb_nodes, i, path[i]);
+		finded->weight = -1;
+		al_del_edge(graph, path[i], i);
 		i = path[i];
 	}
 }
@@ -78,6 +120,7 @@ void			al_suurbale(t_graph *graph)
 		al_bellman_ford(graph, dist, path);
 		if (dist[graph->graph_start] == INT_MAX)
 			return;
-		al_update_edges(graph, dist, path);
+		al_replace_edges(graph, dist, path);
+		
 	}
 }
