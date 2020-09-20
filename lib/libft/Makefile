@@ -160,11 +160,10 @@ PRINTF := $(addsuffix .libftprintf , ft_printf/)
 
 %.libftprintf:  $(PRINTF_HEADERS)
 	make -C $*
-	/bin/rm -f $(NAME)
 
 all:			$(PRINTF) $(NAME)
 
-$(NAME):        $(CREATE_OBJS) $(OBJS)
+$(NAME):        $(PRINTF_LIB) $(CREATE_OBJS) $(OBJS)
 	@echo "\033[32;01mCompiling libft...\033[0m"
 	cp $(PRINTF_LIB) $(NAME)
 	ar rc $(NAME) $(OBJS)
