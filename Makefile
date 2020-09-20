@@ -48,7 +48,7 @@ INCLUDES := \
 
 SRCS := $(addprefix $(DIR_S)/,$(SOURCES))
 OBJS := $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
-LIBFT = $(addsuffix .libft , $(LIBFT_DIR)/)
+LIBFT := $(addsuffix .libft , $(LIBFT_DIR)/)
 
 # ------------  RULES  ------------------------------------------------------- #
 

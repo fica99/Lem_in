@@ -147,17 +147,26 @@ DIR_S := srcs
 DIR_O := objs
 SRCS := $(addprefix $(DIR_S)/,$(SOURCES))
 OBJS := $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
+LIBFT := $(addsuffix .libft , $(LIBFT_DIR)/)
 
-INCLUDE := includes/libft.h
+INCLUDE := includes/libft.h \
+			includes/ft_printf.h
+PRINTF_DIR := ./ft_printf
+PRINTF_HEADERS := includes/ft_printf.h
+PRINTF_LIB := ft_printf/libftprintf.a
+PRINTF := $(addsuffix .libftprintf , ft_printf/)
 
 #_____________________________________________________
 
-all:			$(NAME)
+%.libftprintf:  $(PRINTF_HEADERS)
+	make -C $*
+	/bin/rm -f $(NAME)
+
+all:			$(PRINTF) $(NAME)
 
 $(NAME):        $(CREATE_OBJS) $(OBJS)
 	@echo "\033[32;01mCompiling libft...\033[0m"
-	make -C ./ft_printf
-	cp ft_printf/libftprintf.a $(NAME)
+	cp $(PRINTF_LIB) $(NAME)
 	ar rc $(NAME) $(OBJS)
 	ranlib $(NAME)
 	@echo "\033[32;01mLibft.a is ready.\033[0m"
