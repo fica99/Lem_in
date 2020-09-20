@@ -6,57 +6,29 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:23:59 by aashara-          #+#    #+#             */
-/*   Updated: 2020/09/20 18:32:39 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/20 19:36:22 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "algorithm.h"
 
-// static t_edge	*al_add_edge(t_edge *edges, int from, int to, int weight)
-// {
-// 	t_edge	*tmp;
-// 	t_edge	*new;
+static void		al_add_edge(t_edge *edges, int from, int to, int weight)
+{
+	t_edge	*tmp;
+	t_edge	*new;
 
-// 	tmp = edges;
-// 	while (tmp->next != NULL)
-// 		tmp = tmp->next;
-// 	new = (t_edge *)ft_xmalloc(sizeof(t_edge));
-// 	new->next = NULL;
-// 	new->a = from;
-// 	new->b = to;
-// 	new->weight = weight;
-// 	tmp->next = new;
-// 	return (new);
-// }
+	tmp = edges;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	new = (t_edge *)ft_xmalloc(sizeof(t_edge));
+	new->next = NULL;
+	new->from = from;
+	new->to = to;
+	new->weight = weight;
+	tmp->next = new;
+}
 
-// static void		al_update_weight(t_edge *edges, int from, int to, int weight)
-// {
-// 	t_edge	*tmp;
-
-// 	tmp = edges;
-// 	while (tmp != NULL)
-// 	{
-// 		if (tmp->a == from && tmp->b == to)
-// 		{
-// 			tmp->weight = weight;
-// 			break;
-// 		}
-// 		tmp = tmp->next;
-// 	}
-// }
-
-// static void		al_duplicate_node(t_edge *edges, int node_i, size_t added_node)
-// {
-// 	t_edge	*tmp;
-
-// 	tmp = edges;
-// 	while (tmp)
-// 	{
-// 		tmp = tmp->next;
-// 	}
-// }
-
-static t_edge	*al_find_edge(t_node **nodes, size_t from, size_t to)
+static void		al_update_edge(t_node **nodes, size_t from, size_t to, int weight)
 {
 	t_edge	*finded;
 
@@ -64,10 +36,13 @@ static t_edge	*al_find_edge(t_node **nodes, size_t from, size_t to)
 	while (finded != NULL)
 	{
 		if (finded->from == from && finded->to == to)
-			break ;
+		{
+			finded->weight = weight;
+			return ;
+		}
 		finded = finded->next;
 	}
-	return (finded);
+	al_add_edge(nodes[from]->edges, from, to, weight);
 }
 
 static void		al_del_edge(t_graph *graph, size_t from, size_t to)
@@ -98,14 +73,13 @@ static void		al_del_edge(t_graph *graph, size_t from, size_t to)
 static void		al_replace_edges(t_graph *graph, int *dist, int *path)
 {
 	size_t	i;
-	t_edge	*finded;
 
 	i = graph->graph_end;
 	while (i != graph->graph_start)
 	{
-		finded = al_find_edge(graph->nb_nodes, i, path[i]);
-		finded->weight = -1;
+		al_update_edge(graph->nb_nodes, i, path[i], -1);
 		al_del_edge(graph, path[i], i);
+		// al_duplicate_node(graph, path[i]);
 		i = path[i];
 	}
 }
@@ -119,8 +93,9 @@ void			al_suurbale(t_graph *graph)
 	{
 		al_bellman_ford(graph, dist, path);
 		if (dist[graph->graph_start] == INT_MAX)
-			return;
+			break ;
 		al_replace_edges(graph, dist, path);
-		
+		//concatenate to paths;
 	}
+	// update paths
 }
