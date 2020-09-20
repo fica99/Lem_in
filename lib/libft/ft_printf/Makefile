@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aashara <aashara@student.42.fr>            +#+  +:+       +#+         #
+#    By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/23 17:15:13 by sschmele          #+#    #+#              #
-#    Updated: 2020/09/18 11:34:17 by aashara          ###   ########.fr        #
+#    Updated: 2020/09/20 18:05:38 by sschmele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-FLAGS = -g -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 
 SOURCES = ft_printf.c \
 	   processing_functions.c \
@@ -43,9 +43,12 @@ all:	$(NAME)
 $(NAME):	$(OBJS)
 	ar rc $(NAME) $(OBJS)
 
-$(OBJS):	$(DIR_O)/%.o: $(DIR_S)/%.c ../includes/ft_printf.h ../includes/libft.h
-	mkdir -p $(DIR_O)
+$(OBJS):	$(DIR_O)/%.o: $(DIR_S)/%.c ../includes/ft_printf.h ../includes/libft.h | $(DIR_O)
 	gcc $(FLAGS) -c -I ../includes -o $@ $<
+
+$(DIR_O):
+	mkdir -p $(DIR_O)
+
 clean:
 	/bin/rm -rf $(DIR_O)
 

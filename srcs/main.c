@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 12:58:48 by aashara-          #+#    #+#             */
-/*   Updated: 2020/09/15 13:00:50 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/20 18:49:04 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int main(int argc, char **argv)
 {
-	ft_putendl_fd("Let's start lem_in", STDOUT_FILENO);
 	argc = 0;
 	argv = NULL;
 	return (0);

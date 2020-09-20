@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbecker <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 14:17:26 by sbecker           #+#    #+#             */
-/*   Updated: 2019/04/22 19:24:49 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/09/20 18:48:07 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,6 @@ void			processing_overflow_integerpart(t_fcomp *fcomp);
 int				find_len_integer(int len_s);
 char			*flags_f_ps_or_signs(t_all *all, char *str, int *len);
 char			*float_w_mz_processing(t_all *all, char *str,
-		int *len, int flag);
+					int *len, int flag);
 
 #endif

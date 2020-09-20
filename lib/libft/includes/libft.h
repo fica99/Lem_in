@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 15:31:24 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/18 21:45:44 by aashara          ###   ########.fr       */
+/*   Updated: 2020/09/20 19:38:02 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct			s_list_fd
 
 void					ft_arrdel(char **arr);
 char					**ft_realloc_array(char ***subj, int len_subj,
-							int len_needed);
+						int len_needed);
 void					ft_delelem_array(char ***array, int len,
 							int start, int num);
 void					ft_arrshift(char **arr, int size, int shift);
