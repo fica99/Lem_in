@@ -5,7 +5,7 @@ NAME :=	lem-in
 
 # ------------  FLAGS  ------------------------------------------------------- #
 
-FLAGS := -Wall -Wextra #-Werror
+FLAGS := -Wall -Wextra -Werror
 FLAGS += -g
 
 # ------------  SOURCE FILES  ------------------------------------------------ #
