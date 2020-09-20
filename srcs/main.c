@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arrdel.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbednar <rbednar@student.21school.ru>      +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/01 20:18:33 by sschmele          #+#    #+#             */
-/*   Updated: 2020/08/06 02:15:55 by rbednar          ###   ########.fr       */
+/*   Created: 2020/09/15 12:58:48 by aashara-          #+#    #+#             */
+/*   Updated: 2020/09/20 18:49:04 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lem_in.h"
 
-void			ft_arrdel(char **arr)
+int main(int argc, char **argv)
 {
-	int			i;
-
-	if (arr == NULL)
-		return ;
-	i = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-	arr = NULL;
+	argc = 0;
+	argv = NULL;
+	return (0);
 }
