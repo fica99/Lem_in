@@ -10,6 +10,18 @@
 # include "validator.h"
 # include "algorithm.h"
 
-# define VAL_ERROR -1
+# define STOP -21
+
+# define PROGRAM_NAME "./lem-in"
+# define OPTIONS_NUM 2
+# define PROGRAM_OPTIONS "c"
+# define HELP_OPTION 0x10000
+
+/*
+** File main.c
+*/
+
+void	lemin_usage(void);
+
 
 #endif

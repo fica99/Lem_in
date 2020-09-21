@@ -5,14 +5,15 @@ NAME :=	lem-in
 
 # ------------  FLAGS  ------------------------------------------------------- #
 
-FLAGS := -Wall -Wextra -Werror
+FLAGS := -Wall -Wextra #-Werror
 FLAGS += -g
 
 # ------------  SOURCE FILES  ------------------------------------------------ #
 
 VALIDATOR_DIR := validator
 VALIDATOR := \
-			$(VALIDATOR_DIR)/val_start.c
+			$(VALIDATOR_DIR)/val_start.c \
+			$(VALIDATOR_DIR)/val_errors.c
 
 ALGORITHM_DIR := algorithm
 ALGORITHM := \
