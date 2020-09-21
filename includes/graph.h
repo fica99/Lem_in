@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 20:51:26 by aashara           #+#    #+#             */
-/*   Updated: 2020/09/20 18:10:00 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/21 12:28:06 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct		s_node
 typedef struct		s_graph
 {
 	size_t			nb_nodes;
-	size_t			malloc_len;
+	size_t			malloc_nodes;
 	t_node			**nodes;
 	size_t			graph_start;
 	size_t			graph_end;

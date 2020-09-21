@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 21:25:15 by aashara           #+#    #+#             */
-/*   Updated: 2020/09/20 19:42:20 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/21 15:43:41 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static t_bool	al_update_dist(t_node **nodes, size_t nb_nodes, int *dist,
 		{
 			if (dist[tmp->from] < INT_MAX)
 			{
-				if (dist[tmp->to] < dist[tmp->from] + tmp->weight)
+				if (dist[tmp->to] > dist[tmp->from] + tmp->weight)
 				{
 					dist[tmp->to] = dist[tmp->from] + tmp->weight;
 					path[tmp->to] = tmp->from;

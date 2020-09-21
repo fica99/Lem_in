@@ -6,97 +6,45 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:23:59 by aashara-          #+#    #+#             */
-/*   Updated: 2020/09/20 19:43:24 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/21 16:08:54 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "algorithm.h"
 
-static void		al_add_edge(t_edge *edges, int from, int to, int weight)
+static void	al_add_path(t_paths *paths)
 {
-	t_edge	*tmp;
-	t_edge	*new;
+	size_t	prev_malloc_nb;
 
-	tmp = edges;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	new = (t_edge *)ft_xmalloc(sizeof(t_edge));
-	new->next = NULL;
-	new->from = from;
-	new->to = to;
-	new->weight = weight;
-	tmp->next = new;
-}
-
-static void		al_update_edge(t_node **nodes, size_t from, size_t to, int weight)
-{
-	t_edge	*finded;
-
-	finded = nodes[from]->edges;
-	while (finded != NULL)
+	if (++(paths->nb_paths) >= paths->malloc_nb_paths * (2 / 3))
 	{
-		if (finded->from == from && finded->to == to)
-		{
-			finded->weight = weight;
-			return ;
-		}
-		finded = finded->next;
-	}
-	al_add_edge(nodes[from]->edges, from, to, weight);
-}
-
-static void		al_del_edge(t_graph *graph, size_t from, size_t to)
-{
-	t_edge	*finded;
-	t_edge	*tmp;
-
-	finded = graph->nodes[from]->edges;
-	if (finded->from == from && finded->to == to)
-	{
-		graph->nodes[from]->edges = finded->next;
-		ft_memdel((void**)&finded);
-		return ;
-	}
-	while (finded->next != NULL)
-	{
-		tmp = finded->next;
-		if (tmp->from == from && tmp->to == to)
-		{
-			finded->next = tmp->next;
-			ft_memdel((void**)&tmp);
-			return ;
-		}
-		finded = finded->next;
+		prev_malloc_nb = paths->malloc_nb_paths;
+		if (prev_malloc_nb)
+			paths->malloc_nb_paths *= 2;
+		else
+			paths->malloc_nb_paths = paths->nb_paths;
+		paths->paths = (t_edge**)ft_memrealloc_array((void***)&(paths->paths),
+			prev_malloc_nb * sizeof(t_edge*),
+							paths->malloc_nb_paths * sizeof(t_edge*));
 	}
 }
 
-static void		al_replace_edges(t_graph *graph, int *dist, int *path)
-{
-	size_t	i;
-
-	i = graph->graph_end;
-	(void)dist;
-	while (i != graph->graph_start)
-	{
-		al_update_edge(graph->nodes, i, path[i], -1);
-		al_del_edge(graph, path[i], i);
-		// al_duplicate_node(graph, path[i]);
-		i = path[i];
-	}
-}
-
-void			al_suurbale(t_graph *graph)
+t_paths		*al_suurbale(t_graph *graph)
 {
 	int		path[graph->nb_nodes];
 	int		dist[graph->nb_nodes];
+	t_paths	*paths;
 
+	paths = ft_xmalloc(sizeof(t_paths));
+	ft_bzero((void*)paths, sizeof(t_paths));
 	while (True)
 	{
 		al_bellman_ford(graph, dist, path);
-		if (dist[graph->graph_start] == INT_MAX)
+		if (dist[graph->graph_end] == INT_MAX)
 			break ;
-		al_replace_edges(graph, dist, path);
-		//concatenate to paths;
+		al_add_path(paths);
+		al_update_graph(graph, path, paths);
 	}
-	// update paths
+	// concatenate paths
+	return (paths);
 }
