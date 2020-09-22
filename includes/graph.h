@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 20:51:26 by aashara           #+#    #+#             */
-/*   Updated: 2020/09/21 12:28:06 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/22 20:21:09 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef enum
 	Start,
 	Middle,
 	End
-}					t_node_type;
+}					t_node_type; // may be not used
 
 typedef	struct		s_edge
 {
@@ -41,14 +41,14 @@ typedef struct		s_node
 	char			*name;
 	int				x;
 	int				y;
-	t_node_type		type;
+	t_node_type		type; // may be not used
 	t_edge			*edges;
 }					t_node;
 
 typedef struct		s_graph
 {
 	size_t			nb_nodes;
-	size_t			malloc_nodes;
+	size_t			malloc_nodes;// may be not used
 	t_node			**nodes;
 	size_t			graph_start;
 	size_t			graph_end;
