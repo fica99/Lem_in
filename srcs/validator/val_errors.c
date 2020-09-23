@@ -6,21 +6,21 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 22:25:32 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/21 23:05:00 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/09/22 22:07:53 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "validator.h"
 
-#define ERRORS_NUM 12
+#define ERRORS_NUM 13
 
 static char		*val_errors_types(int sequence_num)
 {
-	static char	*seq_action[ERRORS_NUM]; //ask
+	char		*seq_action[ERRORS_NUM];
 
 	seq_action[0] = "invalid option";
-	seq_action[1] = "no argument or map found";
+	seq_action[1] = "the program accepts only standard input";
 	seq_action[2] = "empty map line";
 	seq_action[3] = "invalid map line: ";
 	seq_action[4] = "not enough ants found";
@@ -31,6 +31,7 @@ static char		*val_errors_types(int sequence_num)
 	seq_action[9] = "room linked on itself: ";
 	seq_action[10] = "no information about room found: ";
 	seq_action[11] = "redefinition of information: ";
+	seq_action[12] = "no possible solution with this map";
 	return (seq_action[sequence_num]);
 }
 

@@ -16,7 +16,8 @@ typedef enum
 	ERR_NOEND,
 	ERR_ROOM_LOOP,
 	ERR_NOROOM_INFO,
-	ERR_REDEFINED
+	ERR_REDEFINED,
+	ERR_NOSOLUTION
 }			t_lemin_errors;
 
 /*
@@ -24,7 +25,11 @@ typedef enum
 */
 
 int			val_start_validation(int argc, char **argv);
-int			val_check_options(int argc, char **argv);
+int			val_check_options(char **argv);
+int			val_check_arguments(char **argv);
+int			val_check_program_option(char *arg, char *options,
+				int (f)(int error_index, char *arg, int usage_needed));
+int			val_read_stdinput(void);
 
 /*
 ** File val_errors.c
