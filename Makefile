@@ -19,7 +19,6 @@ ALGORITHM := \
 			$(ALGORITHM_DIR)/al_bellman_ford.c\
 			$(ALGORITHM_DIR)/al_suurbale.c\
 			$(ALGORITHM_DIR)/al_suurbale_update_graph.c\
-			$(ALGORITHM_DIR)/al_suurbale_divide_node.c\
 
 SOURCES := main.c \
 			$(VALIDATOR) \
