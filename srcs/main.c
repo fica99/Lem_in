@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 12:58:48 by aashara-          #+#    #+#             */
-/*   Updated: 2020/09/24 21:02:19 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/24 22:19:37 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int main(int argc, char **argv)
 	t_graph	graph;
 	size_t	i;
 	t_edge	*edge;
+	t_path	*paths;
 
 	argc = 0;
 	argv = NULL;
@@ -47,6 +48,6 @@ int main(int argc, char **argv)
 	edge->from = 1;
 	edge->to = 0;
 	al_add_edge(graph.nodes, edge, 1, False);
-	al_suurbale(&graph);
+	paths = al_suurbale(&graph);
 	return (0);
 }

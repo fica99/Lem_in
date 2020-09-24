@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 21:24:50 by aashara           #+#    #+#             */
-/*   Updated: 2020/09/23 21:58:27 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/24 21:20:25 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 typedef struct		s_path
 {
 	size_t			nb_nodes;
-	int				*path;
+	t_edge			*edges;
 	struct s_path	*next;
 }					t_path;
 
