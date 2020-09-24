@@ -6,28 +6,28 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 12:05:00 by aashara-          #+#    #+#             */
-/*   Updated: 2020/09/23 22:16:56 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/24 21:01:38 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "algorithm.h"
 
-static t_edge	*al_get_edge(t_node **nodes, size_t from, size_t to,
+static t_edge	*al_get_edge(t_node *node, size_t from, size_t to,
 																t_bool is_in)
 {
 	t_edge	*finded;
 	t_edge	*tmp;
 
-	finded = (is_in == True ? nodes[from]->edges_in : nodes[from]->edges_out);
-	if (finded->from == from && finded->to == to)
+	finded = (is_in == True ? node->edges_in : node->edges_out);
+	if (finded && finded->from == from && finded->to == to)
 	{
 		if (is_in == True)
-			nodes[from]->edges_in = finded->next;
+			node->edges_in = finded->next;
 		else
-			nodes[from]->edges_out = finded->next;
+			node->edges_out = finded->next;
 		return (finded);
 	}
-	while (finded->next != NULL)
+	while (finded && finded->next != NULL)
 	{
 		tmp = finded->next;
 		if (tmp->from == from && tmp->to == to)
@@ -56,17 +56,17 @@ void			al_reverse_edges(t_node **nodes, size_t from, size_t to)
 {
 	t_edge	*edge;
 
-	edge = al_get_edge(nodes, to, from, False);
+	edge = al_get_edge(nodes[to], to, from, False);
 	ft_memdel((void**)&edge);
-	edge = al_get_edge(nodes, from, to, True);
+	edge = al_get_edge(nodes[from], to, from, True);
 	ft_memdel((void**)&edge);
-	edge = al_get_edge(nodes, from, to, False);
+	edge = al_get_edge(nodes[from], from, to, False);
 	edge->next = NULL;
 	edge->weight = -1;
 	edge->from = to;
 	edge->to = from;
 	al_add_edge(nodes, edge, to, True);
-	edge = al_get_edge(nodes, to, from, True);
+	edge = al_get_edge(nodes[to], from, to, True);
 	edge->next = NULL;
 	edge->weight = -1;
 	edge->from = to;
