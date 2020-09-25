@@ -34,8 +34,8 @@ typedef struct		s_node
 	char			*name;
 	int				x;
 	int				y;
-	t_edge			*edges_in;
-	t_edge			*edges_out;
+	t_edge		*edges_in;
+	t_edge		*edges_out;
 }					t_node;
 
 typedef struct		s_graph
