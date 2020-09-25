@@ -6,14 +6,14 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 22:25:32 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/22 22:07:53 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/09/25 11:42:43 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "validator.h"
 
-#define ERRORS_NUM 13
+#define ERRORS_NUM 15
 
 static char		*val_errors_types(int sequence_num)
 {
@@ -32,10 +32,13 @@ static char		*val_errors_types(int sequence_num)
 	seq_action[10] = "no information about room found: ";
 	seq_action[11] = "redefinition of information: ";
 	seq_action[12] = "no possible solution with this map";
+	seq_action[13] = "can not read from standard input";
+	seq_action[14] = "no farm found";
 	return (seq_action[sequence_num]);
 }
 
-int				val_errors(int error_index, char *arg, int usage_needed)
+int				val_errors(int error_index, char *arg,
+					char end, int usage_needed)
 {
 	char		*error_message;
 	
@@ -44,7 +47,7 @@ int				val_errors(int error_index, char *arg, int usage_needed)
 	ft_putstr_fd(": ", STDERR_FILENO);
 	ft_putstr_fd(error_message, STDERR_FILENO);
 	if (arg)
-		ft_putendl_fd(arg, STDERR_FILENO);
+		ft_putchrendl_fd(arg, end, STDERR_FILENO);
 	else
 		ft_putchar_fd('\n', STDERR_FILENO);
 	if (usage_needed == 1)

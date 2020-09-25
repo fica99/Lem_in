@@ -13,7 +13,9 @@ FLAGS += -g
 VALIDATOR_DIR := validator
 VALIDATOR := \
 			$(VALIDATOR_DIR)/val_start.c \
-			$(VALIDATOR_DIR)/val_errors.c
+			$(VALIDATOR_DIR)/val_errors.c \
+			$(VALIDATOR_DIR)/val_arguments.c \
+			$(VALIDATOR_DIR)/val_first_filter.c
 
 ALGORITHM_DIR := algorithm
 ALGORITHM := \

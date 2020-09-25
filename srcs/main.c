@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 12:58:48 by aashara-          #+#    #+#             */
-/*   Updated: 2020/09/22 21:23:42 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/09/24 22:56:52 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ int		main(int argc, char **argv)
 	//graph structures init
 	answer = val_start_validation(argc, argv);
 	if (answer == VAL_ERROR)
+	{
+		ft_putendl_fd("ERROR", STDERR_FILENO);
 		return (1);
+	}
 	else if (answer == STOP)
 		return (0);
 	printf("\nGo to algorithm\n");

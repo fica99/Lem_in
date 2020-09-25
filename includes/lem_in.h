@@ -14,7 +14,7 @@
 
 # define PROGRAM_NAME "./lem-in"
 # define OPTIONS_NUM 2
-# define PROGRAM_OPTIONS "c"
+# define PROGRAM_OPTIONS ""
 # define HELP_OPTION 0x10000
 
 /*

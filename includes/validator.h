@@ -2,6 +2,11 @@
 # define VALIDATOR_H
 
 # define VAL_ERROR -42
+# define STDIN_BUFFER 10
+# define VAL_SPACE ' '
+# define VAL_DASH '-'
+# define VAL_ENTER '\n'
+# define VAL_HASH '#'
 
 typedef enum
 {
@@ -17,7 +22,9 @@ typedef enum
 	ERR_ROOM_LOOP,
 	ERR_NOROOM_INFO,
 	ERR_REDEFINED,
-	ERR_NOSOLUTION
+	ERR_NOSOLUTION,
+	ERR_TERM,
+	ERR_NOFARM
 }			t_lemin_errors;
 
 /*
@@ -25,16 +32,30 @@ typedef enum
 */
 
 int			val_start_validation(int argc, char **argv);
+int			val_read_stdinput(void);
+int			val_check_map(char *map, int map_size);
+
+/*
+** File val_arguments.c
+*/
+
 int			val_check_options(char **argv);
 int			val_check_arguments(char **argv);
 int			val_check_program_option(char *arg, char *options,
-				int (f)(int error_index, char *arg, int usage_needed));
-int			val_read_stdinput(void);
+				int (f)(int error_index, char *arg, char end, int usage_needed));
 
 /*
 ** File val_errors.c
 */
 
-int			val_errors(int error_index, char *arg, int usage_needed);
+int			val_errors(int error_index, char *arg, char end, int usage_needed);
+
+/*
+** File val_first_filter.c
+*/
+
+int			val_invalid_lines(char *map, int map_size);
+int			val_invalid_values(char *map, int map_size);
+int			val_invalid_startend(char *map, int map_size);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 15:31:24 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/21 22:20:23 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/09/25 11:45:12 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,8 @@ void					ft_putnstr(char const *s, int len);
 void					ft_printmap(char **map, int side);
 void					ft_putnendl_fd(char *str, int n, int fd);
 void					ft_putnstr_fd(char *str, int n, int fd);
+void					ft_putchrendl_fd(char *str, char x, int fd);
+void					ft_putchrstr_fd(char *str, char x, int fd);
 
 /*
 ** Folder SORT_FUNCTIONS

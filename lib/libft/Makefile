@@ -92,8 +92,10 @@ OUTPUT_FUNCTIONS := output_functions/ft_putnstr.c \
 	output_functions/ft_putendl.c \
 	output_functions/ft_putnbr_fd.c \
 	output_functions/ft_putnbr.c \
+	output_functions/ft_putchrstr_fd.c \
+	output_functions/ft_putchrendl_fd.c \
 	output_functions/ft_putnstr_fd.c \
-	output_functions/ft_putenendl_fd.c \
+	output_functions/ft_putnendl_fd.c \
 	output_functions/ft_putstr_fd.c \
 	output_functions/ft_putstr.c
 

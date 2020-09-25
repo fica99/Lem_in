@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 21:22:08 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/23 10:38:54 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/09/25 13:48:32 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,83 +22,52 @@ int			val_start_validation(int argc, char **argv)
 		answer = val_check_options(argv);
 	if (answer == VAL_ERROR || answer == STOP)
 		return (answer);
-	// if (answer != 0)
-	// 	val_errors(ERR_ARG, NULL, 0);
 	if (val_read_stdinput() == VAL_ERROR)
 		return (VAL_ERROR);
 	return (0);
 }
 
-int			val_check_options(char **argv)
-{
-	int		flags;
-
-	flags = ft_find_options(OPTIONS_NUM,
-		(char*[]){PROGRAM_OPTIONS, "--help"}, argv);
-	if (flags < 0)
-		return (val_errors(ERR_OPTION, NULL, 1));
-	if (flags & HELP_OPTION)
-	{
-		lemin_usage();
-		return (STOP);
-	}
-	if (flags != HELP_OPTION)
-		return (val_check_arguments(argv));
-	return (0);
-}
-
-int			val_check_arguments(char **argv)
-{
-	int		i;
-
-	i = 0;
-	while (argv[++i])
-	{
-		if (argv[i][0] == '-')
-		{
-			if (!argv[i][1])
-				return (val_errors(ERR_OPTION, NULL, 1));
-			if (argv[i][1] && argv[i][1] == '-' && !argv[i][2])
-				return (val_errors(ERR_OPTION, NULL, 1));
-			if (argv[i][1] && argv[i][1] != '-')
-				return ((val_check_program_option(argv[i],
-					PROGRAM_OPTIONS, val_errors)) != 0 ?
-					VAL_ERROR : 0);
-		}
-	}
-	val_errors(ERR_ARG, NULL, 0);
-	return (0);
-}
-
-int			val_check_program_option(char *arg, char *options,
-				int (f)(int error_index, char *arg, int usage_needed))
-{
-	int		j;
-	int		k;
-	int		check;
-
-	j = 0;
-	check = 0;
-	while (arg[++j])
-	{
-		k = -1;
-		check = 0;
-		while (options[++k])
-		{
-			if (arg[j] == options[k])
-			{
-				check = 1;
-				break ;
-			}
-		}
-		if (check == 0)
-			return (f(ERR_OPTION, arg, 1));
-	}
-	return (0);
-}
-
 int			val_read_stdinput(void)
 {
-	printf("reading from the stdinput\n");
+	char	buf[STDIN_BUFFER];
+	char	*map;
+	int		map_size;
+	int		answer;
+	
+	ft_bzero(buf, STDIN_BUFFER);
+	map = (char*)ft_xmalloc(1);
+	map_size = 0;
+	while ((answer = read(STDIN_FILENO, buf, STDIN_BUFFER - 1)) > 0)
+	{
+		map = ft_strrejoin(map, buf);
+		map_size += answer;
+		ft_bzero(buf, STDIN_BUFFER);
+	}
+	if (answer < 0)
+		return (val_errors(ERR_TERM, NULL, 0, 1));
+	if (map_size == 0)
+		return (val_errors(ERR_NOFARM, NULL, 0, 0));
+	answer = val_check_map(map, map_size);
+	free(map);
+	map = NULL;
+	return ((answer == VAL_ERROR) ? VAL_ERROR : 0);
+}
+
+int			val_check_map(char *map, int map_size)
+{
+	int		answer;
+	
+	if (map[map_size - 1] == VAL_ENTER)
+	{
+		map[map_size - 1] = '\0';
+		map_size -= 1;
+	}
+	// ft_printf("\nmap = %s\nmap_size = %d\n", map, map_size);
+	answer = val_invalid_lines(map, map_size);
+	if (answer == VAL_ERROR)
+		return (VAL_ERROR);
+	answer = val_invalid_values(map, map_size);
+	if (answer == VAL_ERROR)
+		return (VAL_ERROR);
 	return (0);
 }
