@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 20:51:26 by aashara           #+#    #+#             */
-/*   Updated: 2020/09/23 19:48:27 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/25 11:25:03 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 typedef enum
 {
-	False = 0,
 	True = 1,
-}					t_bool;
+	False = 0
+}	t_bool;
 
 typedef	struct		s_edge
 {
@@ -34,8 +34,8 @@ typedef struct		s_node
 	char			*name;
 	int				x;
 	int				y;
-	t_edge		*edges_in;
-	t_edge		*edges_out;
+	t_edge			*edges_in;
+	t_edge			*edges_out;
 }					t_node;
 
 typedef struct		s_graph

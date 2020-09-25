@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 12:05:00 by aashara-          #+#    #+#             */
-/*   Updated: 2020/09/25 04:30:02 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/25 11:32:15 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static void		al_reverse_edges(t_node **nodes, size_t from, size_t to)
 	al_add_edge(&nodes[from]->edges_out, edge, False);
 }
 
-
 void			al_update_graph(t_graph *graph, int *arr_nodes, t_edge **edges)
 {
 	size_t	i;
@@ -49,11 +48,10 @@ void			al_update_graph(t_graph *graph, int *arr_nodes, t_edge **edges)
 		edge = (t_edge *)ft_xmalloc(sizeof(t_edge));
 		edge->from = arr_nodes[i];
 		edge->to = i;
-		edge->weight = 1;
+		edge->weight = 0;
 		edge->next = *edges;
 		*edges = edge;
 		al_reverse_edges(graph->nodes, arr_nodes[i], i);
 		i = arr_nodes[i];
 	}
-
 }

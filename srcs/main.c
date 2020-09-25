@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 12:58:48 by aashara-          #+#    #+#             */
-/*   Updated: 2020/09/25 04:47:53 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/25 11:03:58 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ int main(int argc, char **argv)
 	graph.nodes = (t_node**)ft_xmalloc(sizeof(t_node*) * graph.nb_nodes);
 	i = 0;
 	while (i < graph.nb_nodes)
+	{
 		graph.nodes[i++] = (t_node*)ft_xmalloc(sizeof(t_node));
-
-
-
+	}
+	graph.nodes[0]->name = ft_strdup("A");
+	graph.nodes[1]->name = ft_strdup("B");
+	graph.nodes[2]->name = ft_strdup("C");
 	edge = (t_edge*)ft_xmalloc(sizeof(t_edge));
 	edge->weight = 1;
 	edge->from = 0;
@@ -101,7 +103,13 @@ int main(int argc, char **argv)
 	edge->from = 2;
 	edge->to = 1;
 	al_add_edge(&graph.nodes[1]->edges_in, edge, False);
+
 
 	paths = al_suurbale(&graph);
+	int nb_ants = 100;
+	lem_in_print_paths(paths, graph.nodes, nb_ants);
+	al_del_paths(&paths);
+
+	// free graph
 	return (0);
 }
