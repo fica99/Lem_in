@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 12:58:48 by aashara-          #+#    #+#             */
-/*   Updated: 2020/09/20 18:49:04 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/25 04:47:53 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,94 @@
 
 int main(int argc, char **argv)
 {
+	t_graph	graph;
+	size_t	i;
+	t_edge	*edge;
+	t_paths	*paths;
+
 	argc = 0;
 	argv = NULL;
+	graph.nb_nodes = 3;
+	graph.graph_start = 0;
+	graph.graph_end = 2;
+	graph.nodes = (t_node**)ft_xmalloc(sizeof(t_node*) * graph.nb_nodes);
+	i = 0;
+	while (i < graph.nb_nodes)
+		graph.nodes[i++] = (t_node*)ft_xmalloc(sizeof(t_node));
+
+
+
+	edge = (t_edge*)ft_xmalloc(sizeof(t_edge));
+	edge->weight = 1;
+	edge->from = 0;
+	edge->to = 1;
+	al_add_edge(&graph.nodes[0]->edges_out, edge, False);
+	edge = (t_edge*)ft_xmalloc(sizeof(t_edge));
+	edge->weight = 1;
+	edge->from = 0;
+	edge->to = 1;
+	al_add_edge(&graph.nodes[1]->edges_in, edge, False);
+
+	edge = (t_edge*)ft_xmalloc(sizeof(t_edge));
+	edge->weight = 1;
+	edge->from = 1;
+	edge->to = 0;
+	al_add_edge(&graph.nodes[0]->edges_in, edge, False);
+	edge = (t_edge*)ft_xmalloc(sizeof(t_edge));
+	edge->weight = 1;
+	edge->from = 1;
+	edge->to = 0;
+	al_add_edge(&graph.nodes[1]->edges_out, edge, False);
+
+
+
+	edge = (t_edge*)ft_xmalloc(sizeof(t_edge));
+	edge->weight = 1;
+	edge->from = 0;
+	edge->to = 2;
+	al_add_edge(&graph.nodes[0]->edges_out, edge, False);
+	edge = (t_edge*)ft_xmalloc(sizeof(t_edge));
+	edge->weight = 1;
+	edge->from = 0;
+	edge->to = 2;
+	al_add_edge(&graph.nodes[2]->edges_in, edge, False);
+
+	edge = (t_edge*)ft_xmalloc(sizeof(t_edge));
+	edge->weight = 1;
+	edge->from = 2;
+	edge->to = 0;
+	al_add_edge(&graph.nodes[0]->edges_in, edge, False);
+	edge = (t_edge*)ft_xmalloc(sizeof(t_edge));
+	edge->weight = 1;
+	edge->from = 2;
+	edge->to = 0;
+	al_add_edge(&graph.nodes[2]->edges_out, edge, False);
+
+
+
+
+	edge = (t_edge*)ft_xmalloc(sizeof(t_edge));
+	edge->weight = 1;
+	edge->from = 1;
+	edge->to = 2;
+	al_add_edge(&graph.nodes[1]->edges_out, edge, False);
+	edge = (t_edge*)ft_xmalloc(sizeof(t_edge));
+	edge->weight = 1;
+	edge->from = 1;
+	edge->to = 2;
+	al_add_edge(&graph.nodes[2]->edges_in, edge, False);
+
+	edge = (t_edge*)ft_xmalloc(sizeof(t_edge));
+	edge->weight = 1;
+	edge->from = 2;
+	edge->to = 1;
+	al_add_edge(&graph.nodes[2]->edges_out, edge, False);
+	edge = (t_edge*)ft_xmalloc(sizeof(t_edge));
+	edge->weight = 1;
+	edge->from = 2;
+	edge->to = 1;
+	al_add_edge(&graph.nodes[1]->edges_in, edge, False);
+
+	paths = al_suurbale(&graph);
 	return (0);
 }

@@ -16,7 +16,10 @@ VALIDATOR := \
 
 ALGORITHM_DIR := algorithm
 ALGORITHM := \
-			$(ALGORITHM_DIR)/al_start.c
+			$(ALGORITHM_DIR)/al_bellman_ford.c\
+			$(ALGORITHM_DIR)/al_suurbale.c\
+			$(ALGORITHM_DIR)/al_suurbale_update_graph.c\
+			$(ALGORITHM_DIR)/al_edges.c\
 
 SOURCES := main.c \
 			$(VALIDATOR) \

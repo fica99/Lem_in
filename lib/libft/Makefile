@@ -81,7 +81,8 @@ OTHER_FUNCTIONS := other_functions/ft_atoi.c \
 	other_functions/ft_tolower.c \
 	other_functions/ft_toupper.c \
 	other_functions/swap_chars.c \
-	other_functions/swap_ints.c
+	other_functions/swap_ints.c \
+	other_functions/ft_min.c
 
 OUTPUT_FUNCTIONS := output_functions/ft_putnstr.c \
 	output_functions/ft_printmap.c \

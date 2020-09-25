@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 15:31:24 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/20 18:47:51 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/20 19:38:02 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,5 +241,6 @@ void					swap_chars(char *cmd, int b, int a);
 void					swap_ints(int *a, int *b);
 int						ft_issign(char c);
 int						ft_gnl(const int fd, char **line);
+int						ft_min(int a, int b);
 
 #endif
