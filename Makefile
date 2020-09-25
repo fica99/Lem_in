@@ -22,6 +22,9 @@ ALGORITHM := \
 			$(ALGORITHM_DIR)/al_start.c
 
 SOURCES := main.c \
+			lemin_farm_proc.c \
+			lemin_graph_proc.c \
+			lemin_nodes_proc.c \
 			$(VALIDATOR) \
 			$(ALGORITHM)
 

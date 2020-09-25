@@ -6,17 +6,16 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 12:58:48 by aashara-          #+#    #+#             */
-/*   Updated: 2020/09/24 22:56:52 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/09/25 14:28:43 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
-	int	answer;
-	
-	//graph structures init
+	int		answer;
+
 	answer = val_start_validation(argc, argv);
 	if (answer == VAL_ERROR)
 	{
