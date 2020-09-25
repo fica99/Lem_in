@@ -45,10 +45,9 @@ void	lemin_nodesarray_clean(t_node ***nodes, size_t nb_nodes);
 ** File lemin_graph_proc.c
 */
 
-void	lemin_graph_init(void);
-t_graph	lemin_get_graph(void);
-int		lemin_save_graphints(size_t value, char flag);
-int		lemin_save_graph_nodes(t_node **value);
-void	lemin_graph_clean(void);
+t_graph	lemin_graph_init(void);
+int		lemin_graph_methods(t_graph *new_farm, int mode);
+void	lemin_graph_clean(t_graph farm);
+int		lemin_antsum_methods(int ants, int mode);
 
 #endif

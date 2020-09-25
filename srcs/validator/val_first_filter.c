@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 20:01:11 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/25 13:34:51 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/09/25 21:55:14 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int			val_invalid_lines(char *map, int map_size)
 {
 	int		i;
 
+	if (val_check_antsnum(map, map_size) == VAL_ERROR)
+		return (VAL_ERROR);
 	i = 0;
 	while (map[i])
 	{
@@ -32,6 +34,28 @@ int			val_invalid_lines(char *map, int map_size)
 	return (0);
 }
 
+int			val_check_antsnum(char *map, int map_size)
+{
+	int		i;
+	
+	i = 0;
+	if (map[i] == VAL_DASH)
+		i++;
+	while (map[i] && ft_isdigit(map[i]))
+		i++;
+	if (map[i] == VAL_SPACE)
+		while (map[i] && map[i] == VAL_SPACE)
+			i++;
+	if (map[i] != VAL_ENTER && i < map_size)
+	{
+		val_errors(ERR_INVALID_LINE, map, VAL_ENTER, 0);
+		return (val_errors(ERR_NOANTS, NULL, 0, 0));
+	}
+	else if (i == map_size)
+		return (val_errors(ERR_NOROOMS, NULL, 0, 0));
+	return (0);
+}
+
 int			val_invalid_startend(char *map, int map_size)
 {
 	int		i;
@@ -39,7 +63,8 @@ int			val_invalid_startend(char *map, int map_size)
 	char	*valid;
 
 	i = 0;
-	if (map[i] == VAL_HASH && map[i + 1] == VAL_HASH)
+	if (i > 0 && map[i] == VAL_HASH && map[i + 1] == VAL_HASH
+			&& map[i - 1] == VAL_ENTER)
 	{
 		if (map[i + 2] && map[i + 2] == 's')
 			valid = "##start";
@@ -55,10 +80,5 @@ int			val_invalid_startend(char *map, int map_size)
 			return (val_errors(ERR_INVALID_LINE, map + i,
 				VAL_ENTER, 0));
 	}
-	return (0);
-}
-
-int			val_invalid_values(char *map, int map_size)
-{
 	return (0);
 }

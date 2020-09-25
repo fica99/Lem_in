@@ -24,7 +24,8 @@ typedef enum
 	ERR_REDEFINED,
 	ERR_NOSOLUTION,
 	ERR_TERM,
-	ERR_NOFARM
+	ERR_NOFARM,
+	ERR_EXTRAANTS,
 }			t_lemin_errors;
 
 /*
@@ -55,7 +56,15 @@ int			val_errors(int error_index, char *arg, char end, int usage_needed);
 */
 
 int			val_invalid_lines(char *map, int map_size);
-int			val_invalid_values(char *map, int map_size);
+int			val_check_antsnum(char *map, int map_size);
 int			val_invalid_startend(char *map, int map_size);
+
+/*
+** File val_second_filter.c
+*/
+
+int			val_invalid_values(char *map, int map_size);
+int			val_getants(char *map);
+int			val_getrooms(char *map, int map_size, int *i);
 
 #endif

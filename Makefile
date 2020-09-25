@@ -15,14 +15,14 @@ VALIDATOR := \
 			$(VALIDATOR_DIR)/val_start.c \
 			$(VALIDATOR_DIR)/val_errors.c \
 			$(VALIDATOR_DIR)/val_arguments.c \
-			$(VALIDATOR_DIR)/val_first_filter.c
+			$(VALIDATOR_DIR)/val_first_filter.c \
+			$(VALIDATOR_DIR)/val_second_filter.c
 
 ALGORITHM_DIR := algorithm
 ALGORITHM := \
 			$(ALGORITHM_DIR)/al_start.c
 
 SOURCES := main.c \
-			lemin_farm_proc.c \
 			lemin_graph_proc.c \
 			lemin_nodes_proc.c \
 			$(VALIDATOR) \

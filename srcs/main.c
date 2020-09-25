@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 12:58:48 by aashara-          #+#    #+#             */
-/*   Updated: 2020/09/25 15:48:42 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/09/25 21:37:59 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,19 @@ int			main(int argc, char **argv)
 {
 	int		answer;
 
-	lemin_graph_init();
 	answer = val_start_validation(argc, argv);
 	if (answer == VAL_ERROR)
 	{
 		ft_putendl_fd("ERROR", STDERR_FILENO);
+		lemin_graph_methods(NULL, -1);
+		lemin_antsum_methods(0, -1);
 		return (1);
 	}
 	else if (answer == STOP)
 		return (0);
 	printf("\nGo to algorithm\n");
-	lemin_graph_clean();
+	lemin_graph_methods(NULL, -1);
+	lemin_antsum_methods(0, -1);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 14:46:00 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/25 15:23:28 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/09/25 15:56:28 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			lemin_nodesarray_clean(t_node ***nodes, size_t nb_nodes)
 
 	i = 0;
 	ptr_nodes = (*nodes);
-	if (ptr_nodes == NULL)
+	if (!nodes || !ptr_nodes)
 		return ;
 	while (i < nb_nodes)
 	{
@@ -47,6 +47,8 @@ t_node			*lemin_node_init(void)
 
 void			lemin_node_clean(t_node **node)
 {
+	if (!node || !(*node))
+		return ;
 	free((*node)->name);
 	(*node)->name = NULL;
 	lemin_edge_clean(&(*node)->edges_in);

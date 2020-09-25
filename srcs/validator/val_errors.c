@@ -6,14 +6,14 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 22:25:32 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/25 11:42:43 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/09/25 21:06:44 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "validator.h"
 
-#define ERRORS_NUM 15
+#define ERRORS_NUM 16
 
 static char		*val_errors_types(int sequence_num)
 {
@@ -34,6 +34,7 @@ static char		*val_errors_types(int sequence_num)
 	seq_action[12] = "no possible solution with this map";
 	seq_action[13] = "can not read from standard input";
 	seq_action[14] = "no farm found";
+	seq_action[15] = "too many ants found";
 	return (seq_action[sequence_num]);
 }
 
