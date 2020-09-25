@@ -22,6 +22,7 @@ ALGORITHM := \
 			$(ALGORITHM_DIR)/al_edges.c\
 
 SOURCES := main.c \
+			lemin_print_paths.c \
 			$(VALIDATOR) \
 			$(ALGORITHM)
 
