@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 12:58:48 by aashara-          #+#    #+#             */
-/*   Updated: 2020/09/25 14:28:43 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/09/25 15:48:42 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int			main(int argc, char **argv)
 {
 	int		answer;
 
+	lemin_graph_init();
 	answer = val_start_validation(argc, argv);
 	if (answer == VAL_ERROR)
 	{
@@ -25,10 +26,11 @@ int			main(int argc, char **argv)
 	else if (answer == STOP)
 		return (0);
 	printf("\nGo to algorithm\n");
+	lemin_graph_clean();
 	return (0);
 }
 
-void	lemin_usage(void)
+void		lemin_usage(void)
 {
 	ft_printf("%s works with standard input only\n", PROGRAM_NAME);
 	ft_printf("%-10s %s [options] < file or %s [options]\n",
