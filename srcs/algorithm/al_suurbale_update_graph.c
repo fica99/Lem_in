@@ -6,23 +6,11 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 12:05:00 by aashara-          #+#    #+#             */
-/*   Updated: 2020/09/25 03:00:14 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/25 04:30:02 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "algorithm.h"
-
-void			al_add_edge(t_node **nodes, t_edge *edge, size_t from, t_bool is_in)
-{
-	t_edge	*tmp;
-
-	tmp = (is_in == True ? nodes[from]->edges_in : nodes[from]->edges_out);
-	edge->next = tmp;
-	if (is_in == True)
-		nodes[from]->edges_in = edge;
-	else
-		nodes[from]->edges_out = edge;
-}
 
 static void		al_reverse_edges(t_node **nodes, size_t from, size_t to)
 {
@@ -40,13 +28,13 @@ static void		al_reverse_edges(t_node **nodes, size_t from, size_t to)
 	edge->weight = -1;
 	edge->from = to;
 	edge->to = from;
-	al_add_edge(nodes, edge, to, True);
+	al_add_edge(&nodes[to]->edges_in, edge, False);
 	edge = al_get_edge(&nodes[to]->edges_in, &search);
 	edge->next = NULL;
 	edge->weight = -1;
 	edge->from = to;
 	edge->to = from;
-	al_add_edge(nodes, edge, from, False);
+	al_add_edge(&nodes[from]->edges_out, edge, False);
 }
 
 
@@ -61,6 +49,7 @@ void			al_update_graph(t_graph *graph, int *arr_nodes, t_edge **edges)
 		edge = (t_edge *)ft_xmalloc(sizeof(t_edge));
 		edge->from = arr_nodes[i];
 		edge->to = i;
+		edge->weight = 1;
 		edge->next = *edges;
 		*edges = edge;
 		al_reverse_edges(graph->nodes, arr_nodes[i], i);

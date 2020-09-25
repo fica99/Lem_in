@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 21:25:15 by aashara           #+#    #+#             */
-/*   Updated: 2020/09/23 20:16:29 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/25 04:39:06 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static t_bool	al_update_dist(t_node **nodes, size_t nb_nodes, int *dist,
 	i = 0;
 	while (i < nb_nodes)
 	{
-		is_changed = al_check_edges(nodes[i]->edges_in, dist, path, is_changed);
+		is_changed = al_check_edges(nodes[i]->edges_in, dist, path, is_changed);// may be optimized by cheching only one edge
 		is_changed = al_check_edges(nodes[i]->edges_out, dist, path, is_changed);
 		++i;
 	}

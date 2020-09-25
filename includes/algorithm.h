@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 21:24:50 by aashara           #+#    #+#             */
-/*   Updated: 2020/09/25 02:34:18 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/25 04:26:16 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,11 @@ void	al_bellman_ford(t_graph *graph, int *dist, int *path);
 **		al_get_edge.c
 */
 t_edge	*al_get_edge(t_edge **edges, t_search *search);
+void	al_add_edge(t_edge **edges, t_edge *edge, t_bool is_end);
+void	al_del_edges(t_edge **edges);
 /*
 **		al_suurbale_update_graph.c
 */
-void	al_add_edge(t_node **nodes, t_edge *edge, size_t from, t_bool is_in);
 void	al_update_graph(t_graph *graph, int *arr_nodes, t_edge **edges);
 /*
 **		al_suurbale.c

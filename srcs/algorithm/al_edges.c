@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   al_get_edge.c                                      :+:      :+:    :+:   */
+/*   al_edges.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 02:19:35 by aashara-          #+#    #+#             */
-/*   Updated: 2020/09/25 03:02:58 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/25 04:25:40 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,42 @@ t_edge			*al_get_edge(t_edge **edges, t_search *search)
 		finded = finded->next;
 	}
 	return (NULL);
+}
+
+void			al_add_edge(t_edge **edges, t_edge *edge, t_bool is_end)
+{
+	t_edge	*tmp;
+
+	if (!is_end)
+	{
+		edge->next = *edges;
+		*edges = edge;
+	}
+	else
+	{
+		tmp = *edges;
+		if (!tmp)
+			*edges = edge;
+		else
+		{
+			while (tmp->next)
+				tmp = tmp->next;
+			tmp->next = edge;
+		}
+	}
+}
+
+void			al_del_edges(t_edge **edges)
+{
+	t_edge	*tmp;
+	t_edge	*next;
+
+	tmp = *edges;
+	*edges = NULL;
+	while (tmp)
+	{
+		next = tmp->next;
+		ft_memdel((void**)&tmp);
+		tmp = next;
+	}
 }

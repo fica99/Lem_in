@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:23:59 by aashara-          #+#    #+#             */
-/*   Updated: 2020/09/25 03:53:07 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/25 04:50:15 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	al_del_reverse_edges(t_edge **edges)
 	while ((finded = al_get_edge(edges, &search)))
 	{
 		new_search = (t_search){finded->to, True, finded->from, True, 0, False};
-		new_finded = al_get_edge(edges, &new_search);
+		new_finded = al_get_edge(edges, &new_search);// may be optimized by search
 		ft_memdel((void**)&new_finded);
 		ft_memdel((void**)&finded);
 	}
@@ -32,17 +32,24 @@ static void	al_del_reverse_edges(t_edge **edges)
 static void	al_update_paths(t_paths *paths, t_edge **edges, size_t start,
 																size_t end)
 {
-	size_t	cur_node;
-	size_t	i;
+	size_t		cur_node;
+	size_t		i;
+	t_edge		*finded;
+	t_search	search;
 
 	i = 0;
 	while (i < paths->nb_paths)
 	{
 		cur_node = start;
-		// while (cur_node != end)
-		// {
-
-		// }
+		while (cur_node != end)
+		{
+			search = (t_search){cur_node, True, 0, False, 0, False};
+			finded = al_get_edge(edges, &search);
+			finded->next = NULL;
+			al_add_edge(&paths->paths[i].edges, finded, True);
+			++(paths->paths[i].nb_nodes);
+			cur_node = finded->to;
+		}
 		++i;
 	}
 }
@@ -59,13 +66,14 @@ t_paths		*al_suurbale(t_graph *graph)
 	while (True)
 	{
 		al_bellman_ford(graph, dist, path);
-		if (dist[graph->graph_end] == INT_MAX)
+		if (dist[graph->graph_end] == INT_MAX) // maybe optimized by number of ants
 			break ;
 		++paths->nb_paths;
 		al_update_graph(graph, path, &edges);
 	}
+	paths->paths = ft_xmalloc(sizeof(t_path) * (paths->nb_paths));
 	al_del_reverse_edges(&edges);
-	paths->paths = ft_xmalloc(sizeof(t_path) * (paths->nb_paths + 1));
 	al_update_paths(paths, &edges, graph->graph_start, graph->graph_end);
+	al_del_edges(&edges);
 	return (paths);
 }
