@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 12:58:48 by aashara-          #+#    #+#             */
-/*   Updated: 2020/09/24 22:19:37 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/09/25 01:39:51 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 	t_graph	graph;
 	size_t	i;
 	t_edge	*edge;
-	t_path	*paths;
+	t_paths	*paths;
 
 	argc = 0;
 	argv = NULL;

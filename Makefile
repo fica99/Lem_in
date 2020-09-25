@@ -19,6 +19,7 @@ ALGORITHM := \
 			$(ALGORITHM_DIR)/al_bellman_ford.c\
 			$(ALGORITHM_DIR)/al_suurbale.c\
 			$(ALGORITHM_DIR)/al_suurbale_update_graph.c\
+			$(ALGORITHM_DIR)/al_get_edge.c\
 
 SOURCES := main.c \
 			$(VALIDATOR) \
