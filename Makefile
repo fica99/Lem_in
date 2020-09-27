@@ -16,7 +16,8 @@ VALIDATOR := \
 			$(VALIDATOR_DIR)/val_errors.c \
 			$(VALIDATOR_DIR)/val_arguments.c \
 			$(VALIDATOR_DIR)/val_first_filter.c \
-			$(VALIDATOR_DIR)/val_second_filter.c
+			$(VALIDATOR_DIR)/val_second_filter.c \
+			$(VALIDATOR_DIR)/val_second_filter_rooms.c
 
 ALGORITHM_DIR := algorithm
 ALGORITHM := \

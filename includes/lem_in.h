@@ -17,6 +17,8 @@
 # define OPTIONS_NUM 2
 # define PROGRAM_OPTIONS ""
 # define HELP_OPTION 0x10000
+# define INT_MAX 2147483647
+# define INT_MIN - 2147483648
 
 /*
 ** File main.c

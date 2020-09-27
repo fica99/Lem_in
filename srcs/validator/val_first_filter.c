@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 20:01:11 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/25 21:55:14 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/09/27 13:39:02 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ int			val_invalid_lines(char *map, int map_size)
 	i = 0;
 	while (map[i])
 	{
-		if ((i == 0 && map[i] == 'L') ||
-				(i > 0 && map[i - 1] == VAL_ENTER && map[i] == 'L'))
-			return (val_errors(ERR_INVALID_VALUES, map + i, VAL_SPACE, 0));
+		if (i > 0 && map[i - 1] == VAL_ENTER && map[i] == 'L')
+			return (val_errors(ERR_INVALID_VALUES, map + i, VAL_ENTER, 0));
+		if (val_check_spaces(map, i) == VAL_ERROR)
+			return (VAL_ERROR);
 		if (map[i] == VAL_ENTER && map[i + 1] == VAL_ENTER)
 			return (val_errors(ERR_EMPTY, NULL, 0, 0));
-		if (val_invalid_startend(map + i, map_size) == VAL_ERROR)
+		if (val_invalid_startend(map, map_size, &i) == VAL_ERROR)
 			return (VAL_ERROR);
 		i++;
 	}
@@ -39,16 +40,22 @@ int			val_check_antsnum(char *map, int map_size)
 	int		i;
 	
 	i = 0;
+	if (map[i] == VAL_SPACE)
+	{
+		val_errors(ERR_INVALID_LINE, map, VAL_ENTER, 0);
+		val_errors(ERR_SPACE_START, NULL, 0, 0);
+		return (val_errors(ERR_NOANTS, NULL, 0, 0));
+	}
 	if (map[i] == VAL_DASH)
 		i++;
 	while (map[i] && ft_isdigit(map[i]))
 		i++;
-	if (map[i] == VAL_SPACE)
-		while (map[i] && map[i] == VAL_SPACE)
-			i++;
 	if (map[i] != VAL_ENTER && i < map_size)
 	{
 		val_errors(ERR_INVALID_LINE, map, VAL_ENTER, 0);
+		val_pass_spaces(map, &i);
+		if (map[i] == VAL_ENTER)
+			val_errors(ERR_SPACE_END, NULL, 0, 0);
 		return (val_errors(ERR_NOANTS, NULL, 0, 0));
 	}
 	else if (i == map_size)
@@ -56,29 +63,57 @@ int			val_check_antsnum(char *map, int map_size)
 	return (0);
 }
 
-int			val_invalid_startend(char *map, int map_size)
+int			val_invalid_startend(char *map, int map_size, int *i)
 {
-	int		i;
+	int		j;
 	int		len_tmp;
 	char	*valid;
 
-	i = 0;
-	if (i > 0 && map[i] == VAL_HASH && map[i + 1] == VAL_HASH
-			&& map[i - 1] == VAL_ENTER)
+	j = *i;
+	if (j > 0 && map[j] == VAL_HASH && map[j + 1] == VAL_HASH
+			&& map[j - 1] == VAL_ENTER)
 	{
-		if (map[i + 2] && map[i + 2] == 's')
+		if (map[j + 2] && map[j + 2] == 's')
 			valid = "##start";
-		else if (map[i + 2] && map[i + 2] == 'e')
+		else if (map[j + 2] && map[j + 2] == 'e')
 			valid = "##end";
 		else
-			return (val_errors(ERR_INVALID_LINE, map + i,
-				VAL_ENTER, 0));
+			return (val_errors(ERR_INVALID_LINE, map + j, VAL_ENTER, 0));
 		len_tmp = ft_strlen(valid);
-		if (!(i + len_tmp <= map_size &&
-				ft_strncmp(map + i, valid, len_tmp) == 0 &&
-				(map[i + len_tmp] == VAL_ENTER || !map[i + len_tmp])))
-			return (val_errors(ERR_INVALID_LINE, map + i,
-				VAL_ENTER, 0));
+		if (!(j + len_tmp <= map_size &&
+				ft_strncmp(map + j, valid, len_tmp) == 0 &&
+				(map[j + len_tmp] == VAL_ENTER || 
+				map[j + len_tmp] == VAL_SPACE || !map[j + len_tmp])))
+			return (val_errors(ERR_INVALID_LINE, map + j, VAL_ENTER, 0));
+		*i = j;
+	}
+	return (0);
+}
+
+int			val_check_spaces(char *map, int i)
+{
+	if (i > 0 && map[i - 1] == VAL_ENTER && map[i] == VAL_SPACE)
+	{
+		val_errors(ERR_INVALID_LINE, map + i, VAL_ENTER, 0);
+		return (val_errors(ERR_SPACE_START, NULL, 0, 0));
+	}
+	if (i > 0 && map[i] == VAL_ENTER && map[i - 1] == VAL_SPACE)
+	{
+		i--;
+		while (i > 0 && map[i] != VAL_ENTER)
+			i--;
+		if (!(map[i + 1] == VAL_HASH && map[i + 2] && map[i + 2] != VAL_HASH))
+		{
+			val_errors(ERR_INVALID_LINE, map + i + 1, VAL_ENTER, 0);
+			return (val_errors(ERR_SPACE_END, NULL, 0, 0));
+		}
+	}
+	if (map[i] == VAL_SPACE && !map[i + 1])
+	{
+		while (i > 0 && map[i] != VAL_ENTER)
+			i--;
+		val_errors(ERR_INVALID_LINE, map + i + 1, VAL_ENTER, 0);
+		return (val_errors(ERR_SPACE_END, NULL, 0, 0));
 	}
 	return (0);
 }
