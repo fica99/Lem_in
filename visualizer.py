@@ -75,11 +75,10 @@ class Graph():
 
 	def draw(self):
 		pos = nx.spring_layout(self.G)
-		nx.draw_networkx_nodes(self.G, pos, nodelist=self.nodes, node_size=100)
-		nx.draw_networkx_nodes(self.G, pos, nodelist=[self.start], node_size=200,node_color="red")
-		nx.draw_networkx_nodes(self.G, pos, nodelist=[self.end], node_size=200,node_color="green")
+		nx.draw_networkx_nodes(self.G, pos, nodelist=self.nodes, node_size=50)
+		nx.draw_networkx_nodes(self.G, pos, nodelist=[self.start], node_size=100,node_color="red")
+		nx.draw_networkx_nodes(self.G, pos, nodelist=[self.end], node_size=100,node_color="green")
 		nx.draw_networkx_edges(self.G, pos)
-		nx.draw_networkx_labels(self.G, pos)
 		plt.show()
 
 

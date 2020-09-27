@@ -13,7 +13,6 @@ lem-in
 
 # Linker output
 *.ilk
-*.map
 *.exp
 
 # Precompiled Headers
