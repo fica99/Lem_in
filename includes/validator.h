@@ -18,7 +18,7 @@ typedef enum
 	ERR_INVALID_LINE,
 	ERR_NOANTS,
 	ERR_NOROOMS,
-	ERR_INVALID_VALUES,
+	ERR_INVALID_ROOMNAME,
 	ERR_NOSTART,
 	ERR_NOEND,
 	ERR_ROOM_LOOP,
@@ -29,7 +29,8 @@ typedef enum
 	ERR_NOFARM,
 	ERR_EXTRAANTS,
 	ERR_SPACE_START,
-	ERR_SPACE_END
+	ERR_SPACE_END,
+	ERR_INVALID_COORD
 }			t_lemin_errors;
 
 /*
@@ -63,6 +64,7 @@ int			val_invalid_lines(char *map, int map_size);
 int			val_check_antsnum(char *map, int map_size);
 int			val_invalid_startend(char *map, int map_size, int *i);
 int			val_check_spaces(char *map, int i);
+int			val_isdelimiter(char *map, int i);
 
 /*
 ** File val_second_filter.c

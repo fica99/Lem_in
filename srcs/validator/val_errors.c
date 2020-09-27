@@ -6,14 +6,14 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 22:25:32 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/27 13:04:05 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/09/27 14:06:24 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "validator.h"
 
-#define ERRORS_NUM 18
+#define ERRORS_NUM 19
 
 static char		*val_errors_types(int sequence_num)
 {
@@ -25,7 +25,7 @@ static char		*val_errors_types(int sequence_num)
 	seq_action[3] = "invalid map line: ";
 	seq_action[4] = "not enough ants found";
 	seq_action[5] = "not enough rooms found";
-	seq_action[6] = "invalid values in the line: ";
+	seq_action[6] = "invalid room name: ";
 	seq_action[7] = "\'##start\' not found";
 	seq_action[8] = "\'##end\' not found";
 	seq_action[9] = "room linked on itself: ";
@@ -37,6 +37,7 @@ static char		*val_errors_types(int sequence_num)
 	seq_action[15] = "too many ants found";
 	seq_action[16] = "line starts with spaces";
 	seq_action[17] = "line ends with spaces";
+	seq_action[18] = "invalid coordinate: ";
 	return (seq_action[sequence_num]);
 }
 
