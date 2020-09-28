@@ -2,19 +2,12 @@ import sys
 import enum
 import networkx as nx
 import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
 
 class Graph():
 
-	class _InputType(enum.Enum):
-		Nodes = 1
-		Edges = 2
-
 	def _create_node(self, line):
 		data = line.split()
-		if len(data) != 3:
-			sys.exit("Invalid node")
-		if data[1].isdigit() != True or data[2].isdigit() != True:
-			sys.exit("Node coordinates must be integers")
 		return data[0]
 
 	def _create_edge(self, line):
@@ -26,59 +19,62 @@ class Graph():
 		return tuple(data)
 
 	def _read_graph(self):
-		type_input = self._InputType.Nodes
+		ants = {}
 		for line in sys.stdin:
 			line = line.strip()
 			if line.startswith("#"):
 				if line == "##start":
-					start = sys.stdin.readline()
+					start = sys.stdin.readline().strip()
 					self.start = self._create_node(start)
 					self.G.add_node(self.start)
 				elif line == "##end":
-					end = sys.stdin.readline()
+					end = sys.stdin.readline().strip()
 					self.end = self._create_node(end)
 					self.G.add_node(self.end)
+			elif line.startswith('L'):
+				for num, name in map(lambda a: a[1:].split('-'), line.split(' ')):
+					if num not in ants:
+						ants[num] = []
+					ants[num].append(name)
 			elif ' ' in line:
-				if type_input == self._InputType.Nodes:
-					self.nodes.append(self._create_node(line))
-					self.G.add_node(self.nodes[-1])
-				else:
-					sys.exit("Expected nodes data")
+				self.nodes.append(self._create_node(line))
+				self.G.add_node(self.nodes[-1])
 			elif '-' in line:
 				self.G.add_edge(*self._create_edge(line))
-				type_input = self._InputType.Edges
-			elif len(line) == 0:
-				break
-			else:
-				sys.exit("Incorrect input")
+		self.paths = self.get_paths(ants)
 
-	def _read_output(self):
-		pass
+	def get_paths(self, ants):
+		paths = set()
+		for value in ants.values():
+			paths.add(tuple(value))
+		new_paths = []
+		for path in paths:
+			new_path = []
+			tmp = [self.start]
+			i = 0
+			while i < len(path):
+				tmp.append(path[i])
+				new_path.append(tuple(tmp))
+				tmp = [path[i]]
+				i += 1
+			new_paths.append(new_path)
+		return new_paths
 
 	def __init__(self):
 		self.G = nx.Graph()
-		self.end = None
-		self.start = None
 		self.nodes = []
 		line = sys.stdin.readline()
-		line = line.strip()
-		if line.isdigit() != True:
-			sys.exit("Expected number as number of ants")
 		self._read_graph()
-		if len(self.nodes) == 0:
-			sys.exit("No nodes in graph")
-		if self.start == None:
-			sys.exit("No start node")
-		if self.end == None:
-			sys.exit("No end node")
-		self._read_output()
+		self._colors = list(mcolors.CSS4_COLORS.values())[10::7]
 
 	def draw(self):
 		pos = nx.spring_layout(self.G)
-		nx.draw_networkx_nodes(self.G, pos, nodelist=self.nodes, node_size=50)
+		nx.draw_networkx_nodes(self.G, pos, nodelist=self.nodes, node_size=10)
 		nx.draw_networkx_nodes(self.G, pos, nodelist=[self.start], node_size=100,node_color="red")
 		nx.draw_networkx_nodes(self.G, pos, nodelist=[self.end], node_size=100,node_color="green")
-		nx.draw_networkx_edges(self.G, pos)
+		nx.draw_networkx_edges(self.G, pos, alpha=0.1)
+		for i, path in enumerate(self.paths):
+			nx.draw_networkx_edges(self.G, pos, path, width=5, alpha=0.5, edge_color=self._colors[i])
 		plt.show()
 
 
