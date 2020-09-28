@@ -6,14 +6,14 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 22:25:32 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/27 14:06:24 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/09/28 23:45:26 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "validator.h"
 
-#define ERRORS_NUM 19
+#define ERRORS_NUM 21
 
 static char		*val_errors_types(int sequence_num)
 {
@@ -38,6 +38,8 @@ static char		*val_errors_types(int sequence_num)
 	seq_action[16] = "line starts with spaces";
 	seq_action[17] = "line ends with spaces";
 	seq_action[18] = "invalid coordinate: ";
+	seq_action[19] = "not enough coordinates found";
+	seq_action[20] = "too many coordinates found: only x and y needed";
 	return (seq_action[sequence_num]);
 }
 

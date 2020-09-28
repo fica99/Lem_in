@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 20:01:11 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/27 14:22:41 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/09/28 21:12:11 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ int			val_invalid_lines(char *map, int map_size)
 		if (i > 0 && map[i - 1] == VAL_ENTER && map[i] == 'L')
 		{
 			val_errors(ERR_INVALID_LINE, map + i, VAL_ENTER, 0);
-			k = 0;
-			while (val_isdelimiter(map, i + k) == 0)
-				k++;
+			k = val_find_delimiter(map, i);
 			return (val_errors(ERR_INVALID_ROOMNAME, map + i, map[i + k], 0));
 		}
 		if (val_check_spaces(map, i) == VAL_ERROR)
@@ -122,17 +120,5 @@ int			val_check_spaces(char *map, int i)
 		val_errors(ERR_INVALID_LINE, map + i + 1, VAL_ENTER, 0);
 		return (val_errors(ERR_SPACE_END, NULL, 0, 0));
 	}
-	return (0);
-}
-
-int			val_isdelimiter(char *map, int i)
-{
-	if (map[i] == VAL_ENTER ||
-			map[i] == VAL_SPACE ||
-			(i > 0 && map[i] == VAL_DASH &&
-			(!(map[i - 1] == VAL_ENTER || map[i - 1] == VAL_SPACE)) &&
-			(!(map[i + 1] && map[i + 1] == VAL_ENTER &&
-			map[i + 1] == VAL_SPACE))))
-		return (1);
 	return (0);
 }

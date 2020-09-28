@@ -30,7 +30,9 @@ typedef enum
 	ERR_EXTRAANTS,
 	ERR_SPACE_START,
 	ERR_SPACE_END,
-	ERR_INVALID_COORD
+	ERR_INVALID_COORD,
+	ERR_NOCOORD,
+	ERR_EXTRACOORD
 }			t_lemin_errors;
 
 /*
@@ -57,6 +59,15 @@ int			val_check_program_option(char *arg, char *options,
 int			val_errors(int error_index, char *arg, char end, int usage_needed);
 
 /*
+** File val_help_funcs.c
+*/
+
+int			val_pass_spaces(char *map, int *i);
+int			val_find_delimiter(char *map, int i);
+int			val_isdelimiter(char *map, int i);
+int			val_pass_comments(char *map, int *i);
+
+/*
 ** File val_first_filter.c
 */
 
@@ -64,7 +75,6 @@ int			val_invalid_lines(char *map, int map_size);
 int			val_check_antsnum(char *map, int map_size);
 int			val_invalid_startend(char *map, int map_size, int *i);
 int			val_check_spaces(char *map, int i);
-int			val_isdelimiter(char *map, int i);
 
 /*
 ** File val_second_filter.c
@@ -72,18 +82,33 @@ int			val_isdelimiter(char *map, int i);
 
 int			val_invalid_values(char *map, int map_size);
 int			val_getants(char *map);
-int			val_getrooms(char *map, int map_size, int *i);
+int			val_getrooms(char *map, int map_size, int *i, t_graph *farm);
+int			val_pass_startend(char *map, int *i);
 int			val_getlinks(char *map, int map_size, int *i);
-int			val_pass_spaces(char *map, int *i);
 
 /*
 ** File val_second_filter_rooms.c
 */
 
-int			val_pass_comments(char *map, int *i);
-int			val_pass_startend(char *map, int *i);
 int			val_check_room_pattern(char *map, int *i,
 				char name[VAL_MAXROOMNAME],
 				char coord[2][VAL_MAXROOMCOORD]);
+int			val_getroomsname(char *map, int *i,
+				char *name, int beg_line);
+int			val_getroomscoord(char *map, int *i,
+				char coord[VAL_MAXROOMCOORD], int beg_line);
+int			val_coord_invalid_error(char *map, int beg_line,
+				int beg_value, int error);
+int			val_roomblock_error(char *map, int *i, int beg_line,
+				char coord[2][VAL_MAXROOMCOORD]);
+
+/*
+** File val_save_rooms.c
+*/
+
+int			val_check_roomdraft(char name[VAL_MAXROOMNAME],
+				char coord[2][VAL_MAXROOMCOORD], t_graph *farm, int flag);
+int			val_save_room(char name[VAL_MAXROOMNAME],
+				char coord[2][VAL_MAXROOMCOORD], t_graph *farm, int flag);
 
 #endif

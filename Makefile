@@ -14,10 +14,12 @@ VALIDATOR_DIR := validator
 VALIDATOR := \
 			$(VALIDATOR_DIR)/val_start.c \
 			$(VALIDATOR_DIR)/val_errors.c \
+			$(VALIDATOR_DIR)/val_help_funcs.c \
 			$(VALIDATOR_DIR)/val_arguments.c \
 			$(VALIDATOR_DIR)/val_first_filter.c \
 			$(VALIDATOR_DIR)/val_second_filter.c \
-			$(VALIDATOR_DIR)/val_second_filter_rooms.c
+			$(VALIDATOR_DIR)/val_second_filter_rooms.c \
+			$(VALIDATOR_DIR)/val_save_rooms.c \
 
 ALGORITHM_DIR := algorithm
 ALGORITHM := \
