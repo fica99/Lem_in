@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 20:01:52 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/04 20:02:13 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/05 00:38:01 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_edge			*lemin_edge_init(void)
 	new_edge = (t_edge*)ft_xmalloc(sizeof(t_edge));
 	new_edge->from = -1;
 	new_edge->to = -1;
-	new_edge->weight = -1;
+	new_edge->weight = 1;
 	new_edge->next = NULL;
 	return (new_edge);
 }

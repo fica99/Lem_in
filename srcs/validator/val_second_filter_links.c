@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 22:28:31 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/05 00:10:13 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/05 01:16:20 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,22 +91,68 @@ int			val_check_linkdraft(char name1[VAL_MAXROOMNAME],
 			return (val_errors(ERR_ROOM_LOOP, name1, '\0', 0));
 	}
 	else
-	{
-		val_errors(ERR_NOROOM_INFO, name1, '\0', 0);
-		return (val_errors(ERR_NOROOM_INFO, name2, '\0', 0));
-	}
+		return (val_errors(ERR_NOROOMS, NULL, '\0', 0));
 	if (val_save_link(index1, index2, farm) == VAL_ERROR)
 		return (VAL_ERROR);
 	return (0);
 }
 
+/*
+** Done here:
+** Example: nodes[0] = 'A', node[1] = 'B'
+** @ptr_node = 0(A)
+** @ptr_edge = ptr_node->edges_out for 0(A) where
+** from 0, to 1
+** @ptr_edge = ptr_node->edges_in for 0(A) where
+** from 1, to 0
+** @ptr_node = 1(B)
+** @ptr_edge = ptr_node->edges_out for 1(B) where
+** from 1, to 0
+** @ptr_edge = ptr_node->edges_in for 1(B) where
+** from 0, to 1
+*/
+
 int			val_save_link(size_t index1, size_t index2, t_graph *farm)
 {
-	// t_node	*ptr_node;
-	// t_edge	*ptr_edge;
+	t_node	*ptr_node;
+	t_edge	*ptr_edge;
 	
-	// ptr_node = (*farm).nodes[index1];
-	// ptr_edge = ptr_node->edges_out;
-	printf("saving links\n");
+	if (!(*farm).nodes[index1] || !(*farm).nodes[index2])
+		return (val_errors(ERR_LINKBLOCK, NULL, 0, 0));
+	ptr_node = (*farm).nodes[index1];
+	ptr_edge = ptr_node->edges_out;
+	val_save_edge(index1, index2, ptr_edge);
+	ptr_edge = ptr_node->edges_in;
+	val_save_edge(index2, index1, ptr_edge);
+	ptr_node = (*farm).nodes[index2];
+	ptr_edge = ptr_node->edges_out;
+	val_save_edge(index2, index1, ptr_edge);
+	ptr_edge = ptr_node->edges_in;
+	val_save_edge(index1, index2, ptr_edge);
+	return (0);
+}
+
+int			val_save_edge(size_t index1, size_t index2, t_edge *edge)
+{
+	t_edge	*runner;
+	t_edge	*ptr_edge;
+
+	runner = edge;
+	if ((int)edge->from == -1 || (int)edge->to == -1)
+	{
+		edge->from = index1;
+		edge->to = index2;
+		return (0);
+	}
+	while (runner->next)
+	{
+		if (runner->from == index1 && runner->to == index2)
+			return (0);
+		runner = runner->next;
+	}
+	runner->next = lemin_edge_init();
+	ptr_edge = runner->next;
+	ptr_edge->from = index1;
+	ptr_edge->to = index2;
 	return (0);
 }

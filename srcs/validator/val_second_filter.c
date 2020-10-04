@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 20:35:49 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/04 23:57:30 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/05 01:02:24 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int			val_getrooms(char *map, int map_size, int *i, t_graph *farm)
 	{
 		flag = val_pass_startend(map, i);
 		val_pass_comments(map, i);
+		if (map[*i] == VAL_HASH)
+			continue ;
 		answer = val_check_room_pattern(map, i, name, coord);
 		if (answer == VAL_ERROR || answer == STOP)
 			return ((answer == VAL_ERROR) ? VAL_ERROR : 0);

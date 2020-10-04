@@ -69,6 +69,7 @@ size_t	lemin_search_coord(t_node **nodes,
 void	lemin_nodesarray_print(t_node **nodes,
 			size_t nb_nodes);
 void	lemin_print_onenode(t_node *node);
+void	lemin_print_edge(t_edge *edge);
 
 /*
 ** File lemin_edges_proc.c

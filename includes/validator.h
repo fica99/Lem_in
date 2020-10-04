@@ -129,5 +129,6 @@ int			val_getlink_roomsnames(char *map, int *i,
 int			val_check_linkdraft(char name1[VAL_MAXROOMNAME],
 				char name2[VAL_MAXROOMNAME], t_graph *farm);
 int			val_save_link(size_t index1, size_t index2, t_graph *farm);
+int			val_save_edge(size_t index1, size_t index2, t_edge *edge);
 
 #endif

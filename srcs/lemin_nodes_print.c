@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 14:51:10 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/04 20:31:34 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/05 01:11:29 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,23 @@ void			lemin_nodesarray_print(t_node **nodes,
 void			lemin_print_onenode(t_node *node)
 {
 	t_edge		*edge;
-	t_edge		*run;
 
 	ft_printf("room_name = %s\n", node->name);
 	ft_printf("coordinates: x = %d, y = %d\n",
 		node->x, node->y);
 	ft_printf("edges:\n");
+	ft_printf("\tedges_out:\n");
+	edge = node->edges_out;
+	lemin_print_edge(edge);
+	ft_printf("\tedges_in:\n");
 	edge = node->edges_in;
+	lemin_print_edge(edge);
+}
+
+void			lemin_print_edge(t_edge *edge)
+{
+	t_edge		*run;
+
 	run = edge;
 	while (run)
 	{
