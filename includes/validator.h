@@ -8,7 +8,7 @@
 # define VAL_ENTER '\n'
 # define VAL_HASH '#'
 # define VAL_MAXROOMNAME 256
-# define VAL_MAXROOMCOORD 11
+# define VAL_MAXROOMCOORD 12
 
 typedef enum
 {
@@ -32,7 +32,11 @@ typedef enum
 	ERR_SPACE_END,
 	ERR_INVALID_COORD,
 	ERR_NOCOORD,
-	ERR_EXTRACOORD
+	ERR_EXTRACOORD,
+	ERR_START_REDEFINED,
+	ERR_END_REDEFINED,
+	ERR_LINK,
+	ERR_LINKBLOCK
 }			t_lemin_errors;
 
 /*
@@ -84,7 +88,7 @@ int			val_invalid_values(char *map, int map_size);
 int			val_getants(char *map);
 int			val_getrooms(char *map, int map_size, int *i, t_graph *farm);
 int			val_pass_startend(char *map, int *i);
-int			val_getlinks(char *map, int map_size, int *i);
+int			val_getlinks(char *map, int map_size, int *i, t_graph *farm);
 
 /*
 ** File val_second_filter_rooms.c
@@ -108,7 +112,22 @@ int			val_roomblock_error(char *map, int *i, int beg_line,
 
 int			val_check_roomdraft(char name[VAL_MAXROOMNAME],
 				char coord[2][VAL_MAXROOMCOORD], t_graph *farm, int flag);
+int			val_check_startenddraft(t_graph *farm, int flag);
+int			val_check_coorddraft(char coord[VAL_MAXROOMCOORD]);
 int			val_save_room(char name[VAL_MAXROOMNAME],
-				char coord[2][VAL_MAXROOMCOORD], t_graph *farm, int flag);
+				int x, int y, t_graph *farm);
+
+/*
+** File val_second_filter_links.c
+*/
+
+int			val_check_link_pattern(char *map, int *i,
+				char name1[VAL_MAXROOMNAME],
+				char name2[VAL_MAXROOMNAME]);
+int			val_getlink_roomsnames(char *map, int *i,
+				char *name1, char *name2);
+int			val_check_linkdraft(char name1[VAL_MAXROOMNAME],
+				char name2[VAL_MAXROOMNAME], t_graph *farm);
+int			val_save_link(size_t index1, size_t index2, t_graph *farm);
 
 #endif

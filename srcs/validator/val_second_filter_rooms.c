@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 14:32:35 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/28 23:50:27 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/05 00:26:04 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int			val_roomblock_error(char *map, int *i, int beg_line,
 	if (!coord[1] || coord[1][0] == '\0')
 		return (val_coord_invalid_error(map, beg_line,
 			beg_line, ERR_NOCOORD));
-	if (map[*i] != VAL_ENTER)
+	if (map[*i] && map[*i] != VAL_ENTER)
 	{
 		val_errors(ERR_INVALID_LINE, map + beg_line,
 			VAL_ENTER, 0);

@@ -20,6 +20,7 @@ VALIDATOR := \
 			$(VALIDATOR_DIR)/val_second_filter.c \
 			$(VALIDATOR_DIR)/val_second_filter_rooms.c \
 			$(VALIDATOR_DIR)/val_save_rooms.c \
+			$(VALIDATOR_DIR)/val_second_filter_links.c
 
 ALGORITHM_DIR := algorithm
 ALGORITHM := \
@@ -28,6 +29,9 @@ ALGORITHM := \
 SOURCES := main.c \
 			lemin_graph_proc.c \
 			lemin_nodes_proc.c \
+			lemin_nodes_search.c \
+			lemin_nodes_print.c \
+			lemin_edges_proc.c \
 			$(VALIDATOR) \
 			$(ALGORITHM)
 

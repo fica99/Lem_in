@@ -6,14 +6,14 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 22:25:32 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/28 23:45:26 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/04 23:57:59 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "validator.h"
 
-#define ERRORS_NUM 21
+#define ERRORS_NUM 25
 
 static char		*val_errors_types(int sequence_num)
 {
@@ -30,7 +30,7 @@ static char		*val_errors_types(int sequence_num)
 	seq_action[8] = "\'##end\' not found";
 	seq_action[9] = "room linked on itself: ";
 	seq_action[10] = "no information about room found: ";
-	seq_action[11] = "redefinition of information: ";
+	seq_action[11] = "redefinition of information for room: ";
 	seq_action[12] = "no possible solution with this map";
 	seq_action[13] = "can not read from standard input";
 	seq_action[14] = "no farm found";
@@ -40,6 +40,10 @@ static char		*val_errors_types(int sequence_num)
 	seq_action[18] = "invalid coordinate: ";
 	seq_action[19] = "not enough coordinates found";
 	seq_action[20] = "too many coordinates found: only x and y needed";
+	seq_action[21] = "start is redefined";
+	seq_action[22] = "end is redefined";
+	seq_action[23] = "link [room name1]-[room name2] needed";
+	seq_action[24] = "no links between rooms found";
 	return (seq_action[sequence_num]);
 }
 

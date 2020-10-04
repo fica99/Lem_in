@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 14:29:17 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/25 21:17:15 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/03 13:37:45 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_graph			lemin_graph_init(void)
 	farm.graph_start = -1;
 	farm.graph_end = -1;
 	farm.nb_nodes = -1;
+	farm.nodes_len = 0;
 	farm.nodes = NULL;
 	return (farm);
 }

@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 21:08:20 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/28 23:47:13 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/05 00:28:18 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,19 @@ int			val_find_delimiter(char *map, int i)
 	int		k;
 
 	k = 0;
-	while (val_isdelimiter(map, i + k) == 0)
+	while (map[i + k] && val_isdelimiter(map, i + k) == 0)
 		k++;
 	return (k);
 }
 
 int			val_isdelimiter(char *map, int i)
 {
-	if (map[i] == VAL_ENTER ||
+	if (map[i] && (map[i] == VAL_ENTER ||
 			map[i] == VAL_SPACE ||
 			(i > 0 && map[i] == VAL_DASH &&
 			(!(map[i - 1] == VAL_ENTER || map[i - 1] == VAL_SPACE)) &&
 			(!(map[i + 1] && map[i + 1] == VAL_ENTER &&
-			map[i + 1] == VAL_SPACE))))
+			map[i + 1] == VAL_SPACE)))))
 		return (1);
 	return (0);
 }

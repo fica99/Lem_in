@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 20:51:26 by aashara           #+#    #+#             */
-/*   Updated: 2020/09/25 14:46:42 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/04 22:35:07 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define GRAPH_H
 
 # include <stdio.h>
+
+# define DEFAULT_NODES_LEN 2
 
 typedef enum
 {
@@ -41,6 +43,7 @@ typedef struct		s_node
 typedef struct		s_graph
 {
 	size_t			nb_nodes;
+	size_t			nodes_len;
 	t_node			**nodes;
 	size_t			graph_start;
 	size_t			graph_end;
