@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 22:28:31 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/05 01:16:20 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/05 20:28:24 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,19 @@ int			val_check_linkdraft(char name1[VAL_MAXROOMNAME],
 {
 	size_t	index1;
 	size_t	index2;
+	char	*p_name;
 	
-	index1 = SIZET_MAX;
-	index2 = SIZET_MAX;
+	index1 = SIZE_MAX;
+	index2 = SIZE_MAX;
 	if ((*farm).nodes && (*farm).nodes[0])
 	{
-		index1 = lemin_search_name((*farm).nodes,
-				(*farm).nb_nodes, name1);
-		if (index1 == SIZET_MAX)
+		p_name = &name1[0];
+		index1 = lemin_search_name((*farm).nodes, (*farm).nb_nodes, p_name);
+		if (index1 == SIZE_MAX)
 			return (val_errors(ERR_NOROOM_INFO, name1, '\0', 0));
-		index2 = lemin_search_name((*farm).nodes,
-				(*farm).nb_nodes, name2);
-		if (index2 == SIZET_MAX)
+		p_name = &name2[0];
+		index2 = lemin_search_name((*farm).nodes, (*farm).nb_nodes, p_name);
+		if (index2 == SIZE_MAX)
 			return (val_errors(ERR_NOROOM_INFO, name2, '\0', 0));
 		if (index1 == index2)
 			return (val_errors(ERR_ROOM_LOOP, name1, '\0', 0));

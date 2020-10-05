@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 13:24:19 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/04 19:58:41 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/05 20:17:30 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ size_t			lemin_search_name(t_node **nodes,
 				return (i);
 		i++;
 	}
-	return (SIZET_MAX);
+	return (SIZE_MAX);
 }
 
 size_t			lemin_search_coord(t_node **nodes,
@@ -43,5 +43,5 @@ size_t			lemin_search_coord(t_node **nodes,
 				return (i);
 		i++;
 	}
-	return (SIZET_MAX);
+	return (SIZE_MAX);
 }

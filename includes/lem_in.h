@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 11:12:22 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/05 17:25:15 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/05 20:23:07 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # define OPTIONS_NUM 2
 # define PROGRAM_OPTIONS ""
 # define HELP_OPTION 0x10000
-# define SIZET_MAX sizeof(size_t)
 
 /*
 ** File main.c
