@@ -1,6 +1,7 @@
 lem-in
 .vscode/
 **/.DS_Store
+*.vscode
 
 # Prerequisites
 *.d

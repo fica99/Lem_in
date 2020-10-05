@@ -12,7 +12,15 @@ FLAGS += -g
 
 VALIDATOR_DIR := validator
 VALIDATOR := \
-			$(VALIDATOR_DIR)/val_start.c
+			$(VALIDATOR_DIR)/val_start.c \
+			$(VALIDATOR_DIR)/val_errors.c \
+			$(VALIDATOR_DIR)/val_help_funcs.c \
+			$(VALIDATOR_DIR)/val_arguments.c \
+			$(VALIDATOR_DIR)/val_first_filter.c \
+			$(VALIDATOR_DIR)/val_second_filter.c \
+			$(VALIDATOR_DIR)/val_second_filter_rooms.c \
+			$(VALIDATOR_DIR)/val_save_rooms.c \
+			$(VALIDATOR_DIR)/val_second_filter_links.c
 
 ALGORITHM_DIR := algorithm
 ALGORITHM := \
@@ -23,6 +31,11 @@ ALGORITHM := \
 
 SOURCES := main.c \
 			lemin_print_paths.c \
+			lemin_edges_proc.c \
+			lemin_graph_proc.c \
+			lemin_nodes_proc.c \
+			lemin_nodes_print.c \
+			lemin_nodes_search.c \
 			$(VALIDATOR) \
 			$(ALGORITHM)
 

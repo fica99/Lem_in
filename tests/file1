@@ -1,0 +1,14 @@
+5
+#Here is the number of lines required: 30
+##start
+B_t0 2 2
+##end
+J_i7 3 3
+Tms2 4 4
+T_t2 7 7
+Ecd4 9 9
+J_i7-Tms2
+Tms2-Ecd4
+B_t0-J_i7
+J_i7-Ecd4
+B_t0-J_i7

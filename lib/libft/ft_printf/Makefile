@@ -6,13 +6,14 @@
 #    By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/23 17:15:13 by sschmele          #+#    #+#              #
-#    Updated: 2020/09/20 18:05:38 by sschmele         ###   ########.fr        #
+#    Updated: 2020/09/21 21:57:54 by sschmele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
 FLAGS = -Wall -Werror -Wextra
+FLAGS += -g
 
 SOURCES = ft_printf.c \
 	   processing_functions.c \
