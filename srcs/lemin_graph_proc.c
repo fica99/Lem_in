@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 14:29:17 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/05 17:36:13 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/05 18:11:56 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_graph			lemin_graph_init(void)
 **     t_graph farm;
 **     farm = NULL;
 **     lemin_graph_methods(&farm, 0);
-** @mode = 1 means that we save graph: 
+** @mode = 1 means that we save graph:
 **	   t_graph farm;
 **     farm = lemin_graph_init();
 **     lemin_graph_methods(&farm, 1);
@@ -40,11 +40,11 @@ t_graph			lemin_graph_init(void)
 
 int				lemin_graph_methods(t_graph *new_farm, int mode)
 {
-	static t_graph	main_farm;
+	static t_graph main_farm;
 
 	if (new_farm != NULL && mode == 1)
 		main_farm = *new_farm;
-	else if (!new_farm && mode == 0)
+	else if (mode == 0)
 		*new_farm = main_farm;
 	else
 		lemin_graph_clean(main_farm);
@@ -63,7 +63,7 @@ void			lemin_graph_clean(t_graph farm)
 ** @mode = 0 means that we get ants sum:
 **     int sum;
 **     sum = lemin_antsum_methods(0, 0);
-** @mode = 1 means that we save ants sum: 
+** @mode = 1 means that we save ants sum:
 **	   int sum;
 **     sum = n;
 **     lemin_antsum_methods(n, 1);
