@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 15:31:24 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/20 19:38:02 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/05 17:19:59 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,8 @@ void					ft_putnstr(char const *s, int len);
 void					ft_printmap(char **map, int side);
 void					ft_putnendl_fd(char *str, int n, int fd);
 void					ft_putnstr_fd(char *str, int n, int fd);
+void					ft_putchrendl_fd(char *str, char x, int fd);
+void					ft_putchrstr_fd(char *str, char x, int fd);
 
 /*
 ** Folder SORT_FUNCTIONS
@@ -242,5 +244,6 @@ void					swap_ints(int *a, int *b);
 int						ft_issign(char c);
 int						ft_gnl(const int fd, char **line);
 int						ft_min(int a, int b);
+int						ft_find_options(int num, char *flags_arr[num], char **arr);
 
 #endif

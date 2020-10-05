@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 20:51:26 by aashara           #+#    #+#             */
-/*   Updated: 2020/09/25 11:25:03 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/05 17:36:03 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 
 # include <stdio.h>
 
+# define DEFAULT_NODES_LEN 2
+
 typedef enum
 {
+	False = 0,
 	True = 1,
-	False = 0
-}	t_bool;
+}					t_bool;
 
 typedef	struct		s_edge
 {
@@ -41,6 +43,7 @@ typedef struct		s_node
 typedef struct		s_graph
 {
 	size_t			nb_nodes;
+	size_t			nodes_len;
 	t_node			**nodes;
 	size_t			graph_start;
 	size_t			graph_end;
