@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 12:58:48 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/05 17:39:44 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/05 20:26:14 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int			main(int argc, char **argv)
 		return (0);
 	lemin_graph_methods(&graph, 0);
 	paths = al_suurbale(&graph);
+	if (paths->nb_paths == 0)
+		return (val_errors(ERR_NOSOLUTION, NULL, 0, 0));
 	nb_ants = lemin_antsum_methods(0, 0);
 	lem_in_print_paths(paths, graph.nodes, nb_ants);
 	al_del_paths(&paths);

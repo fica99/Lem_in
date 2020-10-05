@@ -6,11 +6,12 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:23:59 by aashara-          #+#    #+#             */
-/*   Updated: 2020/09/25 11:27:17 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/05 19:51:41 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "algorithm.h"
+#include "lem_in.h"
 
 void			al_del_paths(t_paths **paths)
 {
@@ -114,6 +115,6 @@ t_paths			*al_suurbale(t_graph *graph)
 	al_del_reverse_edges(&edges);
 	al_update_paths(paths, &edges, graph->graph_start, graph->graph_end);
 	al_sort_paths(paths);
-	al_del_edges(&edges);
+	lemin_edge_clean(&edges);
 	return (paths);
 }
