@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:23:59 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/05 19:51:41 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/05 23:28:35 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,8 @@ static void		al_del_reverse_edges(t_edge **edges)
 	while ((finded = al_get_edge(edges, &search)))
 	{
 		new_search = (t_search){finded->to, True, finded->from, True, 0, False};
-		// may be optimized by search
-		new_finded = al_get_edge(edges, &new_search);
-		ft_memdel((void**)&new_finded);
+		while ((new_finded = al_get_edge(edges, &new_search)))
+			ft_memdel((void**)&new_finded);
 		ft_memdel((void**)&finded);
 	}
 }
@@ -61,6 +60,7 @@ static void		al_update_paths(t_paths *paths, t_edge **edges, size_t start,
 		{
 			search = (t_search){cur_node, True, 0, False, 0, False};
 			finded = al_get_edge(edges, &search);
+			finded->weight = 0;
 			finded->next = NULL;
 			al_add_edge(&paths->paths[i].edges, finded, True);
 			++(paths->paths[i].nb_nodes);
@@ -105,7 +105,6 @@ t_paths			*al_suurbale(t_graph *graph)
 	while (True)
 	{
 		al_bellman_ford(graph, dist, path);
-		// maybe optimized by number of ants
 		if (dist[graph->graph_end] == INT_MAX)
 			break ;
 		++paths->nb_paths;

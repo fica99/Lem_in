@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 06:44:10 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/05 20:24:22 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/05 22:27:56 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static t_bool	lem_in_print_path(t_path *path, t_node **nodes, int ant_nb)
 	is_printed = False;
 	while (tmp)
 	{
-		if (ant_nb)
+		if (ant_nb > 0)
 		{
 			ft_printf("L%d-%s ", ant_nb, nodes[tmp->to]->name);
 			is_printed = True;
