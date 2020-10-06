@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 22:25:32 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/06 23:12:52 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/06 23:44:20 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int				val_errors(int error_index, char *arg,
 					char end, int usage_needed)
 {
 	char		*error_message;
-	
+
 	if (error_index < ERRORS_NUM_FIRST)
 		error_message = val_errors_types_first(error_index);
 	else

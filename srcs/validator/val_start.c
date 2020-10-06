@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 21:22:08 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/27 12:52:01 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/06 23:45:42 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int			val_start_validation(int argc, char **argv)
 {
 	int		answer;
-	
+
 	answer = 0;
 	if (argc > 1)
 		answer = val_check_options(argv);
@@ -33,7 +33,7 @@ int			val_read_stdinput(void)
 	char	*map;
 	int		map_size;
 	int		answer;
-	
+
 	ft_bzero(buf, STDIN_BUFFER);
 	map = (char*)ft_xmalloc(1);
 	map_size = 0;
@@ -56,13 +56,12 @@ int			val_read_stdinput(void)
 int			val_check_map(char *map, int map_size)
 {
 	int		answer;
-	
+
 	if (map[map_size - 1] == VAL_ENTER)
 	{
 		map[map_size - 1] = '\0';
 		map_size -= 1;
 	}
-	// ft_printf("\nmap = %s\nmap_size = %d\n", map, map_size);
 	answer = val_invalid_lines(map, map_size);
 	if (answer == VAL_ERROR)
 		return (VAL_ERROR);

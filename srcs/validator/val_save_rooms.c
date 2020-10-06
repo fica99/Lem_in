@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 21:15:08 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/06 18:47:28 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/06 23:42:03 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,16 @@ int			val_check_roomdraft(char name[VAL_MAXROOMNAME],
 int			val_check_startenddraft(t_graph *farm, int flag)
 {
 	if (flag == 's' && (int)(*farm).graph_start != -1)
-		return(val_errors(ERR_START_REDEFINED, NULL, 0, 0));
+		return (val_errors(ERR_START_REDEFINED, NULL, 0, 0));
 	else if (flag == 'e' && (int)(*farm).graph_end != -1)
-		return(val_errors(ERR_END_REDEFINED, NULL, 0, 0));
+		return (val_errors(ERR_END_REDEFINED, NULL, 0, 0));
 	return (0);
 }
 
 int			val_check_coorddraft(char coord[VAL_MAXROOMCOORD])
 {
 	int		new_coord;
-	
+
 	if (coord[0] == VAL_DASH)
 		return (val_errors(ERR_INVALID_COORD, coord, '\0', 0));
 	new_coord = ft_atoi(coord);
