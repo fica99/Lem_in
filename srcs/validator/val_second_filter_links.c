@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 22:28:31 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/06 23:30:06 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/07 00:10:31 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,16 +138,20 @@ int			val_save_edge(size_t index1, size_t index2, t_edge *edge)
 	t_edge	*runner;
 	t_edge	*ptr_edge;
 
-	runner = edge;
 	if ((int)edge->from == -1 || (int)edge->to == -1)
 	{
 		edge->from = index1;
 		edge->to = index2;
 		return (0);
 	}
+	runner = edge;
+	if ((runner->from == index1 && runner->to == index2) ||
+			(runner->from == index2 && runner->to == index1))
+		return (0);
 	while (runner->next)
 	{
-		if (runner->from == index1 && runner->to == index2)
+		if ((runner->from == index1 && runner->to == index2) ||
+				(runner->from == index2 && runner->to == index1))
 			return (0);
 		runner = runner->next;
 	}

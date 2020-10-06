@@ -1,6 +1,9 @@
 5
 #Here is the number of lines required: 30
 ##start
-B_t0 2 2
+1 2 3
 ##end
--евормват 6 7
+2 3 4
+1-2
+2-1
+1-2
