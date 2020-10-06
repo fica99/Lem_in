@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 21:25:15 by aashara           #+#    #+#             */
-/*   Updated: 2020/10/06 13:25:17 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/06 23:19:01 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static t_bool	al_check_edges(t_edge *edges, int *dist, int *path,
 	{
 		if (dist[tmp->from] < INT_MAX)
 		{
-			if (dist[tmp->to] > dist[tmp->from] + tmp->weight)
+			if (dist[tmp->to] >= dist[tmp->from] + tmp->weight)
 			{
 				dist[tmp->to] = dist[tmp->from] + tmp->weight;
 				path[tmp->to] = tmp->from;

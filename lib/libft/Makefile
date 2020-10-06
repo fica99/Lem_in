@@ -83,7 +83,6 @@ OTHER_FUNCTIONS := other_functions/ft_atoi.c \
 	other_functions/swap_chars.c \
 	other_functions/swap_ints.c \
 	other_functions/ft_min.c\
-	other_functions/ft_max.c\
 	other_functions/ft_find_options.c
 
 OUTPUT_FUNCTIONS := output_functions/ft_putnstr.c \

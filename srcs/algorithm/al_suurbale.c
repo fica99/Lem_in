@@ -6,26 +6,12 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:23:59 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/06 21:13:10 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/06 23:31:20 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "algorithm.h"
 #include "lem_in.h"
-
-void			al_del_paths(t_paths **paths)
-{
-	size_t		i;
-
-	i = 0;
-	while (i < (*paths)->nb_paths)
-	{
-		al_del_edges(&(((*paths)->paths)[i].edges));
-		++i;
-	}
-	ft_memdel((void**)&(*paths)->paths);
-	ft_memdel((void**)paths);
-}
 
 static void		al_del_reverse_edges(t_edge **edges)
 {

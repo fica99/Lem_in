@@ -6,11 +6,25 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 12:58:48 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/06 18:53:18 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/06 22:59:26 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static void	lemin_del_paths(t_paths **paths)
+{
+	size_t		i;
+
+	i = 0;
+	while (i < (*paths)->nb_paths)
+	{
+		lemin_edge_clean(&(((*paths)->paths)[i].edges));
+		++i;
+	}
+	ft_memdel((void**)&(*paths)->paths);
+	ft_memdel((void**)paths);
+}
 
 int			main(int argc, char **argv)
 {
@@ -35,7 +49,7 @@ int			main(int argc, char **argv)
 	(paths->paths[0].nb_nodes != 1) ? lem_in_print_paths(paths, graph.nodes,
 	lemin_antsum_methods(0, 0)) : lem_in_print_all(
 			graph.nodes[graph.graph_end]->name, lemin_antsum_methods(0, 0));
-	al_del_paths(&paths);
+	lemin_del_paths(&paths);
 	lemin_graph_methods(NULL, -1);
 	lemin_antsum_methods(0, -1);
 	return (0);
