@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:23:59 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/06 17:51:26 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/06 18:08:51 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ t_paths			*al_suurbale(t_graph *graph)
 	paths = (t_paths *)ft_xmalloc(sizeof(t_paths));
 	edges = NULL;
 	nb_paths = ft_min(al_count_edges(graph->nodes[graph->graph_end]->edges_out),
-					al_count_edges(graph->nodes[graph->graph_start]->edges_out));
+				al_count_edges(graph->nodes[graph->graph_start]->edges_out));
 	while (nb_paths)
 	{
 		al_bellman_ford(graph, dist, path);
