@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 12:05:00 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/06 15:16:36 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/06 17:51:15 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void			al_update_graph(t_graph *graph, int *arr_nodes, t_edge **edges)
 	int		weight;
 
 	i = graph->graph_end;
-	*edges = NULL;
 	while (i != graph->graph_start)
 	{
 		weight = al_reverse_edges(graph->nodes, arr_nodes[i], i);
