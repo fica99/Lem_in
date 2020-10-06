@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:23:59 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/05 23:28:35 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/06 15:18:06 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,16 +99,20 @@ t_paths			*al_suurbale(t_graph *graph)
 	int			dist[graph->nb_nodes];
 	t_paths		*paths;
 	t_edge		*edges;
+	size_t		nb_paths;
 
 	paths = (t_paths *)ft_xmalloc(sizeof(t_paths));
 	edges = NULL;
-	while (True)
+	nb_paths = ft_min(al_count_edges(graph->nodes[graph->graph_end]->edges_out),
+					al_count_edges(graph->nodes[graph->graph_start]->edges_out));
+	while (nb_paths)
 	{
 		al_bellman_ford(graph, dist, path);
 		if (dist[graph->graph_end] == INT_MAX)
 			break ;
 		++paths->nb_paths;
 		al_update_graph(graph, path, &edges);
+		--nb_paths;
 	}
 	paths->paths = ft_xmalloc(sizeof(t_path) * (paths->nb_paths));
 	al_del_reverse_edges(&edges);

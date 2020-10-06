@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 21:24:50 by aashara           #+#    #+#             */
-/*   Updated: 2020/09/25 11:14:47 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/06 14:31:10 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ typedef struct		s_search
 */
 void				al_bellman_ford(t_graph *graph, int *dist, int *path);
 /*
-**					al_get_edge.c
+**					al_edges.c
 */
 t_edge				*al_get_edge(t_edge **edges, t_search *search);
 void				al_add_edge(t_edge **edges, t_edge *edge, t_bool is_end);
 void				al_del_edges(t_edge **edges);
+size_t				al_count_edges(t_edge *edges);
 /*
 **					al_suurbale_update_graph.c
 */

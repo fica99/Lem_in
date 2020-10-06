@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   val_second_filter_links.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 22:28:31 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/05 20:28:24 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/06 14:53:54 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int			val_check_linkdraft(char name1[VAL_MAXROOMNAME],
 	size_t	index1;
 	size_t	index2;
 	char	*p_name;
-	
+
 	index1 = SIZE_MAX;
 	index2 = SIZE_MAX;
 	if ((*farm).nodes && (*farm).nodes[0])
@@ -117,19 +117,19 @@ int			val_save_link(size_t index1, size_t index2, t_graph *farm)
 {
 	t_node	*ptr_node;
 	t_edge	*ptr_edge;
-	
+
 	if (!(*farm).nodes[index1] || !(*farm).nodes[index2])
 		return (val_errors(ERR_LINKBLOCK, NULL, 0, 0));
 	ptr_node = (*farm).nodes[index1];
 	ptr_edge = ptr_node->edges_out;
 	val_save_edge(index1, index2, ptr_edge);
-	ptr_edge = ptr_node->edges_in;
-	val_save_edge(index2, index1, ptr_edge);
+	// ptr_edge = ptr_node->edges_in;
+	// val_save_edge(index2, index1, ptr_edge);
 	ptr_node = (*farm).nodes[index2];
 	ptr_edge = ptr_node->edges_out;
 	val_save_edge(index2, index1, ptr_edge);
-	ptr_edge = ptr_node->edges_in;
-	val_save_edge(index1, index2, ptr_edge);
+	// ptr_edge = ptr_node->edges_in;
+	// val_save_edge(index1, index2, ptr_edge);
 	return (0);
 }
 
