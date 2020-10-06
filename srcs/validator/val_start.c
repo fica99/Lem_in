@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 21:22:08 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/06 23:45:42 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/06 23:55:31 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int			val_read_stdinput(void)
 		return (val_errors(ERR_TERM, NULL, 0, 1));
 	if (map_size == 0)
 		return (val_errors(ERR_NOFARM, NULL, 0, 0));
+	write(STDOUT_FILENO, map, map_size);
+	ft_putchar_fd('\n', STDOUT_FILENO);
 	answer = val_check_map(map, map_size);
 	free(map);
 	map = NULL;
