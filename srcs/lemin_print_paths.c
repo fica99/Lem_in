@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 06:44:10 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/06 13:25:00 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/06 18:51:10 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,14 @@ void			lem_in_print_paths(t_paths *paths, t_node **nodes, int nb_ants)
 			break ;
 		ft_putchar('\n');
 	}
+}
+
+void			lem_in_print_all(char *name, int nb_ants)
+{
+	int	i;
+
+	i = 0;
+	while (++i <= nb_ants)
+		ft_printf("L%d-%s ", i, name);
+	ft_putchar('\n');
 }

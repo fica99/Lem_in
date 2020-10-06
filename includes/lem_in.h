@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 11:12:22 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/05 20:23:07 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/06 18:52:07 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,5 @@ void	lemin_edge_clean(t_edge **begin_edge);
 **		lemin_print_paths.c
 */
 void	lem_in_print_paths(t_paths *paths, t_node **nodes, int nb_ants);
+void	lem_in_print_all(char *name, int nb_ants);
 #endif

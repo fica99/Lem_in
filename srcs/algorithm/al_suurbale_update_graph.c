@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 12:05:00 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/06 13:46:17 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/06 19:34:27 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int		al_reverse_from_edge(t_node **nodes, size_t from,
 		edge = al_get_edge(&nodes[from]->edges_out, search);
 		weight = edge->weight;
 		edge->next = NULL;
-		edge->weight = -1;
+		edge->weight *= -1;
 		edge->from = to;
 		edge->to = from;
 		al_add_edge(&nodes[to]->edges_in, edge, False);
@@ -33,7 +33,7 @@ static int		al_reverse_from_edge(t_node **nodes, size_t from,
 		edge = al_get_edge(&nodes[from]->edges_in, search);
 		weight = edge->weight;
 		edge->next = NULL;
-		edge->weight = -1;
+		edge->weight *= -1;
 		edge->from = to;
 		edge->to = from;
 		al_add_edge(&nodes[to]->edges_out, edge, False);
@@ -41,49 +41,13 @@ static int		al_reverse_from_edge(t_node **nodes, size_t from,
 	return (weight);
 }
 
-static int		al_reverse_to_edge(t_node **nodes, size_t from,
-												size_t to, t_search *search)
-{
-	t_edge	*edge;
-	int		weight;
-
-	if (nodes[from]->is_in == False)
-	{
-		edge = al_get_edge(&nodes[to]->edges_in, search);
-		weight = edge->weight;
-		edge->next = NULL;
-		edge->weight = -1;
-		edge->from = to;
-		edge->to = from;
-		al_add_edge(&nodes[from]->edges_out, edge, False);
-	}
-	else
-	{
-		edge = al_get_edge(&nodes[to]->edges_out, search);
-		weight = edge->weight;
-		edge->next = NULL;
-		edge->weight = -1;
-		edge->from = to;
-		edge->to = from;
-		al_add_edge(&nodes[from]->edges_in, edge, False);
-	}
-	return (weight);
-}
-
 static int		al_reverse_edges(t_node **nodes, size_t from, size_t to)
 {
-	t_edge		*edge;
 	t_search	search;
 	int			weight;
 
-	search = (t_search){to, True, from, True, 0, False};
-	edge = al_get_edge(&nodes[to]->edges_out, &search);
-	ft_memdel((void**)&edge);
-	edge = al_get_edge(&nodes[from]->edges_in, &search);
-	ft_memdel((void**)&edge);
 	search = (t_search){from, True, to, True, 0, False};
 	weight = al_reverse_from_edge(nodes, from, to, &search);
-	al_reverse_to_edge(nodes, from, to, &search);
 	return (weight);
 }
 
