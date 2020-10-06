@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:23:59 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/06 18:08:51 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/06 21:13:10 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,15 @@ static void		al_del_reverse_edges(t_edge **edges)
 	t_search	new_search;
 
 	search = (t_search){0, False, 0, False, -1, True};
-	while ((finded = al_get_edge(edges, &search)))
+	finded = *edges;
+	while ((finded = al_get_edge(&finded, &search)))
 	{
 		new_search = (t_search){finded->to, True, finded->from, True, 0, False};
 		while ((new_finded = al_get_edge(edges, &new_search)))
 			ft_memdel((void**)&new_finded);
+		new_finded = finded->next;
 		ft_memdel((void**)&finded);
+		finded = new_finded;
 	}
 }
 
