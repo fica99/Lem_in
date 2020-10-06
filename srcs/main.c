@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 12:58:48 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/06 13:59:01 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/06 18:53:18 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int			main(int argc, char **argv)
 	int		answer;
 	t_paths	*paths;
 	t_graph	graph;
-	int		nb_ants;
 
 	answer = val_start_validation(argc, argv);
 	if (answer == VAL_ERROR)
@@ -33,8 +32,9 @@ int			main(int argc, char **argv)
 	paths = al_suurbale(&graph);
 	if (paths->nb_paths == 0)
 		return (val_errors(ERR_NOSOLUTION, NULL, 0, 0));
-	nb_ants = lemin_antsum_methods(0, 0);
-	lem_in_print_paths(paths, graph.nodes, nb_ants);
+	(paths->paths[0].nb_nodes != 1) ? lem_in_print_paths(paths, graph.nodes,
+	lemin_antsum_methods(0, 0)) : lem_in_print_all(
+			graph.nodes[graph.graph_end]->name, lemin_antsum_methods(0, 0));
 	al_del_paths(&paths);
 	lemin_graph_methods(NULL, -1);
 	lemin_antsum_methods(0, -1);
