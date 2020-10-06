@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   val_second_filter.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 20:35:49 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/05 17:12:04 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/06 18:46:11 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,7 @@ int			val_getlinks(char *map, int map_size, int *i, t_graph *farm)
 	int		answer;
 
 	if ((*i) == map_size)
-	{
-		val_errors(ERR_NOSOLUTION, NULL, 0, 0);
-		return (val_errors(ERR_LINKBLOCK, NULL, 0, 0));
-	}
+		return (val_errors(ERR_NOSOLUTION, NULL, 0, 0));
 	ft_bzero(name1, VAL_MAXROOMNAME);
 	ft_bzero(name2, VAL_MAXROOMNAME);
 	while ((*i) < map_size)

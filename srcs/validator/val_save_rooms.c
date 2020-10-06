@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 21:15:08 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/05 20:22:20 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/06 18:47:28 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int			val_check_roomdraft(char name[VAL_MAXROOMNAME],
 	{
 		if (lemin_search_name((*farm).nodes,
 				(*farm).nb_nodes, name) != SIZE_MAX)
-			return (val_errors(ERR_REDEFINED, name, '\0', 0));
+			return (val_errors(ERR_ROOM_REDEFINED, name, '\0', 0));
 		if (lemin_search_coord((*farm).nodes,
 				(*farm).nb_nodes, new_x, new_y) != SIZE_MAX)
-			return (val_errors(ERR_REDEFINED, name, '\0', 0));
+			return (val_errors(ERR_ROOM_REDEFINED, name, '\0', 0));
 	}
 	val_save_room(name, new_x, new_y, farm);
 	if (flag == 's')
