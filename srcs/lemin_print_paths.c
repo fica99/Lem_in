@@ -6,13 +6,13 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 06:44:10 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/05 22:27:56 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/06 13:25:00 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	lem_in_init_len(t_paths *paths, int *len)
+static void		lem_in_init_len(t_paths *paths, int *len)
 {
 	size_t	i;
 	size_t	j;
@@ -51,7 +51,7 @@ static t_bool	lem_in_print_path(t_path *path, t_node **nodes, int ant_nb)
 	return (is_printed);
 }
 
-void		lem_in_print_paths(t_paths *paths, t_node **nodes, int nb_ants)
+void			lem_in_print_paths(t_paths *paths, t_node **nodes, int nb_ants)
 {
 	size_t	cur_path;
 	int		i;
@@ -75,7 +75,7 @@ void		lem_in_print_paths(t_paths *paths, t_node **nodes, int nb_ants)
 			++cur_path;
 		}
 		if (is_printed == False)
-			break;
+			break ;
 		ft_putchar('\n');
 	}
 }

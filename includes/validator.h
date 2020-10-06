@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 11:12:16 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/05 17:20:24 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/06 13:24:32 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef enum
 	ERR_END_REDEFINED,
 	ERR_LINK,
 	ERR_LINKBLOCK
-}			t_lemin_errors;
+}	t_lemin_errors;
 
 /*
 ** File val_start.c
@@ -66,7 +66,7 @@ int			val_check_map(char *map, int map_size);
 int			val_check_options(char **argv);
 int			val_check_arguments(char **argv);
 int			val_check_program_option(char *arg, char *options,
-				int (f)(int error_index, char *arg, char end, int usage_needed));
+			int (f)(int error_index, char *arg, char end, int usage_needed));
 
 /*
 ** File val_errors.c

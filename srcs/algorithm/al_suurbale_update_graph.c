@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 12:05:00 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/05 23:02:52 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/06 13:46:17 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,17 @@ static int		al_reverse_from_edge(t_node **nodes, size_t from,
 	t_edge	*edge;
 	int		weight;
 
-	edge = al_get_edge(&nodes[from]->edges_out, search);
-	if (!edge)
+	if (nodes[from]->is_in == False)
+	{
+		edge = al_get_edge(&nodes[from]->edges_out, search);
+		weight = edge->weight;
+		edge->next = NULL;
+		edge->weight = -1;
+		edge->from = to;
+		edge->to = from;
+		al_add_edge(&nodes[to]->edges_in, edge, False);
+	}
+	else
 	{
 		edge = al_get_edge(&nodes[from]->edges_in, search);
 		weight = edge->weight;
@@ -28,15 +37,6 @@ static int		al_reverse_from_edge(t_node **nodes, size_t from,
 		edge->from = to;
 		edge->to = from;
 		al_add_edge(&nodes[to]->edges_out, edge, False);
-	}
-	else
-	{
-		weight = edge->weight;
-		edge->next = NULL;
-		edge->weight = -1;
-		edge->from = to;
-		edge->to = from;
-		al_add_edge(&nodes[to]->edges_in, edge, False);
 	}
 	return (weight);
 }
@@ -47,8 +47,17 @@ static int		al_reverse_to_edge(t_node **nodes, size_t from,
 	t_edge	*edge;
 	int		weight;
 
-	edge = al_get_edge(&nodes[to]->edges_in, search);
-	if (!edge)
+	if (nodes[from]->is_in == False)
+	{
+		edge = al_get_edge(&nodes[to]->edges_in, search);
+		weight = edge->weight;
+		edge->next = NULL;
+		edge->weight = -1;
+		edge->from = to;
+		edge->to = from;
+		al_add_edge(&nodes[from]->edges_out, edge, False);
+	}
+	else
 	{
 		edge = al_get_edge(&nodes[to]->edges_out, search);
 		weight = edge->weight;
@@ -57,15 +66,6 @@ static int		al_reverse_to_edge(t_node **nodes, size_t from,
 		edge->from = to;
 		edge->to = from;
 		al_add_edge(&nodes[from]->edges_in, edge, False);
-	}
-	else
-	{
-		weight = edge->weight;
-		edge->next = NULL;
-		edge->weight = -1;
-		edge->from = to;
-		edge->to = from;
-		al_add_edge(&nodes[from]->edges_out, edge, False);
 	}
 	return (weight);
 }
@@ -103,6 +103,8 @@ void			al_update_graph(t_graph *graph, int *arr_nodes, t_edge **edges)
 		edge->weight = weight;
 		edge->next = *edges;
 		*edges = edge;
+		if (i != graph->graph_end)
+			graph->nodes[i]->is_in = (t_bool)((graph->nodes[i]->is_in + 1) % 2);
 		i = arr_nodes[i];
 	}
 }
