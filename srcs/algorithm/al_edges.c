@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 02:19:35 by aashara-          #+#    #+#             */
-/*   Updated: 2020/09/25 04:25:40 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/06 14:30:44 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,17 @@ void			al_del_edges(t_edge **edges)
 		ft_memdel((void**)&tmp);
 		tmp = next;
 	}
+}
+
+size_t			al_count_edges(t_edge *edges)
+{
+	size_t	count;
+
+	count = 0;
+	while (edges)
+	{
+		edges = edges->next;
+		++count;
+	}
+	return (count);
 }
