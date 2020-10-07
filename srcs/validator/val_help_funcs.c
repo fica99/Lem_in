@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 21:08:20 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/05 00:28:18 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/06 23:44:45 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int			val_isdelimiter(char *map, int i)
 int			val_pass_comments(char *map, int *i)
 {
 	int		j;
-	
+
 	j = *i;
 	if (j > 0 && map[j] == VAL_HASH && map[j + 1] &&
 			map[j + 1] != VAL_HASH &&

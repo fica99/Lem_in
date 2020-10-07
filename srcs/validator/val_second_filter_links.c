@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   val_second_filter_links.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 22:28:31 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/06 14:53:54 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/07 00:10:31 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int			val_check_link_pattern(char *map, int *i,
 		if (answer == VAL_ERROR || !ptr_name1[0] || !ptr_name2[0])
 		{
 			val_errors(ERR_INVALID_LINE, map + beg_line, VAL_ENTER, 0);
-			return (val_errors(ERR_LINK, NULL, 0, 0));
+			return (val_errors(ERR_LINK_PATTERN, NULL, 0, 0));
 		}
 		return (1);
 	}
@@ -119,7 +119,7 @@ int			val_save_link(size_t index1, size_t index2, t_graph *farm)
 	t_edge	*ptr_edge;
 
 	if (!(*farm).nodes[index1] || !(*farm).nodes[index2])
-		return (val_errors(ERR_LINKBLOCK, NULL, 0, 0));
+		return (val_errors(ERR_NOSOLUTION, NULL, 0, 0));
 	ptr_node = (*farm).nodes[index1];
 	ptr_edge = ptr_node->edges_out;
 	val_save_edge(index1, index2, ptr_edge);
@@ -138,16 +138,20 @@ int			val_save_edge(size_t index1, size_t index2, t_edge *edge)
 	t_edge	*runner;
 	t_edge	*ptr_edge;
 
-	runner = edge;
 	if ((int)edge->from == -1 || (int)edge->to == -1)
 	{
 		edge->from = index1;
 		edge->to = index2;
 		return (0);
 	}
+	runner = edge;
+	if ((runner->from == index1 && runner->to == index2) ||
+			(runner->from == index2 && runner->to == index1))
+		return (0);
 	while (runner->next)
 	{
-		if (runner->from == index1 && runner->to == index2)
+		if ((runner->from == index1 && runner->to == index2) ||
+				(runner->from == index2 && runner->to == index1))
 			return (0);
 		runner = runner->next;
 	}

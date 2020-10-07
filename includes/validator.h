@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validator.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 11:12:16 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/06 13:24:32 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/06 18:47:28 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,28 @@ typedef enum
 {
 	ERR_OPTION,
 	ERR_ARG,
-	ERR_EMPTY,
-	ERR_INVALID_LINE,
-	ERR_NOANTS,
-	ERR_NOROOMS,
-	ERR_INVALID_ROOMNAME,
-	ERR_NOSTART,
-	ERR_NOEND,
-	ERR_ROOM_LOOP,
-	ERR_NOROOM_INFO,
-	ERR_REDEFINED,
-	ERR_NOSOLUTION,
 	ERR_TERM,
 	ERR_NOFARM,
-	ERR_EXTRAANTS,
+	ERR_EMPTY,
+	ERR_INVALID_LINE,
 	ERR_SPACE_START,
 	ERR_SPACE_END,
+	ERR_NOANTS,
+	ERR_EXTRAANTS,
+	ERR_NOROOMS,
+	ERR_NOSTART,
+	ERR_START_REDEFINED,
+	ERR_NOEND,
+	ERR_END_REDEFINED,
+	ERR_INVALID_ROOMNAME,
+	ERR_NOROOM_INFO,
+	ERR_ROOM_REDEFINED,
 	ERR_INVALID_COORD,
 	ERR_NOCOORD,
 	ERR_EXTRACOORD,
-	ERR_START_REDEFINED,
-	ERR_END_REDEFINED,
-	ERR_LINK,
-	ERR_LINKBLOCK
+	ERR_LINK_PATTERN,
+	ERR_ROOM_LOOP,
+	ERR_NOSOLUTION,
 }	t_lemin_errors;
 
 /*

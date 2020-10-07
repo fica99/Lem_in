@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 15:31:24 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/06 23:30:25 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/07 17:21:36 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,6 +244,7 @@ void					swap_ints(int *a, int *b);
 int						ft_issign(char c);
 int						ft_gnl(const int fd, char **line);
 int						ft_min(int a, int b);
-int						ft_find_options(int num, char *flags_arr[num], char **arr);
+int						ft_find_options(int num,
+							char *flags_arr[num], char **arr);
 
 #endif
