@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/21 16:45:00 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/21 23:17:15 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/06 23:37:57 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int	options_proc(char arrij, char *flags_arr, int *final)
 			mask = mask << (len - k - 1);
 			*final |= mask;
 			return (CONTINUE);
-		}	
+		}
 	}
 	if (arrij >= '0' && arrij <= '9')
 		return (NUM_ARG);

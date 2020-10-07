@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 14:32:35 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/05 00:26:04 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/06 23:48:13 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,7 @@ int			val_getroomscoord(char *map, int *i,
 				*i, ERR_INVALID_COORD));
 	}
 	if (ft_isdigit(map[*i + k]))
-		return (val_coord_invalid_error(map, beg_line,
-			*i, ERR_INVALID_COORD));
+		return (val_coord_invalid_error(map, beg_line, *i, ERR_INVALID_COORD));
 	k = -1;
 	while (map[*i + (++k)] && (!(map[*i + k] == VAL_SPACE ||
 			map[*i + k] == VAL_ENTER)) && k < max_roomcoord)
@@ -106,8 +105,10 @@ int			val_coord_invalid_error(char *map, int beg_line,
 	val_errors(ERR_INVALID_LINE, map + beg_line, VAL_ENTER, 0);
 	k = val_find_delimiter(map, beg_value);
 	if (error == ERR_INVALID_COORD)
+	{
 		return (val_errors(error, map + beg_value,
 			map[beg_value + k], 0));
+	}
 	return (val_errors(error, NULL, 0, 0));
 }
 
@@ -115,8 +116,10 @@ int			val_roomblock_error(char *map, int *i, int beg_line,
 				char coord[2][VAL_MAXROOMCOORD])
 {
 	if (!coord[1] || coord[1][0] == '\0')
+	{
 		return (val_coord_invalid_error(map, beg_line,
 			beg_line, ERR_NOCOORD));
+	}
 	if (map[*i] && map[*i] != VAL_ENTER)
 	{
 		val_errors(ERR_INVALID_LINE, map + beg_line,

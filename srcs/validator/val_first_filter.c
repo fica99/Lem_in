@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 20:01:11 by sschmele          #+#    #+#             */
-/*   Updated: 2020/09/28 21:12:11 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/06 23:46:14 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int			val_invalid_lines(char *map, int map_size)
 int			val_check_antsnum(char *map, int map_size)
 {
 	int		i;
-	
+
 	i = 0;
 	if (map[i] == VAL_SPACE)
 	{

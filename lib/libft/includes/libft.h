@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 15:31:24 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/06 14:32:49 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/06 23:42:49 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,7 @@ int						ft_issign(char c);
 int						ft_gnl(const int fd, char **line);
 int						ft_min(int a, int b);
 int						ft_max(int a, int b);
-int						ft_find_options(int num, char *flags_arr[num], char **arr);
+int						ft_find_options(int num,
+							char *flags_arr[num], char **arr);
 
 #endif
