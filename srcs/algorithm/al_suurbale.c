@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:23:59 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/06 23:31:20 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/07 20:46:57 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,12 @@ static void		al_del_reverse_edges(t_edge **edges)
 	t_search	new_search;
 
 	search = (t_search){0, False, 0, False, -1, True};
-	finded = *edges;
-	while ((finded = al_get_edge(&finded, &search)))
+	while ((finded = al_get_edge(edges, &search)))
 	{
 		new_search = (t_search){finded->to, True, finded->from, True, 0, False};
-		while ((new_finded = al_get_edge(edges, &new_search)))
-			ft_memdel((void**)&new_finded);
-		new_finded = finded->next;
+		new_finded = al_get_edge(edges, &new_search);
+		ft_memdel((void**)&new_finded);
 		ft_memdel((void**)&finded);
-		finded = new_finded;
 	}
 }
 
@@ -84,8 +81,7 @@ static void		al_sort_paths(t_paths *paths)
 
 t_paths			*al_suurbale(t_graph *graph)
 {
-	int			path[graph->nb_nodes];
-	int			dist[graph->nb_nodes];
+	t_bell_ford_params	params[graph->nb_nodes];
 	t_paths		*paths;
 	t_edge		*edges;
 	size_t		nb_paths;
@@ -96,11 +92,11 @@ t_paths			*al_suurbale(t_graph *graph)
 				al_count_edges(graph->nodes[graph->graph_start]->edges_out));
 	while (nb_paths)
 	{
-		al_bellman_ford(graph, dist, path);
-		if (dist[graph->graph_end] == INT_MAX)
+		al_bellman_ford(graph, params);
+		if (params[graph->graph_end].dist == INT_MAX)
 			break ;
 		++paths->nb_paths;
-		al_update_graph(graph, path, &edges);
+		al_update_graph(graph, params, &edges);
 		--nb_paths;
 	}
 	paths->paths = ft_xmalloc(sizeof(t_path) * (paths->nb_paths));

@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 02:19:35 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/06 14:30:44 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/07 20:10:26 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ t_edge			*al_get_edge(t_edge **edges, t_search *search)
 	t_edge	*tmp;
 
 	finded = *edges;
-	if (finded && al_check_finded(finded, search))
+	if (!finded)
+		return (NULL);
+	if (al_check_finded(finded, search))
 	{
 		*edges = finded->next;
 		return (finded);

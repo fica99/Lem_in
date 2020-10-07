@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 14:51:10 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/07 17:21:11 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/07 19:29:34 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void			lemin_print_onenode(t_node *node)
 	ft_printf("room_name = %s\n", node->name);
 	ft_printf("coordinates: x = %d, y = %d\n",
 		node->x, node->y);
-	ft_printf("is_in = %d\n", node->is_in);
 	ft_printf("edges:\n");
 	ft_printf("\tedges_out:\n");
 	edge = node->edges_out;
