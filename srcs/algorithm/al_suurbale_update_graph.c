@@ -6,12 +6,11 @@
 /*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 12:05:00 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/08 23:11:51 by aashara          ###   ########.fr       */
+/*   Updated: 2020/10/09 01:50:17 by aashara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "algorithm.h"
-#include "lem_in.h"
 
 static int		al_reverse_edges(t_node **nodes,
 					t_bell_ford_params params[][2], size_t i, t_bool to_out)
@@ -21,10 +20,9 @@ static int		al_reverse_edges(t_node **nodes,
 	t_search	search;
 
 	search = (t_search){params[i][to_out].prev, True, i, True, 0, False};
-	if (to_out)
-		edge = al_get_edge(&nodes[params[i][to_out].prev]->edges_in, &search);
-	else
-		edge = al_get_edge(&nodes[params[i][to_out].prev]->edges_out, &search);
+	edge = ((to_out) ? al_get_edge(&nodes[params[i][to_out].prev]->edges_in,
+	&search) : al_get_edge(&nodes[params[i][to_out].prev]->edges_out,
+																	&search));
 	weight = edge->weight;
 	edge->next = NULL;
 	edge->weight *= -1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 21:24:50 by aashara           #+#    #+#             */
-/*   Updated: 2020/10/08 15:42:55 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/09 01:50:57 by aashara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void				al_bellman_ford(t_graph *graph, t_bell_ford_params params[][2]);
 */
 t_edge				*al_get_edge(t_edge **edges, t_search *search);
 void				al_add_edge(t_edge **edges, t_edge *edge, t_bool is_end);
-void				al_del_edges(t_edge **edges);
 size_t				al_count_edges(t_edge *edges);
 /*
 **					al_suurbale_update_graph.c
@@ -64,6 +63,5 @@ void				al_update_graph(t_graph *graph, t_bell_ford_params params[][2],
 /*
 **					al_suurbale.c
 */
-void				al_del_paths(t_paths **paths);
 t_paths				*al_suurbale(t_graph *graph);
 #endif

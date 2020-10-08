@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_print_paths.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 06:44:10 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/06 21:42:57 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/09 01:28:33 by aashara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static void		lem_in_init_len(t_paths *paths, int *len)
 	}
 }
 
-static t_bool	lem_in_print_path(t_path *path, t_node **nodes, int ant_nb, t_bool is_printed)
+static t_bool	lem_in_print_path(t_path *path, t_node **nodes, int ant_nb,
+															t_bool is_printed)
 {
 	t_edge	*tmp;
 	int		ant_tmp;

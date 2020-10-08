@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   al_edges.c                                         :+:      :+:    :+:   */
+/*   al_help.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 02:19:35 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/07 20:10:26 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/09 01:49:09 by aashara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,21 +74,6 @@ void			al_add_edge(t_edge **edges, t_edge *edge, t_bool is_end)
 				tmp = tmp->next;
 			tmp->next = edge;
 		}
-	}
-}
-
-void			al_del_edges(t_edge **edges)
-{
-	t_edge	*tmp;
-	t_edge	*next;
-
-	tmp = *edges;
-	*edges = NULL;
-	while (tmp)
-	{
-		next = tmp->next;
-		ft_memdel((void**)&tmp);
-		tmp = next;
 	}
 }
 
