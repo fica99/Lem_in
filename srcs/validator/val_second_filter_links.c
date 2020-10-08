@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   val_second_filter_links.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 22:28:31 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/07 00:10:31 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/08 17:34:08 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,13 +123,15 @@ int			val_save_link(size_t index1, size_t index2, t_graph *farm)
 	ptr_node = (*farm).nodes[index1];
 	ptr_edge = ptr_node->edges_out;
 	val_save_edge(index1, index2, ptr_edge);
-	// ptr_edge = ptr_node->edges_in;
-	// val_save_edge(index2, index1, ptr_edge);
+	ptr_edge = ptr_node->edges_in;
+	val_save_edge(index1, index1, ptr_edge);
+	ptr_edge->weight = 0;
 	ptr_node = (*farm).nodes[index2];
 	ptr_edge = ptr_node->edges_out;
 	val_save_edge(index2, index1, ptr_edge);
-	// ptr_edge = ptr_node->edges_in;
-	// val_save_edge(index1, index2, ptr_edge);
+	ptr_edge = ptr_node->edges_in;
+	val_save_edge(index2, index2, ptr_edge);
+	ptr_edge->weight = 0;
 	return (0);
 }
 

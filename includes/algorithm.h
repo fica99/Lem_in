@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 21:24:50 by aashara           #+#    #+#             */
-/*   Updated: 2020/10/07 21:02:44 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/08 15:42:55 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct		s_bell_ford_params
 /*
 **					al_bellman_ford.c
 */
-void				al_bellman_ford(t_graph *graph, t_bell_ford_params *params);
+void				al_bellman_ford(t_graph *graph, t_bell_ford_params params[][2]);
 /*
 **					al_edges.c
 */
@@ -59,7 +59,7 @@ size_t				al_count_edges(t_edge *edges);
 /*
 **					al_suurbale_update_graph.c
 */
-void				al_update_graph(t_graph *graph, t_bell_ford_params *params,
+void				al_update_graph(t_graph *graph, t_bell_ford_params params[][2],
 														t_edge **edges);
 /*
 **					al_suurbale.c

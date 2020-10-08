@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:23:59 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/07 20:46:57 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/08 17:53:16 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,15 @@ static void		al_del_reverse_edges(t_edge **edges)
 	t_search	new_search;
 
 	search = (t_search){0, False, 0, False, -1, True};
-	while ((finded = al_get_edge(edges, &search)))
+	finded = *edges;
+	while ((finded = al_get_edge(&finded, &search)))
 	{
 		new_search = (t_search){finded->to, True, finded->from, True, 0, False};
-		new_finded = al_get_edge(edges, &new_search);
-		ft_memdel((void**)&new_finded);
+		while ((new_finded = al_get_edge(edges, &new_search)))
+			ft_memdel((void**)&new_finded);
+		new_finded = finded->next;
 		ft_memdel((void**)&finded);
+		finded = new_finded;
 	}
 }
 
@@ -81,10 +84,10 @@ static void		al_sort_paths(t_paths *paths)
 
 t_paths			*al_suurbale(t_graph *graph)
 {
-	t_bell_ford_params	params[graph->nb_nodes];
-	t_paths		*paths;
-	t_edge		*edges;
-	size_t		nb_paths;
+	t_bell_ford_params	params[graph->nb_nodes][2];
+	t_paths				*paths;
+	t_edge				*edges;
+	size_t				nb_paths;
 
 	paths = (t_paths *)ft_xmalloc(sizeof(t_paths));
 	edges = NULL;
@@ -93,7 +96,7 @@ t_paths			*al_suurbale(t_graph *graph)
 	while (nb_paths)
 	{
 		al_bellman_ford(graph, params);
-		if (params[graph->graph_end].dist == INT_MAX)
+		if (params[graph->graph_end][1].dist == INT_MAX)
 			break ;
 		++paths->nb_paths;
 		al_update_graph(graph, params, &edges);
