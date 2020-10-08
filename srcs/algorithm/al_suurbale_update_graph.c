@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   al_suurbale_update_graph.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 12:05:00 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/08 18:13:35 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/08 19:43:16 by aashara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "algorithm.h"
+#include "lem_in.h"
 
-static int		al_reverse_edges(t_node **nodes, t_bell_ford_params params[][2],
-														size_t i, t_bool to_out)
+static int		al_reverse_edges(t_node **nodes,
+					t_bell_ford_params params[][2], size_t i, t_bool to_out)
 {
 	t_edge		*edge;
 	int			weight;
@@ -36,7 +37,8 @@ static int		al_reverse_edges(t_node **nodes, t_bell_ford_params params[][2],
 	return (weight);
 }
 
-void			al_update_graph(t_graph *graph, t_bell_ford_params params[][2], t_edge **edges)
+void			al_update_graph(t_graph *graph, t_bell_ford_params params[][2],
+																t_edge **edges)
 {
 	size_t	i;
 	t_edge	*edge;

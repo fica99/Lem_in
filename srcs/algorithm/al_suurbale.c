@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   al_suurbale.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:23:59 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/08 17:53:16 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/08 20:19:36 by aashara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,12 @@ static void		al_del_reverse_edges(t_edge **edges)
 	t_search	new_search;
 
 	search = (t_search){0, False, 0, False, -1, True};
-	finded = *edges;
-	while ((finded = al_get_edge(&finded, &search)))
+	while ((finded = al_get_edge(edges, &search)))
 	{
 		new_search = (t_search){finded->to, True, finded->from, True, 0, False};
 		while ((new_finded = al_get_edge(edges, &new_search)))
 			ft_memdel((void**)&new_finded);
-		new_finded = finded->next;
 		ft_memdel((void**)&finded);
-		finded = new_finded;
 	}
 }
 
@@ -96,8 +93,9 @@ t_paths			*al_suurbale(t_graph *graph)
 	while (nb_paths)
 	{
 		al_bellman_ford(graph, params);
-		if (params[graph->graph_end][1].dist == INT_MAX)
+		if (params[graph->graph_end][0].dist == INT_MAX)
 			break ;
+
 		++paths->nb_paths;
 		al_update_graph(graph, params, &edges);
 		--nb_paths;
