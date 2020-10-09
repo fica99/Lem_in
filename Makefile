@@ -26,8 +26,9 @@ ALGORITHM_DIR := algorithm
 ALGORITHM := \
 			$(ALGORITHM_DIR)/al_bellman_ford.c\
 			$(ALGORITHM_DIR)/al_suurbale.c\
-			$(ALGORITHM_DIR)/al_suurbale_update_graph.c\
+			$(ALGORITHM_DIR)/al_reverse_path.c\
 			$(ALGORITHM_DIR)/al_edges.c\
+			$(ALGORITHM_DIR)/al_paths.c\
 
 SOURCES := main.c \
 			lemin_print_paths.c \
@@ -36,7 +37,6 @@ SOURCES := main.c \
 			lemin_nodes_proc.c \
 			lemin_nodes_print.c \
 			lemin_nodes_search.c \
-			lemin_find_optimal_paths.c \
 			$(VALIDATOR) \
 			$(ALGORITHM)
 
