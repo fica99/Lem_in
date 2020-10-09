@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   al_suurbale_update_graph.c                         :+:      :+:    :+:   */
+/*   al_reverse_path.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 12:05:00 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/09 01:50:17 by aashara          ###   ########.fr       */
+/*   Updated: 2020/10/09 18:54:48 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int		al_reverse_edges(t_node **nodes,
 	return (weight);
 }
 
-void			al_update_graph(t_graph *graph, t_bell_ford_params params[][2],
+void			al_reverse_path(t_graph *graph, t_bell_ford_params params[][2],
 																t_edge **edges)
 {
 	size_t	i;
