@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 14:46:00 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/06 14:46:09 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/08 17:16:59 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_node			*lemin_node_init(char *name, int x, int y)
 	new_node->name = name;
 	new_node->x = x;
 	new_node->y = y;
-	new_node->edges_in = NULL;//lemin_edge_init();
+	new_node->edges_in = lemin_edge_init();
 	new_node->edges_out = lemin_edge_init();
 	return (new_node);
 }

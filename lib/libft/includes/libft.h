@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 15:31:24 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/06 23:42:49 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/07 17:21:36 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,7 +244,6 @@ void					swap_ints(int *a, int *b);
 int						ft_issign(char c);
 int						ft_gnl(const int fd, char **line);
 int						ft_min(int a, int b);
-int						ft_max(int a, int b);
 int						ft_find_options(int num,
 							char *flags_arr[num], char **arr);
 

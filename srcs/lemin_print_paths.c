@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_print_paths.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 06:44:10 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/06 18:51:10 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/09 01:28:33 by aashara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,13 @@ static void		lem_in_init_len(t_paths *paths, int *len)
 	}
 }
 
-static t_bool	lem_in_print_path(t_path *path, t_node **nodes, int ant_nb)
+static t_bool	lem_in_print_path(t_path *path, t_node **nodes, int ant_nb,
+															t_bool is_printed)
 {
 	t_edge	*tmp;
 	int		ant_tmp;
-	t_bool	is_printed;
 
 	tmp = path->edges;
-	is_printed = False;
 	while (tmp)
 	{
 		if (ant_nb > 0)
@@ -57,7 +56,6 @@ void			lem_in_print_paths(t_paths *paths, t_node **nodes, int nb_ants)
 	int		i;
 	int		len[paths->nb_paths];
 	t_bool	is_printed;
-	t_bool	tmp;
 
 	lem_in_init_len(paths, len);
 	i = 0;
@@ -67,11 +65,9 @@ void			lem_in_print_paths(t_paths *paths, t_node **nodes, int nb_ants)
 		is_printed = False;
 		while (cur_path < paths->nb_paths)
 		{
-			tmp = (((nb_ants - i) > len[cur_path]) ?
-			lem_in_print_path(paths->paths + cur_path, nodes, ++i) :
-			lem_in_print_path(paths->paths + cur_path, nodes, 0));
-			if (!is_printed)
-				is_printed = tmp;
+			is_printed = (((nb_ants - i) > len[cur_path]) ?
+			lem_in_print_path(paths->paths + cur_path, nodes, ++i, is_printed) :
+			lem_in_print_path(paths->paths + cur_path, nodes, 0, is_printed));
 			++cur_path;
 		}
 		if (is_printed == False)

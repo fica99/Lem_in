@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 21:24:50 by aashara           #+#    #+#             */
-/*   Updated: 2020/10/06 14:31:10 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/09 16:21:00 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,30 @@ typedef struct		s_search
 	t_bool			is_weight;
 }					t_search;
 
+typedef struct		s_bell_ford_params
+{
+	int				dist;
+	int				prev;
+}					t_bell_ford_params;
+
 /*
 **					al_bellman_ford.c
 */
-void				al_bellman_ford(t_graph *graph, int *dist, int *path);
+void				al_bellman_ford(t_graph *graph,
+							t_bell_ford_params params[][2]);
 /*
 **					al_edges.c
 */
 t_edge				*al_get_edge(t_edge **edges, t_search *search);
 void				al_add_edge(t_edge **edges, t_edge *edge, t_bool is_end);
-void				al_del_edges(t_edge **edges);
 size_t				al_count_edges(t_edge *edges);
 /*
 **					al_suurbale_update_graph.c
 */
-void				al_update_graph(t_graph *graph, int *arr_nodes,
-														t_edge **edges);
+void				al_update_graph(t_graph *graph,
+							t_bell_ford_params params[][2], t_edge **edges);
 /*
 **					al_suurbale.c
 */
-void				al_del_paths(t_paths **paths);
 t_paths				*al_suurbale(t_graph *graph);
 #endif

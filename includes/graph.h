@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 20:51:26 by aashara           #+#    #+#             */
-/*   Updated: 2020/10/06 13:24:09 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/07 21:19:36 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct		s_node
 	int				y;
 	t_edge			*edges_in;
 	t_edge			*edges_out;
-	t_bool			is_in;
 }					t_node;
 
 typedef struct		s_graph

@@ -3,72 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   al_suurbale_update_graph.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 12:05:00 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/06 19:34:27 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/09 01:50:17 by aashara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "algorithm.h"
 
-static int		al_reverse_from_edge(t_node **nodes, size_t from,
-												size_t to, t_search *search)
+static int		al_reverse_edges(t_node **nodes,
+					t_bell_ford_params params[][2], size_t i, t_bool to_out)
 {
-	t_edge	*edge;
-	int		weight;
-
-	if (nodes[from]->is_in == False)
-	{
-		edge = al_get_edge(&nodes[from]->edges_out, search);
-		weight = edge->weight;
-		edge->next = NULL;
-		edge->weight *= -1;
-		edge->from = to;
-		edge->to = from;
-		al_add_edge(&nodes[to]->edges_in, edge, False);
-	}
-	else
-	{
-		edge = al_get_edge(&nodes[from]->edges_in, search);
-		weight = edge->weight;
-		edge->next = NULL;
-		edge->weight *= -1;
-		edge->from = to;
-		edge->to = from;
-		al_add_edge(&nodes[to]->edges_out, edge, False);
-	}
-	return (weight);
-}
-
-static int		al_reverse_edges(t_node **nodes, size_t from, size_t to)
-{
-	t_search	search;
+	t_edge		*edge;
 	int			weight;
+	t_search	search;
 
-	search = (t_search){from, True, to, True, 0, False};
-	weight = al_reverse_from_edge(nodes, from, to, &search);
+	search = (t_search){params[i][to_out].prev, True, i, True, 0, False};
+	edge = ((to_out) ? al_get_edge(&nodes[params[i][to_out].prev]->edges_in,
+	&search) : al_get_edge(&nodes[params[i][to_out].prev]->edges_out,
+																	&search));
+	weight = edge->weight;
+	edge->next = NULL;
+	edge->weight *= -1;
+	edge->from = i;
+	edge->to = params[i][to_out].prev;
+	if (to_out)
+		al_add_edge(&nodes[i]->edges_out, edge, False);
+	else
+		al_add_edge(&nodes[i]->edges_in, edge, False);
 	return (weight);
 }
 
-void			al_update_graph(t_graph *graph, int *arr_nodes, t_edge **edges)
+void			al_update_graph(t_graph *graph, t_bell_ford_params params[][2],
+																t_edge **edges)
 {
 	size_t	i;
 	t_edge	*edge;
 	int		weight;
+	t_bool	to_out;
 
 	i = graph->graph_end;
+	to_out = False;
 	while (i != graph->graph_start)
 	{
-		weight = al_reverse_edges(graph->nodes, arr_nodes[i], i);
-		edge = (t_edge *)ft_xmalloc(sizeof(t_edge));
-		edge->from = arr_nodes[i];
-		edge->to = i;
-		edge->weight = weight;
-		edge->next = *edges;
-		*edges = edge;
-		if (i != graph->graph_end)
-			graph->nodes[i]->is_in = (t_bool)((graph->nodes[i]->is_in + 1) % 2);
-		i = arr_nodes[i];
+		weight = al_reverse_edges(graph->nodes, params, i, to_out);
+		if ((int)i != params[i][to_out].prev)
+		{
+			edge = (t_edge *)ft_xmalloc(sizeof(t_edge));
+			edge->from = params[i][to_out].prev;
+			edge->to = i;
+			edge->weight = weight;
+			edge->next = *edges;
+			*edges = edge;
+		}
+		i = params[i][to_out].prev;
+		to_out = (t_bool)((to_out + 1) % 2);
 	}
 }
