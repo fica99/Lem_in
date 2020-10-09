@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   al_bellman_ford.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 21:25:15 by aashara           #+#    #+#             */
-/*   Updated: 2020/10/09 01:47:43 by aashara          ###   ########.fr       */
+/*   Updated: 2020/10/09 17:06:14 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static void		al_init_params(t_bell_ford_params params[][2],
 	}
 }
 
-static void	al_check_edges(t_edge *edges, t_bell_ford_params params[][2],
-											t_bool *is_changed, t_bool is_out)
+static void		al_check_edges(t_edge *edges, t_bell_ford_params params[][2],
+										t_bool *is_changed, t_bool is_out)
 {
 	t_edge	*tmp;
 
@@ -62,8 +62,10 @@ static t_bool	al_update_dist(t_graph *graph, t_bell_ford_params params[][2])
 	i = 0;
 	nb_nodes = graph->nb_nodes;
 	nodes = graph->nodes;
-	al_check_edges(nodes[graph->graph_start]->edges_out, params, &changed, True);
-	al_check_edges(nodes[graph->graph_start]->edges_in, params, &changed, False);
+	al_check_edges(nodes[graph->graph_start]->edges_out, params, &changed,
+																	True);
+	al_check_edges(nodes[graph->graph_start]->edges_in, params, &changed,
+																	False);
 	while (i < nb_nodes)
 	{
 		if (i != graph->graph_start && i != graph->graph_start)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   al_suurbale.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:23:59 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/09 02:13:54 by aashara          ###   ########.fr       */
+/*   Updated: 2020/10/09 17:05:15 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ static void		al_del_reverse_edges(t_edge **edges)
 	}
 }
 
-static void		al_update_paths(t_paths *paths, t_edge **edges, size_t start, size_t end)
+static void		al_update_paths(t_paths *paths, t_edge **edges,
+											size_t start, size_t end)
 {
 	size_t		cur_node;
 	size_t		i;
@@ -95,7 +96,7 @@ t_paths			*al_suurbale(t_graph *graph)
 	while (nb_paths)
 	{
 		al_bellman_ford(graph, params);
-		if (params[graph->graph_end][1].dist == INT_MAX)//maybe optimized by checking optimal number of paths
+		if (params[graph->graph_end][1].dist == INT_MAX)
 			break ;
 		++paths->nb_paths;
 		al_update_graph(graph, params, &edges);

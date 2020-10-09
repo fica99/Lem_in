@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 21:24:50 by aashara           #+#    #+#             */
-/*   Updated: 2020/10/09 01:50:57 by aashara          ###   ########.fr       */
+/*   Updated: 2020/10/09 16:21:00 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ typedef struct		s_bell_ford_params
 /*
 **					al_bellman_ford.c
 */
-void				al_bellman_ford(t_graph *graph, t_bell_ford_params params[][2]);
+void				al_bellman_ford(t_graph *graph,
+							t_bell_ford_params params[][2]);
 /*
 **					al_edges.c
 */
@@ -58,8 +59,8 @@ size_t				al_count_edges(t_edge *edges);
 /*
 **					al_suurbale_update_graph.c
 */
-void				al_update_graph(t_graph *graph, t_bell_ford_params params[][2],
-														t_edge **edges);
+void				al_update_graph(t_graph *graph,
+							t_bell_ford_params params[][2], t_edge **edges);
 /*
 **					al_suurbale.c
 */

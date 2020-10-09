@@ -36,6 +36,7 @@ SOURCES := main.c \
 			lemin_nodes_proc.c \
 			lemin_nodes_print.c \
 			lemin_nodes_search.c \
+			lemin_find_optimal_paths.c \
 			$(VALIDATOR) \
 			$(ALGORITHM)
 

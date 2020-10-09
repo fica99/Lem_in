@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 11:12:22 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/06 18:52:07 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/09 16:20:10 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,9 @@ void	lemin_edge_clean(t_edge **begin_edge);
 */
 void	lem_in_print_paths(t_paths *paths, t_node **nodes, int nb_ants);
 void	lem_in_print_all(char *name, int nb_ants);
+/*
+**		lemin_find_optimal_paths.c
+*/
+void	lemin_check_steps(int nb_ants, t_paths *paths);
+
 #endif
