@@ -6,7 +6,7 @@
 /*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 12:58:48 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/09 02:29:09 by aashara          ###   ########.fr       */
+/*   Updated: 2020/10/09 11:41:35 by aashara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static void		lemin_calc_number_ants(size_t nb_ants, t_paths *paths, size_t i, si
 	size_t	j;
 	size_t	cur_path;
 	size_t	next_path;
+	size_t	on_cur_path;
+	size_t	on_next_path;
 
 	j = 0;
 	while (j < i)
@@ -39,24 +41,20 @@ static void		lemin_calc_number_ants(size_t nb_ants, t_paths *paths, size_t i, si
 	while (nb_ants--)
 	{
 		next_path = (cur_path + 1) % i;
-		if (ants[cur_path] + paths->paths[cur_path].nb_nodes <=
-							ants[next_path] + paths->paths[next_path].nb_nodes)
-		{
-			++ants[cur_path];
+		on_cur_path = ants[cur_path] + paths->paths[cur_path].nb_nodes;
+		on_next_path = ants[next_path] + paths->paths[next_path].nb_nodes;
+		if (on_cur_path < on_next_path)
 			cur_path = 0;
-		}
-		else
-		{
-			++ants[next_path];
+		else if (on_cur_path > on_next_path)
 			cur_path = next_path;
-		}
+		++ants[cur_path];
 	}
 }
 
 static size_t	lemin_calc_nb_steps(size_t nb_ants, t_paths *paths, size_t i)
 {
 	size_t			nb_steps;
-	size_t			ants[i + 1];
+	size_t			ants[i];
 	size_t			max_path;
 	size_t			j;
 
@@ -65,8 +63,13 @@ static size_t	lemin_calc_nb_steps(size_t nb_ants, t_paths *paths, size_t i)
 	max_path = 0;
 	nb_steps = ants[0];
 	while (++j < i)
-		if (paths->paths[j].nb_nodes > paths->paths[max_path].nb_nodes)
+	{
+		if (paths->paths[j].nb_nodes + ants[j] > paths->paths[max_path].nb_nodes + nb_steps)
+		{
 			max_path = j;
+			nb_steps = ants[j];
+		}
+	}
 	return (nb_steps + paths->paths[max_path].nb_nodes);
 }
 
@@ -89,7 +92,7 @@ static void		lemin_check_steps(int nb_ants, t_paths *paths)
 		if (nb_steps[best_path] > nb_steps[i])
 			best_path = i;
 	i = best_path;
-	ft_printf("paths->nb_paths - %d, best_path - %d\n", paths->nb_paths, best_path);
+	// ft_printf("paths->nb_paths - %d, best_path - %d\n", paths->nb_paths, best_path);
 	while (++i < paths->nb_paths)
 		lemin_edge_clean(&paths->paths[i].edges);
 	paths->nb_paths = best_path + 1;
