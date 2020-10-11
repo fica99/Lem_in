@@ -79,7 +79,7 @@ Lant_id-room_name
 
 ## Visualization
 
-### Instalation requirements
+### Installation requirements
 
 ```
 python3 -m venv env
