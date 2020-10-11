@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   al_paths.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 19:40:51 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/09 22:22:26 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/12 01:32:57 by aashara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void			al_del_paths(t_paths *paths)
 	size_t		i;
 
 	i = 0;
+	if (!paths)
+		return ;
 	while (i < paths->nb_paths)
 	{
 		lemin_edge_clean(&((paths->paths)[i].edges));

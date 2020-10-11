@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 12:58:48 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/09 22:16:20 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/12 01:33:30 by aashara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	lemin_print(t_paths *paths, t_graph *graph, int nb_ants)
 {
-	if (paths->nb_paths == 0)
+	if (!paths || paths->nb_paths == 0)
 	{
 		al_del_paths(paths);
 		ft_memdel((void**)&paths);

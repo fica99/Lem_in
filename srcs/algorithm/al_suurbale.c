@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   al_suurbale.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:23:59 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/09 22:18:33 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/12 01:46:07 by aashara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ static void		al_add_path(t_graph *graph, t_paths *paths,
 	al_reverse_path(graph, params, &edges);
 	end = edges;
 	i = 0;
+	++(paths->nb_paths);
 	while (i < paths->nb_paths)
 	{
 		while (end->next)
@@ -111,25 +112,24 @@ t_paths			*al_suurbale(t_graph *graph, int nb_ants)
 	t_paths				*paths;
 	t_paths				tmp;
 	size_t				nb_paths;
-	size_t				i;
 
 	nb_paths = ft_min(al_count_edges(graph->nodes[graph->graph_end]->edges_out),
 				al_count_edges(graph->nodes[graph->graph_start]->edges_out));
+	if (!nb_paths)
+		return (NULL);
 	paths = (t_paths *)ft_xmalloc(sizeof(t_paths) * nb_paths);
-	i = 0;
 	tmp.paths = ft_xmalloc(sizeof(t_path) * nb_paths);
-	while (i < nb_paths)
+	tmp.nb_paths = 0;
+	while (nb_paths--)
 	{
 		al_bellman_ford(graph, params);
 		if (params[graph->graph_end][1].dist == INT_MAX)
 			break ;
-		tmp.nb_paths = i + 1;
 		al_add_path(graph, &tmp, params);
 		al_sort_paths(&tmp);
 		tmp.nb_steps = al_calc_nb_steps(nb_ants, &tmp, tmp.nb_paths);
-		al_copy_paths(&tmp, paths + i);
-		++i;
+		al_copy_paths(&tmp, paths + tmp.nb_paths - 1);
 	}
 	al_del_paths(&tmp);
-	return (al_find_best_path(paths, i));
+	return (al_find_best_path(paths, tmp.nb_paths));
 }
