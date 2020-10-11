@@ -93,3 +93,5 @@ pip3 install -r requirements.txt
 ```
 
 ![Visualization Lem-in](https://i.ibb.co/w4dQYMk/Screen-Shot-2020-10-11-at-2-50-10-PM.png)
+
+Start node is red. End node is green.
