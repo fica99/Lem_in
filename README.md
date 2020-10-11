@@ -89,7 +89,7 @@ pip3 install -r requirements.txt
 
 ### Usage
 ```
-./lem-in < test_map | python3 visualization.py
+./lem-in < test_map | python3 visualizer.py
 ```
 
 ![Visualization Lem-in](https://i.ibb.co/w4dQYMk/Screen-Shot-2020-10-11-at-2-50-10-PM.png)
