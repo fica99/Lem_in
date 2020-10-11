@@ -59,7 +59,7 @@ int			val_check_map(char *map, int map_size)
 {
 	int		answer;
 
-	if (map[map_size - 1] == VAL_ENTER)
+	if (map_size> 0 && map[map_size - 1] == VAL_ENTER)
 	{
 		map[map_size - 1] = '\0';
 		map_size -= 1;
@@ -70,5 +70,19 @@ int			val_check_map(char *map, int map_size)
 	answer = val_invalid_values(map, map_size);
 	if (answer == VAL_ERROR)
 		return (VAL_ERROR);
+	return (0);
+}
+
+int			val_check_farm(t_graph *farm)
+{
+	t_graph	ptr_farm;
+
+	ptr_farm = *farm;
+	if ((int)ptr_farm.graph_start < 0)
+		return (val_errors(ERR_NOSTART, NULL, 0, 0));
+	if ((int)ptr_farm.graph_end < 0)
+		return (val_errors(ERR_NOEND, NULL, 0, 0));
+	if ((int)ptr_farm.nb_nodes < 1)
+		return (val_errors(ERR_NOROOMS, NULL, 0, 0));
 	return (0);
 }

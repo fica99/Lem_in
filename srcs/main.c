@@ -12,6 +12,14 @@
 
 #include "lem_in.h"
 
+	// lemin_graph_methods(&graph, 1);
+	// lemin_nodesarray_print(graph.nodes, graph.nb_nodes);
+	// if ((int)graph.graph_start && (int)graph.graph_end)
+	// 	ft_printf("\nstart index is %d, end index is %d\n",
+	// 		(int)graph.graph_start, (int)graph.graph_end);
+	// else
+	// 	ft_printf("no start or end\n");
+
 static void	lemin_del_paths(t_paths **paths)
 {
 	size_t		i;

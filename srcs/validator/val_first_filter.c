@@ -71,25 +71,17 @@ int			val_check_antsnum(char *map, int map_size)
 int			val_invalid_startend(char *map, int map_size, int *i)
 {
 	int		j;
-	int		len_tmp;
-	char	*valid;
+	int		line_start;
 
 	j = *i;
-	if (j > 0 && map[j] == VAL_HASH && map[j + 1] == VAL_HASH
+	if (j > 0 && map[j] && map[j] == VAL_HASH && map[j + 1] == VAL_HASH
 			&& map[j - 1] == VAL_ENTER)
 	{
-		if (map[j + 2] && map[j + 2] == 's')
-			valid = "##start";
-		else if (map[j + 2] && map[j + 2] == 'e')
-			valid = "##end";
-		else
-			return (val_errors(ERR_INVALID_LINE, map + j, VAL_ENTER, 0));
-		len_tmp = ft_strlen(valid);
-		if (!(j + len_tmp <= map_size &&
-				ft_strncmp(map + j, valid, len_tmp) == 0 &&
-				(map[j + len_tmp] == VAL_ENTER ||
-				map[j + len_tmp] == VAL_SPACE || !map[j + len_tmp])))
-			return (val_errors(ERR_INVALID_LINE, map + j, VAL_ENTER, 0));
+		line_start = j;
+		while (j < map_size && (!(map[j] == VAL_SPACE || map[j] == VAL_ENTER)))
+			j++;
+		if (map[j] != VAL_ENTER)
+			return (val_errors(ERR_INVALID_LINE, map + line_start, VAL_ENTER, 0));
 		*i = j;
 	}
 	return (0);

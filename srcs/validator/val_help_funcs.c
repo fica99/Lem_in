@@ -43,7 +43,7 @@ int			val_isdelimiter(char *map, int i)
 	return (0);
 }
 
-int			val_pass_comments(char *map, int *i)
+int			val_pass_comments(char *map, int *i, int flag)
 {
 	int		j;
 
@@ -57,5 +57,32 @@ int			val_pass_comments(char *map, int *i)
 		j++;
 		*i = j;
 	}
+	if (flag)
+		return (flag);
 	return (0);
+}
+
+int			val_pass_startend(char *map, int *i, int flag)
+{
+	int		j;
+
+	j = *i;
+	if (!flag) 
+		flag = 0;
+	if (j > 0 && map[j] == VAL_HASH && map[j + 1] &&
+			map[j + 1] == VAL_HASH &&
+			map[j - 1] == VAL_ENTER)
+	{
+		if (map[j + 2] && map[j + 2] == 's')
+			flag = 's';
+		else if (map[j + 2] && map[j + 2] == 'e')
+			flag = 'e';
+		else if (map[j + 2])
+			flag = 0;
+		while (map[j] && map[j] != VAL_ENTER)
+			j++;
+		j++;
+		*i = j;
+	}
+	return (flag);
 }
