@@ -91,3 +91,5 @@ pip3 install -r requirements.txt
 ```
 ./lem-in < test_map | python3 visualization.py
 ```
+
+![Visualization Lem-in](https://i.ibb.co/w4dQYMk/Screen-Shot-2020-10-11-at-2-50-10-PM.png)
