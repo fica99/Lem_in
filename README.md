@@ -77,3 +77,17 @@ Then, the result will contain as many lines as there is cycles. Each cycles cont
 Lant_id-room_name
 ```
 
+## Visualization
+
+### Instalation requirements
+
+```
+python3 -m venv env
+. env/bin/activate
+pip3 install -r requirements.txt
+```
+
+### Usage
+```
+./lem-in < test_map | python3 visualization.py
+```
