@@ -1,3 +1,0 @@
-target create d_lem-in
-breakpoint set -b main
-process launch -i test_maps/test_07
