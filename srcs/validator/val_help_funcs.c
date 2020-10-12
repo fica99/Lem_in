@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 21:08:20 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/12 16:57:30 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/12 17:05:57 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int			val_pass_startend(char *map, int *i, int flag)
 	int		j;
 
 	j = *i;
-	if (!flag) 
+	if (!flag)
 		flag = 0;
 	if (j > 0 && map[j] == VAL_HASH && map[j + 1] &&
 			map[j + 1] == VAL_HASH &&

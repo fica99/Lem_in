@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 12:58:48 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/12 16:11:46 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/12 17:06:34 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	lemin_print(t_paths *paths, t_graph *graph, int nb_ants)
 	else
 	{
 		(paths->paths[0].nb_nodes != 1) ?
-			lem_in_print_paths(paths, graph->nodes,nb_ants) :
+			lem_in_print_paths(paths, graph->nodes, nb_ants) :
 			lem_in_print_all(graph->nodes[graph->graph_end]->name, nb_ants);
 	}
 	al_del_paths(paths);
