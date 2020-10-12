@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 12:58:48 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/12 01:33:30 by aashara          ###   ########.fr       */
+/*   Updated: 2020/10/12 14:15:44 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	lemin_print(t_paths *paths, t_graph *graph, int nb_ants)
+static int	lemin_print(t_paths *paths, t_graph *graph, int nb_ants)
 {
 	if (!paths || paths->nb_paths == 0)
 	{
 		al_del_paths(paths);
 		ft_memdel((void**)&paths);
-		val_errors(ERR_NOSOLUTION, NULL, 0, 0);
+		return (val_errors(ERR_NOSOLUTION, NULL, 0, 0));
 	}
 	(paths->paths[0].nb_nodes != 1) ? lem_in_print_paths(paths, graph->nodes,
 	nb_ants) : lem_in_print_all(graph->nodes[graph->graph_end]->name, nb_ants);
@@ -26,6 +26,7 @@ static void	lemin_print(t_paths *paths, t_graph *graph, int nb_ants)
 	ft_memdel((void**)&paths);
 	lemin_graph_methods(NULL, -1);
 	lemin_antsum_methods(0, -1);
+	return (0);
 }
 
 int			main(int argc, char **argv)
@@ -48,8 +49,8 @@ int			main(int argc, char **argv)
 	lemin_graph_methods(&graph, 0);
 	nb_ants = lemin_antsum_methods(0, 0);
 	paths = al_suurbale(&graph, nb_ants);
-	lemin_print(paths, &graph, nb_ants);
-	return (0);
+	answer = lemin_print(paths, &graph, nb_ants);
+	return (answer);
 }
 
 void		lemin_usage(void)
