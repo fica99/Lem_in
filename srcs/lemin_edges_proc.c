@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 20:01:52 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/12 13:42:46 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/12 14:20:06 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,35 @@ void			lemin_edge_clean(t_edge **begin_edge)
 	*begin_edge = NULL;
 }
 
-int				lemin_check_edge(t_edge *begin_edge)
+int				lemin_check_edge_out(t_edge *begin_edge)
+{
+	t_edge		*run;
+	t_edge		*run_delete;
+
+	run = begin_edge;
+	while (run->next)
+	{
+		if ((int)run->next->from < 0 || (int)run->next->to < 0)
+		{
+			while (run->next)
+			{
+				run_delete = run->next->next;
+				free(run->next);
+				run->next = run_delete;
+			}
+			run->next = NULL;
+		}
+		run = run->next;
+	}
+	if (run == begin_edge)
+	{
+		free(begin_edge);
+		return (1);
+	}
+	return (0);
+}
+
+int				lemin_check_edge_in(t_edge *begin_edge, size_t index)
 {
 	t_edge		*run;
 
@@ -48,7 +76,10 @@ int				lemin_check_edge(t_edge *begin_edge)
 	while (run)
 	{
 		if ((int)run->from < 0 || (int)run->to < 0)
-			return (1);
+		{
+			run->from = index;
+			run->to = index;
+		}
 		run = run->next;
 	}
 	return (0);

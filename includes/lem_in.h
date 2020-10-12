@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 11:12:22 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/12 13:43:05 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/12 14:19:59 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ void	lemin_print_edge(t_edge *edge);
 
 t_edge	*lemin_edge_init(void);
 void	lemin_edge_clean(t_edge **begin_edge);
-int		lemin_check_edge(t_edge *begin_edge);
+int		lemin_check_edge_out(t_edge *begin_edge);
+int		lemin_check_edge_in(t_edge *begin_edge, size_t index);
 
 /*
 **		lemin_print_paths.c

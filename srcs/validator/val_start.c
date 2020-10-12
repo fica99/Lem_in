@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 21:22:08 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/12 13:47:37 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/12 14:19:52 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,9 @@ int			val_check_farm(t_graph *farm)
 		return (val_errors(ERR_NOROOMS, NULL, 0, 0));
 	while (i < ptr_farm.nb_nodes && ptr_farm.nodes[i])
 	{
-		if (lemin_check_edge(ptr_farm.nodes[i]->edges_out) == 1)
-		{
-			free(ptr_farm.nodes[i]->edges_out);
+		if (lemin_check_edge_out(ptr_farm.nodes[i]->edges_out) == 1)
 			ptr_farm.nodes[i]->edges_out = NULL;
-		}
+		lemin_check_edge_in(ptr_farm.nodes[i]->edges_in, i);
 		i++;
 	}
 	return (0);
