@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 20:01:11 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/12 17:07:26 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/12 17:51:18 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,16 @@ int			val_invalid_startend(char *map, int map_size, int *i)
 		line_start = j;
 		while (j < map_size && (!(map[j] == VAL_SPACE || map[j] == VAL_ENTER)))
 			j++;
-		if (map[j] != VAL_ENTER)
+		if (map[j] != VAL_ENTER || j == line_start + 2)
 		{
-			return (val_errors(ERR_INVALID_LINE,
+			val_errors(ERR_INVALID_LINE, map + line_start, VAL_ENTER, 0);
+			if (map[j] == VAL_SPACE)
+			{
+				val_pass_spaces(map, &j);
+				if (map[j] == VAL_ENTER)
+					return (val_errors(ERR_SPACE_END, NULL, 0, 0));
+			}
+			return (val_errors(ERR_INVALID_COMMAND,
 				map + line_start, VAL_ENTER, 0));
 		}
 		*i = j;

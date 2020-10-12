@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 22:25:32 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/12 16:51:38 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/12 17:40:24 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "validator.h"
 
 #define ERRORS_NUM_FIRST 8
-#define ERRORS_NUM_SECOND 17
+#define ERRORS_NUM_SECOND 18
 
 static char		*val_errors_types_first(int sequence_num)
 {
@@ -42,16 +42,17 @@ static char		*val_errors_types_second(int sequence_num)
 	seq_action[4] = "start is redefined";
 	seq_action[5] = "\'##end\' not found";
 	seq_action[6] = "end is redefined";
-	seq_action[7] = "no room after command found";
-	seq_action[8] = "invalid room name: ";
-	seq_action[9] = "no information about room found: ";
-	seq_action[10] = "redefinition of information for room: ";
-	seq_action[11] = "invalid coordinate: ";
-	seq_action[12] = "not enough coordinates found";
-	seq_action[13] = "too many coordinates found: only x and y needed";
-	seq_action[14] = "link [room name1]-[room name2] needed";
-	seq_action[15] = "room linked on itself: ";
-	seq_action[16] = "no possible solution with this map";
+	seq_action[7] = "invalid command name: ";
+	seq_action[8] = "no room after command found";
+	seq_action[9] = "invalid room name: ";
+	seq_action[10] = "no information about room found: ";
+	seq_action[11] = "redefinition of information for room: ";
+	seq_action[12] = "invalid coordinate: ";
+	seq_action[13] = "not enough coordinates found";
+	seq_action[14] = "too many coordinates found: only x and y needed";
+	seq_action[15] = "link [room name1]-[room name2] needed";
+	seq_action[16] = "room linked on itself: ";
+	seq_action[17] = "no possible solution with this map";
 	return (seq_action[sequence_num]);
 }
 
