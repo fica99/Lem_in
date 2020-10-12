@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   val_second_filter_links.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 22:28:31 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/08 17:34:08 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/12 16:23:19 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,15 +123,9 @@ int			val_save_link(size_t index1, size_t index2, t_graph *farm)
 	ptr_node = (*farm).nodes[index1];
 	ptr_edge = ptr_node->edges_out;
 	val_save_edge(index1, index2, ptr_edge);
-	ptr_edge = ptr_node->edges_in;
-	val_save_edge(index1, index1, ptr_edge);
-	ptr_edge->weight = 0;
 	ptr_node = (*farm).nodes[index2];
 	ptr_edge = ptr_node->edges_out;
 	val_save_edge(index2, index1, ptr_edge);
-	ptr_edge = ptr_node->edges_in;
-	val_save_edge(index2, index2, ptr_edge);
-	ptr_edge->weight = 0;
 	return (0);
 }
 
@@ -140,7 +134,7 @@ int			val_save_edge(size_t index1, size_t index2, t_edge *edge)
 	t_edge	*runner;
 	t_edge	*ptr_edge;
 
-	if ((int)edge->from == -1 || (int)edge->to == -1)
+	if (edge->from == SIZE_MAX || edge->to == SIZE_MAX)
 	{
 		edge->from = index1;
 		edge->to = index2;

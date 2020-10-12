@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 20:35:49 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/07 00:12:02 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/12 16:57:27 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int			val_getrooms(char *map, int map_size, int *i, t_graph *farm)
 			if ((answer = val_check_roomdraft(name,
 					coord, farm, flag)) == VAL_ERROR)
 				return (VAL_ERROR);
+		flag = 0;
 		(*i)++;
 	}
 	return (0);

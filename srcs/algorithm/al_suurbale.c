@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   al_suurbale.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:23:59 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/09 17:05:15 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/12 01:46:07 by aashara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,30 +81,55 @@ static void		al_update_paths(t_paths *paths, t_edge **edges,
 	}
 }
 
-t_paths			*al_suurbale(t_graph *graph)
+static void		al_add_path(t_graph *graph, t_paths *paths,
+										t_bell_ford_params params[][2])
+{
+	size_t	i;
+	t_edge	*end;
+	t_edge	*edges;
+
+	edges = NULL;
+	al_reverse_path(graph, params, &edges);
+	end = edges;
+	i = 0;
+	++(paths->nb_paths);
+	while (i < paths->nb_paths)
+	{
+		while (end->next)
+			end = end->next;
+		end->next = paths->paths[i].edges;
+		paths->paths[i].edges = NULL;
+		++i;
+	}
+	al_del_reverse_edges(&edges);
+	al_update_paths(paths, &edges, graph->graph_start, graph->graph_end);
+	lemin_edge_clean(&edges);
+}
+
+t_paths			*al_suurbale(t_graph *graph, int nb_ants)
 {
 	t_bell_ford_params	params[graph->nb_nodes][2];
 	t_paths				*paths;
-	t_edge				*edges;
+	t_paths				tmp;
 	size_t				nb_paths;
 
-	edges = NULL;
 	nb_paths = ft_min(al_count_edges(graph->nodes[graph->graph_end]->edges_out),
 				al_count_edges(graph->nodes[graph->graph_start]->edges_out));
-	paths = (t_paths *)ft_xmalloc(sizeof(t_paths));
-	paths->paths = ft_xmalloc(sizeof(t_path) * (nb_paths));
-	while (nb_paths)
+	if (!nb_paths)
+		return (NULL);
+	paths = (t_paths *)ft_xmalloc(sizeof(t_paths) * nb_paths);
+	tmp.paths = ft_xmalloc(sizeof(t_path) * nb_paths);
+	tmp.nb_paths = 0;
+	while (nb_paths--)
 	{
 		al_bellman_ford(graph, params);
 		if (params[graph->graph_end][1].dist == INT_MAX)
 			break ;
-		++paths->nb_paths;
-		al_update_graph(graph, params, &edges);
-		--nb_paths;
+		al_add_path(graph, &tmp, params);
+		al_sort_paths(&tmp);
+		tmp.nb_steps = al_calc_nb_steps(nb_ants, &tmp, tmp.nb_paths);
+		al_copy_paths(&tmp, paths + tmp.nb_paths - 1);
 	}
-	al_del_reverse_edges(&edges);
-	al_update_paths(paths, &edges, graph->graph_start, graph->graph_end);
-	al_sort_paths(paths);
-	lemin_edge_clean(&edges);
-	return (paths);
+	al_del_paths(&tmp);
+	return (al_find_best_path(paths, tmp.nb_paths));
 }

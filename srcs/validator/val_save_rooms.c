@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 21:15:08 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/06 23:42:03 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/12 16:23:00 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int			val_check_roomdraft(char name[VAL_MAXROOMNAME],
 
 int			val_check_startenddraft(t_graph *farm, int flag)
 {
-	if (flag == 's' && (int)(*farm).graph_start != -1)
+	if (flag == 's' && (*farm).graph_start != SIZE_MAX)
 		return (val_errors(ERR_START_REDEFINED, NULL, 0, 0));
-	else if (flag == 'e' && (int)(*farm).graph_end != -1)
+	else if (flag == 'e' && (*farm).graph_end != SIZE_MAX)
 		return (val_errors(ERR_END_REDEFINED, NULL, 0, 0));
 	return (0);
 }
