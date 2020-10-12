@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 11:12:16 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/06 18:47:28 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/12 16:51:44 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef enum
 	ERR_START_REDEFINED,
 	ERR_NOEND,
 	ERR_END_REDEFINED,
+	ERR_NOROOM_COMMAND,
 	ERR_INVALID_ROOMNAME,
 	ERR_NOROOM_INFO,
 	ERR_ROOM_REDEFINED,
@@ -57,6 +58,7 @@ typedef enum
 int			val_start_validation(int argc, char **argv);
 int			val_read_stdinput(void);
 int			val_check_map(char *map, int map_size);
+int			val_check_farm(t_graph *farm);
 
 /*
 ** File val_arguments.c
@@ -80,7 +82,8 @@ int			val_errors(int error_index, char *arg, char end, int usage_needed);
 int			val_pass_spaces(char *map, int *i);
 int			val_find_delimiter(char *map, int i);
 int			val_isdelimiter(char *map, int i);
-int			val_pass_comments(char *map, int *i);
+int			val_pass_comments(char *map, int *i, int flag);
+int			val_pass_startend(char *map, int *i, int flag);
 
 /*
 ** File val_first_filter.c
@@ -96,9 +99,9 @@ int			val_check_spaces(char *map, int i);
 */
 
 int			val_invalid_values(char *map, int map_size);
+int			val_getfarm(char *map, int map_size, int *i, t_graph *farm);
 int			val_getants(char *map);
 int			val_getrooms(char *map, int map_size, int *i, t_graph *farm);
-int			val_pass_startend(char *map, int *i);
 int			val_getlinks(char *map, int map_size, int *i, t_graph *farm);
 
 /*

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 12:58:48 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/12 14:15:44 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/10/12 17:06:34 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,22 @@
 
 static int	lemin_print(t_paths *paths, t_graph *graph, int nb_ants)
 {
+	int	answer;
+
+	answer = 0;
 	if (!paths || paths->nb_paths == 0)
+		answer = val_errors(ERR_NOSOLUTION, NULL, 0, 0);
+	else
 	{
-		al_del_paths(paths);
-		ft_memdel((void**)&paths);
-		return (val_errors(ERR_NOSOLUTION, NULL, 0, 0));
+		(paths->paths[0].nb_nodes != 1) ?
+			lem_in_print_paths(paths, graph->nodes, nb_ants) :
+			lem_in_print_all(graph->nodes[graph->graph_end]->name, nb_ants);
 	}
-	(paths->paths[0].nb_nodes != 1) ? lem_in_print_paths(paths, graph->nodes,
-	nb_ants) : lem_in_print_all(graph->nodes[graph->graph_end]->name, nb_ants);
 	al_del_paths(paths);
 	ft_memdel((void**)&paths);
 	lemin_graph_methods(NULL, -1);
 	lemin_antsum_methods(0, -1);
-	return (0);
+	return (answer);
 }
 
 int			main(int argc, char **argv)
@@ -50,7 +53,12 @@ int			main(int argc, char **argv)
 	nb_ants = lemin_antsum_methods(0, 0);
 	paths = al_suurbale(&graph, nb_ants);
 	answer = lemin_print(paths, &graph, nb_ants);
-	return (answer);
+	if (answer == VAL_ERROR)
+	{
+		ft_putendl_fd("ERROR", STDERR_FILENO);
+		return (1);
+	}
+	return (0);
 }
 
 void		lemin_usage(void)
