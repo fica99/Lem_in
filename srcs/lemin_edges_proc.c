@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 20:01:52 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/06 23:43:09 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/12 13:42:46 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,18 @@ void			lemin_edge_clean(t_edge **begin_edge)
 		*begin_edge = runner;
 	}
 	*begin_edge = NULL;
+}
+
+int				lemin_check_edge(t_edge *begin_edge)
+{
+	t_edge		*run;
+
+	run = begin_edge;
+	while (run)
+	{
+		if ((int)run->from < 0 || (int)run->to < 0)
+			return (1);
+		run = run->next;
+	}
+	return (0);
 }

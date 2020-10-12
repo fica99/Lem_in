@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 21:22:08 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/06 23:55:31 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/12 13:47:37 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,24 @@ int			val_check_map(char *map, int map_size)
 int			val_check_farm(t_graph *farm)
 {
 	t_graph	ptr_farm;
+	size_t	i;
 
 	ptr_farm = *farm;
+	i = 0;
 	if ((int)ptr_farm.graph_start < 0)
 		return (val_errors(ERR_NOSTART, NULL, 0, 0));
 	if ((int)ptr_farm.graph_end < 0)
 		return (val_errors(ERR_NOEND, NULL, 0, 0));
 	if ((int)ptr_farm.nb_nodes < 1)
 		return (val_errors(ERR_NOROOMS, NULL, 0, 0));
+	while (i < ptr_farm.nb_nodes && ptr_farm.nodes[i])
+	{
+		if (lemin_check_edge(ptr_farm.nodes[i]->edges_out) == 1)
+		{
+			free(ptr_farm.nodes[i]->edges_out);
+			ptr_farm.nodes[i]->edges_out = NULL;
+		}
+		i++;
+	}
 	return (0);
 }
