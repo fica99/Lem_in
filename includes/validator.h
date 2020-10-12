@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 11:12:16 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/12 16:51:44 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/12 17:41:39 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef enum
 	ERR_START_REDEFINED,
 	ERR_NOEND,
 	ERR_END_REDEFINED,
+	ERR_INVALID_COMMAND,
 	ERR_NOROOM_COMMAND,
 	ERR_INVALID_ROOMNAME,
 	ERR_NOROOM_INFO,
