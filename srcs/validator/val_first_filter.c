@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 20:01:11 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/12 17:51:18 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/18 13:08:01 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,27 +71,27 @@ int			val_check_antsnum(char *map, int map_size)
 int			val_invalid_startend(char *map, int map_size, int *i)
 {
 	int		j;
-	int		line_start;
+	int		start;
 
 	j = *i;
 	if (j > 0 && map[j] && map[j] == VAL_HASH && map[j + 1] == VAL_HASH
 			&& map[j - 1] == VAL_ENTER)
 	{
-		line_start = j;
+		start = j;
 		while (j < map_size && (!(map[j] == VAL_SPACE || map[j] == VAL_ENTER)))
 			j++;
-		if (map[j] != VAL_ENTER || j == line_start + 2)
+		if (j == start + 2)
+			return (val_errors(ERR_INVALID_COMMAND, map + start, VAL_ENTER, 0));
+		if (map[j] != VAL_ENTER)
 		{
-			val_errors(ERR_INVALID_LINE, map + line_start, VAL_ENTER, 0);
-			if (map[j] == VAL_SPACE)
-			{
-				val_pass_spaces(map, &j);
-				if (map[j] == VAL_ENTER)
-					return (val_errors(ERR_SPACE_END, NULL, 0, 0));
-			}
-			return (val_errors(ERR_INVALID_COMMAND,
-				map + line_start, VAL_ENTER, 0));
+			val_errors(ERR_INVALID_LINE, map + start, VAL_ENTER, 0);
+			val_pass_spaces(map, &j);
+			return (val_errors((map[j] == VAL_ENTER ?
+				ERR_SPACE_END : ERR_INVALID_COMMAND),
+				(map[j] == VAL_ENTER ? NULL : map + start), VAL_ENTER, 0));
 		}
+		if (val_invalid_roomaftercommand(map, map_size, &j, start) == VAL_ERROR)
+			return (VAL_ERROR);
 		*i = j;
 	}
 	return (0);
@@ -122,5 +122,34 @@ int			val_check_spaces(char *map, int i)
 		val_errors(ERR_INVALID_LINE, map + i + 1, VAL_ENTER, 0);
 		return (val_errors(ERR_SPACE_END, NULL, 0, 0));
 	}
+	return (0);
+}
+
+int			val_invalid_roomaftercommand(char *map,
+				int map_size, int *i, int start)
+{
+	int		j;
+	int		tmp;
+	int		flag;
+
+	j = *i;
+	(map[j] == VAL_ENTER) ? j++ : 0;
+	if (j >= map_size || map[j] == VAL_HASH)
+	{
+		flag = 1;
+		while (flag)
+		{
+			tmp = j;
+			val_pass_comments(map, &j, 0);
+			(tmp == j) ? flag = 0 : 0;
+		}
+		if (map[j] && map[j] == VAL_HASH && map[j + 1] == VAL_HASH
+				&& map[j - 1] == VAL_ENTER)
+			return (val_errors(ERR_NOCOMMAND, map + start, VAL_ENTER, 0));
+		tmp = ft_strchri(map + j, '-');
+		if (map[j] && tmp >= 0 && val_isdelimiter(map, tmp))
+			return (val_errors(ERR_NOCOMMAND, map + start, VAL_ENTER, 0));	
+	}
+	*i = j;
 	return (0);
 }
