@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 22:25:32 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/19 18:58:10 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/19 19:04:56 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int				val_errors(int error_index, char *arg,
 	return (VAL_ERROR);
 }
 
-int			val_check_linkaftercommand(char *map, int map_size, int *i)
+int				val_check_linkaftercommand(char *map, int map_size, int *i)
 {
 	int		j;
 
@@ -100,4 +100,4 @@ int			val_check_linkaftercommand(char *map, int map_size, int *i)
 		j++;
 	}
 	return (0);
-}	
+}
