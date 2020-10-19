@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 22:25:32 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/18 12:39:55 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/19 18:58:10 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,3 +84,20 @@ int				val_errors(int error_index, char *arg,
 		lemin_usage();
 	return (VAL_ERROR);
 }
+
+int			val_check_linkaftercommand(char *map, int map_size, int *i)
+{
+	int		j;
+
+	j = 0;
+	if (*i < map_size && map[*i] == VAL_ENTER)
+		(*i)++;
+	while ((*i + j) < map_size && !(map[*i + j] == VAL_SPACE ||
+			map[*i + j] == VAL_ENTER))
+	{
+		if (map[*i + j] == VAL_DASH && val_isdelimiter(map, *i + j))
+			return (VAL_ERROR);
+		j++;
+	}
+	return (0);
+}	

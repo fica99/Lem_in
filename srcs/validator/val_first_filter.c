@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 20:01:11 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/18 13:17:29 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/19 18:35:30 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,9 @@ int			val_invalid_roomaftercommand(char *map,
 
 	j = *i;
 	(map[j] == VAL_ENTER) ? j++ : 0;
-	if (j >= map_size || map[j] == VAL_HASH)
+	if (j >= map_size)
+		return (val_errors(ERR_NOCOMMAND, map + start, VAL_ENTER, 0));
+	if (map[j] == VAL_HASH)
 	{
 		flag = 1;
 		while (flag)
@@ -148,10 +150,9 @@ int			val_invalid_roomaftercommand(char *map,
 		if (map[j] && map[j] == VAL_HASH && map[j + 1] == VAL_HASH
 				&& map[j - 1] == VAL_ENTER)
 			return (val_errors(ERR_NOCOMMAND, map + start, VAL_ENTER, 0));
-		tmp = ft_strchri(map + j, '-');
-		if (map[j] && tmp >= 0 && val_isdelimiter(map, tmp))
-			return (val_errors(ERR_NOCOMMAND, map + start, VAL_ENTER, 0));	
 	}
+	if (val_check_linkaftercommand(map, map_size, &j) == VAL_ERROR)
+		return (val_errors(ERR_NOCOMMAND, map + start, VAL_ENTER, 0));
 	*i = j;
 	return (0);
 }

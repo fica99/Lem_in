@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 11:12:16 by aashara-          #+#    #+#             */
-/*   Updated: 2020/10/18 13:08:08 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/19 18:36:35 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int			val_check_program_option(char *arg, char *options,
 */
 
 int			val_errors(int error_index, char *arg, char end, int usage_needed);
+int			val_check_linkaftercommand(char *map, int map_size, int *i);
 
 /*
 ** File val_help_funcs.c
