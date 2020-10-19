@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 22:28:31 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/12 16:23:19 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/18 11:49:34 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int			val_check_link_pattern(char *map, int *i,
 	if (map[*i] && map[*i] != VAL_ENTER)
 	{
 		beg_line = *i;
+		if (name1[0] && (name1[0] == '#' || name1[0] == 'L'))
+			return (val_errors(ERR_INVALID_ROOMNAME, name1, 0, 0));
+		if (name2[0] && (name2[0] == '#' || name2[0] == 'L'))
+			return (val_errors(ERR_INVALID_ROOMNAME, name2, 0, 0));
 		ptr_name1 = &name1[0];
 		ptr_name2 = &name2[0];
 		answer = val_getlink_roomsnames(map, i, ptr_name1, ptr_name2);

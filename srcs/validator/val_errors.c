@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 22:25:32 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/12 17:40:24 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/19 19:04:56 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char		*val_errors_types_second(int sequence_num)
 	seq_action[5] = "\'##end\' not found";
 	seq_action[6] = "end is redefined";
 	seq_action[7] = "invalid command name: ";
-	seq_action[8] = "no room after command found";
+	seq_action[8] = "no room after command found: ";
 	seq_action[9] = "invalid room name: ";
 	seq_action[10] = "no information about room found: ";
 	seq_action[11] = "redefinition of information for room: ";
@@ -83,4 +83,21 @@ int				val_errors(int error_index, char *arg,
 	if (usage_needed == 1)
 		lemin_usage();
 	return (VAL_ERROR);
+}
+
+int				val_check_linkaftercommand(char *map, int map_size, int *i)
+{
+	int		j;
+
+	j = 0;
+	if (*i < map_size && map[*i] == VAL_ENTER)
+		(*i)++;
+	while ((*i + j) < map_size && !(map[*i + j] == VAL_SPACE ||
+			map[*i + j] == VAL_ENTER))
+	{
+		if (map[*i + j] == VAL_DASH && val_isdelimiter(map, *i + j))
+			return (VAL_ERROR);
+		j++;
+	}
+	return (0);
 }

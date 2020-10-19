@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 21:15:08 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/12 16:23:00 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/18 12:06:16 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,9 @@ int			val_check_coorddraft(char coord[VAL_MAXROOMCOORD])
 {
 	int		new_coord;
 
-	if (coord[0] == VAL_DASH)
-		return (val_errors(ERR_INVALID_COORD, coord, '\0', 0));
 	new_coord = ft_atoi(coord);
-	if (new_coord < 0)
+	if ((coord[0] == VAL_DASH && new_coord > 0) ||
+			(ft_isdigit(coord[0]) && new_coord < 0))
 		return (val_errors(ERR_INVALID_COORD, coord, '\0', 0));
 	return (new_coord);
 }

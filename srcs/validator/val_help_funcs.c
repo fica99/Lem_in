@@ -6,7 +6,7 @@
 /*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 21:08:20 by sschmele          #+#    #+#             */
-/*   Updated: 2020/10/12 18:01:00 by sschmele         ###   ########.fr       */
+/*   Updated: 2020/10/19 18:47:31 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int			val_isdelimiter(char *map, int i)
 			map[i] == VAL_SPACE ||
 			(i > 0 && map[i] == VAL_DASH &&
 			(!(map[i - 1] == VAL_ENTER || map[i - 1] == VAL_SPACE)) &&
-			(!(map[i + 1] && map[i + 1] == VAL_ENTER &&
-			map[i + 1] == VAL_SPACE)))))
+			(!(map[i + 1] && (map[i + 1] == VAL_ENTER ||
+			map[i + 1] == VAL_SPACE))))))
 		return (1);
 	return (0);
 }
